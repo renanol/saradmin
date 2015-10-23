@@ -1,0 +1,52 @@
+<!--  /Loading Container -->
+<!-- Navbar -->
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="navbar-container">
+      <!-- Navbar Barnd -->
+      <div class="navbar-header pull-left">
+        <a href="#" class="navbar-brand">
+          <small>
+            <%= image_tag 'beyond/logo.png' %>
+          </small>
+        </a>
+      </div>
+      <!-- /Navbar Barnd -->
+      <!-- Sidebar Collapse -->
+      <div class="sidebar-collapse" id="sidebar-collapse">
+        <i class="collapse-icon fa fa-bars"></i>
+      </div>
+      <!-- /Sidebar Collapse -->
+      <!-- Account Area and Settings --->
+      <div class="navbar-header pull-right">
+        <div class="navbar-account">
+          <ul class="account-area">
+            <li>
+              <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                <section>
+                  <h2><span class="profile"><span><%= current_user.email %></span></span></h2>
+                </section>
+              </a>
+              <!--Login Area Dropdown-->
+              <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                <li class="username">
+                  <a><%= current_user.email %></a>
+                </li>
+                <li class="edit">
+                  <%= link_to 'Perfil', destroy_user_session_path, class: 'pull-left' %>
+                  <%= link_to 'Editar', new_user_session_path, class: 'pull-right' %>
+                </li>
+                <li class="dropdown-footer">
+                  <%= link_to 'Sign out', destroy_user_session_path, method: :delete  %>
+                </li>
+              </ul>
+              <!--/Login Area Dropdown-->
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- /Account Area and Settings -->
+    </div>
+  </div>
+</div>
+<!-- /Navbar -->

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Myrorbase</title>
+
+  <!--Fonts-->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,300" rel="stylesheet" type="text/css">
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<!-- Loading Container -->
+<div class="loading-container">
+  <div class="loader"></div>
+</div>
+<%= render 'layouts/navbar' %>
+
+<!-- Main Container -->
+<div class="main-container container-fluid">
+  <!-- Page Container -->
+  <div class="page-container">
+
+    <%= render 'layouts/menu' %>
+
+    <div class="page-content">
+
+      <!-- Page Breadcrumb -->
+      <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+          <li class="active">
+            <i class="fa fa-home"></i>
+            Dashboard
+          </li>
+        </ul>
+      </div>
+      <!-- /Page Breadcrumb -->
+
+      <!-- Page Body -->
+      <div class="page-body">
+
+        <%= render 'layouts/shared/flash' %>
+
+        <%= yield %>
+
+      </div>
+      <!-- /Page Body -->
+
+    </div>
+
+  </div>
+  <!-- /Page Container -->
+</div>
+<!-- /Main Container -->
+
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+</body>
+</html>

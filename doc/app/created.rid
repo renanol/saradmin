@@ -1,0 +1,7 @@
+Fri, 25 Sep 2015 21:32:04 -0300
+README.rdoc	Fri, 25 Sep 2015 20:21:32 -0300
+app/controllers/application_controller.rb	Fri, 25 Sep 2015 20:21:32 -0300
+app/helpers/application_helper.rb	Fri, 25 Sep 2015 20:21:32 -0300
+app/models/ability.rb	Fri, 25 Sep 2015 21:02:31 -0300
+app/models/role.rb	Fri, 25 Sep 2015 20:55:43 -0300
+app/models/user.rb	Fri, 25 Sep 2015 20:55:43 -0300
