@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: myrorbase_development
+  database: saradmin_development
   host: localhost
   username: postgres
   password: postgres
@@ -60,7 +60,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: myrorbase_test
+  database: saradmin_test
   host: localhost
   username: postgres
   password: postgres
@@ -86,6 +86,6 @@ test:
 #
 production:
   <<: *default
-  database: myrorbase_production
+  database: saradmin_production
   username: myrorbase
   password: <%= ENV['MYRORBASE_DATABASE_PASSWORD'] %>
