@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  modulo: 1
+  tipo: 1
+  alias: MyString
+  descricao: MyString
+
+two:
+  modulo: 1
+  tipo: 1
+  alias: MyString
+  descricao: MyString
