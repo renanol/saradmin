@@ -24,4 +24,16 @@ module ApplicationHelper
     }[flash_type.to_sym] || flash_type.to_s
   end
 
+  def pode_alterar(perm)
+    current_user.pode_alterar(perm)
+  end
+
+  def pode_visualizar(perm)
+    current_user.pode_visualizar(perm)
+  end
+
+  def tem_permissao(perm)
+    current_user.tem_permissao(perm)
+  end
+
 end

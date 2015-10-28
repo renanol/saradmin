@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20151025170927) do
   enable_extension "plpgsql"
 
   create_table "grupo_permissoes", force: :cascade do |t|
-    t.string   "valor"
+    t.integer   "valor"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "grupo_id"

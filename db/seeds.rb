@@ -14,3 +14,28 @@ grupo_list = [
 grupo_list.each do |name, status|
   Grupo.create( descricao: name, status: status )
 end
+
+permissao_list = [
+    [ 'permissaoUsuario', Permissao.modulos[:configuracao], Permissao.tipos[:acesso], 'Nível de acesso ao menu de usuários' ]
+]
+
+permissao_list.each do |aliass, modulo, tipo, descricao|
+  Permissao.create( alias: aliass, modulo: modulo, tipo: tipo, descricao: descricao )
+end
+
+Grupo.all.each do |grupo|
+  Permissao.all.each do |perm|
+    if perm.acesso?
+      valor = GrupoPermissao.valores[:nenhuma]
+      if grupo.id == 1 || grupo.id == 2
+        valor = GrupoPermissao.valores[:alterar]
+      end
+    else
+      valor = GrupoPermissao.valores[:nao]
+      if grupo.id == 1 || grupo.id == 2
+        valor = GrupoPermissao.valores[:sim]
+      end
+    end
+    GrupoPermissao.create( grupo_id: grupo.id, permissao_id: perm.id, valor: valor )
+  end
+end

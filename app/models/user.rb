@@ -20,4 +20,9 @@ class User < ActiveRecord::Base
     self.grupo_id == 1 || self.grupo_id == 2
   end
 
+  def permissao(perm)
+    permissao = Permissao.find_by_alias(perm)
+    GrupoPermissao.find_by(grupo_id: self.grupo_id, permissao_id: permissao.id)
+  end
+
 end
