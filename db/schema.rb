@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20151029023445) do
   end
 
   create_table "grupo_permissoes", force: :cascade do |t|
-    t.string   "valor"
+    t.integer   "valor"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "grupo_id"
