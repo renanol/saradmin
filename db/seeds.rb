@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+grupo_list = [
+    [ 'root', Grupo.status[:ativo] ],
+    [ 'Administrador', Grupo.status[:ativo] ],
+    [ 'Usuário', Grupo.status[:ativo] ]
+]
+
+grupo_list.each do |name, status|
+  Grupo.create( descricao: name, status: status )
+end

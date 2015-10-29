@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :foos
+  resources :igrejas
   devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
