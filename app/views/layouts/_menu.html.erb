@@ -10,12 +10,52 @@
   <!-- Sidebar Menu -->
   <ul class="nav sidebar-menu">
     <!--Dashboard-->
-    <li class="active">
+    <li>
       <%= link_to '#' do %>
-        <%= fa_icon 'home' %>
+        <%= fa_icon 'home', class: 'menu-icon' %>
         <span class="menu-text"> Dashboard </span>
       <% end %>
     </li>
+    <!--Configuracao-->
+    <% if current_user.tem_permissao(['permissaoUsuario', 'permissaoGrupo']) %>
+        <li>
+          <%= link_to '#', class: 'menu-dropdown' do %>
+              <%= fa_icon 'home', class: 'menu-icon' %>
+              <span class="menu-text"> Configuração </span>
+              <i class="menu-expand"></i>
+          <% end %>
+
+          <% if current_user.tem_permissao(['permissaoUsuario', 'permissaoGrupo']) %>
+              <ul class="submenu">
+                <li>
+                  <%= link_to '#', class: 'menu-dropdown' do %>
+                      <span class="menu-text"> Usuários </span>
+                      <i class="menu-expand"></i>
+                  <% end %>
+
+                  <ul class="submenu">
+                    <li>
+                      <%= link_to '#', class: 'menu-dropdown' do %>
+                          <span class="menu-text"> Grupos de Usuário </span>
+                          <i class="menu-expand"></i>
+                      <% end %>
+
+                      <ul class="submenu">
+                        <li>
+                          <%= link_to '#' do %>
+                              <%= fa_icon 'rocket', class: 'menu-icon' %>
+                              <span class="menu-text"> Listar </span>
+                          <% end %>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+
+                </li>
+              </ul>
+          <% end %>
+        </li>
+    <% end %>
   </ul>
   <!-- /Sidebar Menu -->
 </div>

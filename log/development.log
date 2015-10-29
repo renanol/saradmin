@@ -12094,3 +12094,415 @@ Started GET "/assets/application.self-44dc72337fbefc4f8c73fc8781b922cf9e4f99f8d0
 
 
 Started GET "/assets/beyond/logo-dacc22c00055d527735d75138861be66302506411a88530a6ade2277f69d08b0.png" for ::1 at 2015-10-28 21:17:51 -0300
+  [1m[36m (391.1ms)[0m  [1mDROP DATABASE IF EXISTS "saradmin_development"[0m
+  [1m[35m (353.5ms)[0m  DROP DATABASE IF EXISTS "saradmin_test"
+  [1m[36m (856.1ms)[0m  [1mCREATE DATABASE "saradmin_development" ENCODING = 'unicode'[0m
+  [1m[35m (705.1ms)[0m  CREATE DATABASE "saradmin_test" ENCODING = 'unicode'
+  [1m[36mSQL (40.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (111.2ms)[0m  CREATE TABLE "grupo_permissoes" ("id" serial primary key, "valor" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "grupo_id" integer, "permissao_id" integer) 
+  [1m[36m (121.2ms)[0m  [1mCREATE TABLE "grupos" ("id" serial primary key, "descricao" character varying, "status" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (121.4ms)[0m  CREATE TABLE "permissoes" ("id" serial primary key, "modulo" integer, "tipo" integer, "alias" character varying, "descricao" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (76.8ms)[0m  [1mCREATE TABLE "profiles" ("id" serial primary key, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (75.8ms)[0m  CREATE  INDEX  "index_profiles_on_user_id" ON "profiles" USING btree ("user_id")
+  [1m[36m (116.5ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "grupo_id" integer, "name" character varying, "status" integer) [0m
+  [1m[35m (75.8ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")
+  [1m[36m (87.2ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")[0m
+  [1m[35m (75.4ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (65.1ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.4ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (10.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151025170927')[0m
+  [1m[35m (11.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150925235452')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151024095001')[0m
+  [1m[35m (11.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151024095941')
+  [1m[36m (11.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151025170111')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151025165911')
+  [1m[36m (11.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151025164750')[0m
+  [1m[35m (11.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150926035640')
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (108.6ms)[0m  CREATE TABLE "grupo_permissoes" ("id" serial primary key, "valor" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "grupo_id" integer, "permissao_id" integer) 
+  [1m[36m (110.4ms)[0m  [1mCREATE TABLE "grupos" ("id" serial primary key, "descricao" character varying, "status" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (121.4ms)[0m  CREATE TABLE "permissoes" ("id" serial primary key, "modulo" integer, "tipo" integer, "alias" character varying, "descricao" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (65.1ms)[0m  [1mCREATE TABLE "profiles" ("id" serial primary key, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (64.6ms)[0m  CREATE  INDEX  "index_profiles_on_user_id" ON "profiles" USING btree ("user_id")
+  [1m[36m (142.7ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "grupo_id" integer, "name" character varying, "status" integer) [0m
+  [1m[35m (75.9ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")
+  [1m[36m (76.2ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")[0m
+  [1m[35m (110.1ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (76.1ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.4ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (10.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151025170927')[0m
+  [1m[35m (11.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150925235452')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151024095001')[0m
+  [1m[35m (11.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151024095941')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151025170111')[0m
+  [1m[35m (11.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151025165911')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151025164750')[0m
+  [1m[35m (11.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150926035640')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "grupos" ("descricao", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["descricao", "root"], ["status", 0], ["created_at", "2015-10-29 15:39:55.628786"], ["updated_at", "2015-10-29 15:39:55.628786"]]
+  [1m[35m (34.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "grupos" ("descricao", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["descricao", "Administrador"], ["status", 0], ["created_at", "2015-10-29 15:39:55.665795"], ["updated_at", "2015-10-29 15:39:55.665795"]]
+  [1m[36m (9.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "grupos" ("descricao", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["descricao", "Usuário"], ["status", 0], ["created_at", "2015-10-29 15:39:55.676805"], ["updated_at", "2015-10-29 15:39:55.676805"]]
+  [1m[35m (9.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "permissoes" ("alias", "modulo", "tipo", "descricao", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["alias", "permissaoUsuario"], ["modulo", 0], ["tipo", 0], ["descricao", "Nível de acesso ao menu de usuários"], ["created_at", "2015-10-29 15:39:55.694885"], ["updated_at", "2015-10-29 15:39:55.694885"]]
+  [1m[36m (12.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "permissoes" ("alias", "modulo", "tipo", "descricao", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["alias", "permissaoGrupo"], ["modulo", 0], ["tipo", 0], ["descricao", "Nível de acesso ao menu de grupo de usuário"], ["created_at", "2015-10-29 15:39:55.710232"], ["updated_at", "2015-10-29 15:39:55.710232"]]
+  [1m[35m (9.1ms)[0m  COMMIT
+  [1m[36mGrupo Load (0.3ms)[0m  [1mSELECT "grupos".* FROM "grupos"[0m
+  [1m[35mPermissao Load (0.2ms)[0m  SELECT "permissoes".* FROM "permissoes"
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "grupo_permissoes" ("grupo_id", "permissao_id", "valor", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["grupo_id", 1], ["permissao_id", 1], ["valor", 2], ["created_at", "2015-10-29 15:39:55.753165"], ["updated_at", "2015-10-29 15:39:55.753165"]]
+  [1m[36m (32.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "grupo_permissoes" ("grupo_id", "permissao_id", "valor", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["grupo_id", 1], ["permissao_id", 2], ["valor", 2], ["created_at", "2015-10-29 15:39:55.787751"], ["updated_at", "2015-10-29 15:39:55.787751"]]
+  [1m[35m (9.3ms)[0m  COMMIT
+  [1m[36mPermissao Load (0.2ms)[0m  [1mSELECT "permissoes".* FROM "permissoes"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "grupo_permissoes" ("grupo_id", "permissao_id", "valor", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["grupo_id", 2], ["permissao_id", 1], ["valor", 2], ["created_at", "2015-10-29 15:39:55.799435"], ["updated_at", "2015-10-29 15:39:55.799435"]]
+  [1m[35m (8.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "grupo_permissoes" ("grupo_id", "permissao_id", "valor", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["grupo_id", 2], ["permissao_id", 2], ["valor", 2], ["created_at", "2015-10-29 15:39:55.809939"], ["updated_at", "2015-10-29 15:39:55.809939"]]
+  [1m[36m (9.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mPermissao Load (0.2ms)[0m  SELECT "permissoes".* FROM "permissoes"
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "grupo_permissoes" ("grupo_id", "permissao_id", "valor", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["grupo_id", 3], ["permissao_id", 1], ["valor", 0], ["created_at", "2015-10-29 15:39:55.821593"], ["updated_at", "2015-10-29 15:39:55.821593"]]
+  [1m[36m (8.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "grupo_permissoes" ("grupo_id", "permissao_id", "valor", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["grupo_id", 3], ["permissao_id", 2], ["valor", 0], ["created_at", "2015-10-29 15:39:55.832159"], ["updated_at", "2015-10-29 15:39:55.832159"]]
+  [1m[35m (9.3ms)[0m  COMMIT
+
+
+Started GET "/" for ::1 at 2015-10-29 13:03:12 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (31.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DashboardController#index as HTML
+  [1m[35mUser Load (106.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 401 Unauthorized in 316ms (ActiveRecord: 108.5ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2015-10-29 13:03:13 -0300
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mGrupo Load (0.3ms)[0m  [1mSELECT  "grupos".* FROM "grupos" WHERE "grupos"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  Rendered devise/sessions/new.html.erb within layouts/login (184.1ms)
+  Rendered layouts/shared/_flash.html.erb (0.6ms)
+Completed 200 OK in 3827ms (Views: 3607.9ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/users/sign_up" for ::1 at 2015-10-29 13:03:21 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[35mGrupo Load (0.3ms)[0m  SELECT  "grupos".* FROM "grupos" WHERE "grupos"."id" = $1 LIMIT 1  [["id", 3]]
+  Rendered devise/registrations/new.html.erb within layouts/login (6.9ms)
+  Rendered layouts/shared/_flash.html.erb (0.1ms)
+Completed 200 OK in 291ms (Views: 288.7ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users" for ::1 at 2015-10-29 13:03:33 -0300
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"leDPeN40Dl84joxAShKu+X4jz5hB6jlEGfZhcTmwxH9swbsGq+ZF8UOFsrwRmtXc3MW75V6zpGniVagUi22J8A==", "user"=>{"email"=>"alexqno@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Cadastrar"}
+  [1m[36mGrupo Load (0.3ms)[0m  [1mSELECT  "grupos".* FROM "grupos" WHERE "grupos"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (23.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'alexqno@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (4.9ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "grupo_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["email", "alexqno@gmail.com"], ["encrypted_password", "$2a$10$uwILKPng7pToQOEt7UbxOOzJyt8t9FsJYCnoFbyZVCdBJr7etfOJ6"], ["grupo_id", 3], ["status", 0], ["created_at", "2015-10-29 16:03:34.374838"], ["updated_at", "2015-10-29 16:03:34.374838"]]
+  [1m[36m (43.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = $7[0m  [["last_sign_in_at", "2015-10-29 16:03:34.425705"], ["current_sign_in_at", "2015-10-29 16:03:34.425705"], ["last_sign_in_ip", "::1/128"], ["current_sign_in_ip", "::1/128"], ["sign_in_count", 1], ["updated_at", "2015-10-29 16:03:34.426879"], ["id", 1]]
+  [1m[35m (6.2ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 671ms (ActiveRecord: 78.5ms)
+
+
+Started GET "/" for ::1 at 2015-10-29 13:03:34 -0300
+Processing by DashboardController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/dashboard/clear
+Completed 302 Found in 53ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/dashboard/clear" for ::1 at 2015-10-29 13:03:34 -0300
+Processing by DashboardController#clear as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered dashboard/clear.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_navbar.html.erb (25.6ms)
+  Rendered layouts/_menu.html.erb (1.3ms)
+Completed 500 Internal Server Error in 121ms (ActiveRecord: 0.4ms)
+
+SyntaxError (/home/alexqno/develop/ror/projetos/saradmin/app/views/layouts/_menu.html.erb:21: syntax error, unexpected ','
+...uffer.append=( link_to '#' do , class: 'menu-dropdown');@out...
+...                               ^
+/home/alexqno/develop/ror/projetos/saradmin/app/views/layouts/_menu.html.erb:21: syntax error, unexpected ')', expecting keyword_end
+...#' do , class: 'menu-dropdown');@output_buffer.safe_append='
+...                               ^
+/home/alexqno/develop/ror/projetos/saradmin/app/views/layouts/_menu.html.erb:29: syntax error, unexpected ','
+...uffer.append=( link_to '#' do , class: 'menu-dropdown');@out...
+...                               ^
+/home/alexqno/develop/ror/projetos/saradmin/app/views/layouts/_menu.html.erb:29: syntax error, unexpected ')', expecting keyword_end
+...#' do , class: 'menu-dropdown');@output_buffer.safe_append='
+...                               ^
+/home/alexqno/develop/ror/projetos/saradmin/app/views/layouts/_menu.html.erb:36: syntax error, unexpected ','
+...uffer.append=( link_to '#' do , class: 'menu-dropdown');@out...
+...                               ^
+/home/alexqno/develop/ror/projetos/saradmin/app/views/layouts/_menu.html.erb:36: syntax error, unexpected ')', expecting keyword_end
+...#' do , class: 'menu-dropdown');@output_buffer.safe_append='
+...                               ^
+/home/alexqno/develop/ror/projetos/saradmin/app/views/layouts/_menu.html.erb:61: syntax error, unexpected keyword_ensure, expecting ')'
+/home/alexqno/develop/ror/projetos/saradmin/app/views/layouts/_menu.html.erb:63: syntax error, unexpected keyword_end, expecting ')'):
+  app/views/layouts/_menu.html.erb:21: syntax error, unexpected ','
+  app/views/layouts/_menu.html.erb:21: syntax error, unexpected ')', expecting keyword_end
+  app/views/layouts/_menu.html.erb:29: syntax error, unexpected ','
+  app/views/layouts/_menu.html.erb:29: syntax error, unexpected ')', expecting keyword_end
+  app/views/layouts/_menu.html.erb:36: syntax error, unexpected ','
+  app/views/layouts/_menu.html.erb:36: syntax error, unexpected ')', expecting keyword_end
+  app/views/layouts/_menu.html.erb:61: syntax error, unexpected keyword_ensure, expecting ')'
+  app/views/layouts/_menu.html.erb:63: syntax error, unexpected keyword_end, expecting ')'
+  app/views/layouts/application.html.erb:26:in `_app_views_layouts_application_html_erb__2344971428701928395_70346819805560'
+
+
+  Rendered /home/alexqno/.rvm/gems/ruby-2.2.1@rails-4.2.4/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.0ms)
+  Rendered /home/alexqno/.rvm/gems/ruby-2.2.1@rails-4.2.4/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /home/alexqno/.rvm/gems/ruby-2.2.1@rails-4.2.4/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/alexqno/.rvm/gems/ruby-2.2.1@rails-4.2.4/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (26.7ms)
+  Rendered /home/alexqno/.rvm/gems/ruby-2.2.1@rails-4.2.4/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/alexqno/.rvm/gems/ruby-2.2.1@rails-4.2.4/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/alexqno/.rvm/gems/ruby-2.2.1@rails-4.2.4/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/alexqno/.rvm/gems/ruby-2.2.1@rails-4.2.4/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/alexqno/.rvm/gems/ruby-2.2.1@rails-4.2.4/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (18.6ms)
+  Rendered /home/alexqno/.rvm/gems/ruby-2.2.1@rails-4.2.4/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/alexqno/.rvm/gems/ruby-2.2.1@rails-4.2.4/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/alexqno/.rvm/gems/ruby-2.2.1@rails-4.2.4/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (39.0ms)
+
+
+Started GET "/" for ::1 at 2015-10-29 13:09:45 -0300
+Processing by DashboardController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/dashboard/clear
+Completed 302 Found in 10ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/dashboard/clear" for ::1 at 2015-10-29 13:09:45 -0300
+Processing by DashboardController#clear as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered dashboard/clear.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_navbar.html.erb (2.3ms)
+  Rendered layouts/_menu.html.erb (23.1ms)
+  Rendered layouts/shared/_flash.html.erb (0.3ms)
+Completed 200 OK in 336ms (Views: 334.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2015-10-29 13:20:14 -0300
+Processing by DashboardController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/dashboard/clear
+Completed 302 Found in 304ms (ActiveRecord: 205.0ms)
+
+
+Started GET "/dashboard/clear" for ::1 at 2015-10-29 13:20:15 -0300
+Processing by DashboardController#clear as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered dashboard/clear.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_navbar.html.erb (2.0ms)
+  [1m[36mPermissao Load (0.4ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1[0m  [["alias", "permissaoUsuario"]]
+  [1m[35mGrupoPermissao Load (0.3ms)[0m  SELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1  [["grupo_id", 3], ["permissao_id", 1]]
+  [1m[36mPermissao Load (0.4ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPermissao Load (0.2ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1  [["alias", "permissaoGrupo"]]
+  [1m[36mGrupoPermissao Load (0.2ms)[0m  [1mSELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1[0m  [["grupo_id", 3], ["permissao_id", 2]]
+  [1m[35mPermissao Load (0.3ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1  [["id", 2]]
+  Rendered layouts/_menu.html.erb (98.4ms)
+  Rendered layouts/shared/_flash.html.erb (0.3ms)
+Completed 200 OK in 180ms (Views: 173.7ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/" for ::1 at 2015-10-29 13:20:52 -0300
+Processing by DashboardController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/dashboard/clear
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/dashboard/clear" for ::1 at 2015-10-29 13:20:52 -0300
+Processing by DashboardController#clear as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered dashboard/clear.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_navbar.html.erb (1.8ms)
+  [1m[36mPermissao Load (0.3ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1[0m  [["alias", "permissaoUsuario"]]
+  [1m[35mGrupoPermissao Load (0.2ms)[0m  SELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1  [["grupo_id", 3], ["permissao_id", 1]]
+  [1m[36mPermissao Load (0.2ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPermissao Load (0.2ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1  [["alias", "permissaoGrupo"]]
+  [1m[36mGrupoPermissao Load (0.2ms)[0m  [1mSELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1[0m  [["grupo_id", 3], ["permissao_id", 2]]
+  [1m[35mPermissao Load (0.2ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1  [["id", 2]]
+  Rendered layouts/_menu.html.erb (4.5ms)
+  Rendered layouts/shared/_flash.html.erb (0.3ms)
+Completed 200 OK in 84ms (Views: 80.1ms | ActiveRecord: 1.7ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPermissao Load (0.3ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1  [["alias", "permissaoUsuario"]]
+  [1m[36mGrupoPermissao Load (0.2ms)[0m  [1mSELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1[0m  [["grupo_id", 3], ["permissao_id", 1]]
+  [1m[35mPermissao Load (0.3ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPermissao Load (0.6ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1[0m  [["alias", "permissaoUsuario"]]
+  [1m[35mGrupoPermissao Load (0.3ms)[0m  SELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1  [["grupo_id", 3], ["permissao_id", 1]]
+  [1m[36mPermissao Load (0.3ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPermissao Load (0.3ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1  [["alias", "permissaoGrupo"]]
+  [1m[36mGrupoPermissao Load (0.3ms)[0m  [1mSELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1[0m  [["grupo_id", 3], ["permissao_id", 2]]
+  [1m[35mPermissao Load (0.3ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1  [["id", 2]]
+
+
+Started GET "/" for ::1 at 2015-10-29 13:25:13 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DashboardController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/dashboard/clear
+Completed 302 Found in 65ms (ActiveRecord: 4.1ms)
+
+
+Started GET "/" for ::1 at 2015-10-29 13:25:13 -0300
+Processing by DashboardController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/dashboard/clear
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/dashboard/clear" for ::1 at 2015-10-29 13:25:13 -0300
+Processing by DashboardController#clear as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered dashboard/clear.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_navbar.html.erb (84.5ms)
+  [1m[36mPermissao Load (0.5ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1[0m  [["alias", "permissaoUsuario"]]
+  [1m[35mGrupoPermissao Load (0.3ms)[0m  SELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1  [["grupo_id", 3], ["permissao_id", 1]]
+  [1m[36mPermissao Load (0.3ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPermissao Load (0.2ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1  [["alias", "permissaoGrupo"]]
+  [1m[36mGrupoPermissao Load (0.2ms)[0m  [1mSELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1[0m  [["grupo_id", 3], ["permissao_id", 2]]
+  [1m[35mPermissao Load (0.3ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1  [["id", 2]]
+  Rendered layouts/_menu.html.erb (57.9ms)
+  Rendered layouts/shared/_flash.html.erb (1.7ms)
+Completed 200 OK in 841ms (Views: 831.8ms | ActiveRecord: 6.4ms)
+
+
+Started GET "/dashboard/clear" for ::1 at 2015-10-29 13:27:04 -0300
+Processing by DashboardController#clear as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered dashboard/clear.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_navbar.html.erb (2.7ms)
+  [1m[35mPermissao Load (0.3ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1  [["alias", "permissaoUsuario"]]
+  [1m[36mGrupoPermissao Load (0.2ms)[0m  [1mSELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1[0m  [["grupo_id", 3], ["permissao_id", 1]]
+  [1m[35mPermissao Load (0.2ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPermissao Load (0.2ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1[0m  [["alias", "permissaoGrupo"]]
+  [1m[35mGrupoPermissao Load (0.2ms)[0m  SELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1  [["grupo_id", 3], ["permissao_id", 2]]
+  [1m[36mPermissao Load (0.4ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  Rendered layouts/_menu.html.erb (5.6ms)
+  Rendered layouts/shared/_flash.html.erb (0.1ms)
+Completed 200 OK in 103ms (Views: 98.2ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/assets/beyond/bootstrap.min.self-6655d1384d1509415d234003e6f81cf5de3d688790aaadc1091aa5bb5795b1f1.css?body=1" for ::1 at 2015-10-29 13:27:04 -0300
+
+
+Started GET "/assets/beyond/demo.min.self-353cddfdb6149d0acabb515742dc0599cfd7d84f3ef16f66d927083463df2829.css?body=1" for ::1 at 2015-10-29 13:27:04 -0300
+
+
+Started GET "/assets/font-awesome.self-be09f9a5a5e8fd15a4e4d68dc8509252a33dc056003e53159586cf99368ba0e7.css?body=1" for ::1 at 2015-10-29 13:27:04 -0300
+
+
+Started GET "/assets/beyond/weather-icons.min.self-6d34808eb05898fdb141b2c04cc79e34eab25fd88ac18122454744200683debd.css?body=1" for ::1 at 2015-10-29 13:27:04 -0300
+
+
+Started GET "/assets/beyond/typicons.min.self-eff56186bf591be32fa0dc46a5dcc3633e0cf18c31c77760056451e1d539e6d5.css?body=1" for ::1 at 2015-10-29 13:27:04 -0300
+
+
+Started GET "/assets/beyond/beyond.self-fedab025b1cd05c13c7eee29558411b4f69e156636949c41b485bed12a690a43.css?body=1" for ::1 at 2015-10-29 13:27:04 -0300
+
+
+Started GET "/assets/beyond/animate.min.self-c146533a4461bf53a3ce3c52546de4fddd3ecd92d9606434df5485d96d4d9681.css?body=1" for ::1 at 2015-10-29 13:27:04 -0300
+
+
+Started GET "/assets/application.self-98011c95f374b0c2b25376599f4e15a54e98be1ecc948f9aefd7405b7213b70f.css?body=1" for ::1 at 2015-10-29 13:27:04 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-10-29 13:27:04 -0300
+
+
+Started GET "/assets/beyond/bootstrap.min.self-075878ec6a19d24f3b46052eb9e0e5bb5c2a098ac50d05d8e3a21309d129273a.js?body=1" for ::1 at 2015-10-29 13:27:04 -0300
+
+
+Started GET "/assets/beyond/slimscroll/jquery.slimscroll.min.self-472b568d87cf0eae6d509e98db084cf05d510c20400f84376916cf3bfb846b82.js?body=1" for ::1 at 2015-10-29 13:27:05 -0300
+
+
+Started GET "/assets/beyond/skins.min.self-b371ef56c426394e4ade8d89d681c1a2cbcddcff28fa111fba351870a90caddd.js?body=1" for ::1 at 2015-10-29 13:27:05 -0300
+
+
+Started GET "/assets/beyond/beyond.min.self-0c14344675cb50948a29fcc6fd4f7e8d7a7945df6675baa2e69a664a733f1974.js?body=1" for ::1 at 2015-10-29 13:27:05 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-10-29 13:27:05 -0300
+
+
+Started GET "/assets/dashboard.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-10-29 13:27:05 -0300
+
+
+Started GET "/assets/application.self-44dc72337fbefc4f8c73fc8781b922cf9e4f99f8d068e6563c3820851d9390f6.js?body=1" for ::1 at 2015-10-29 13:27:05 -0300
+
+
+Started GET "/assets/beyond/logo-dacc22c00055d527735d75138861be66302506411a88530a6ade2277f69d08b0.png" for ::1 at 2015-10-29 13:27:05 -0300
+
+
+Started GET "/" for ::1 at 2015-10-29 13:27:13 -0300
+Processing by DashboardController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/dashboard/clear
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/dashboard/clear" for ::1 at 2015-10-29 13:27:13 -0300
+Processing by DashboardController#clear as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered dashboard/clear.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_navbar.html.erb (4.2ms)
+  [1m[35mPermissao Load (0.3ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1  [["alias", "permissaoUsuario"]]
+  [1m[36mGrupoPermissao Load (0.2ms)[0m  [1mSELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1[0m  [["grupo_id", 3], ["permissao_id", 1]]
+  [1m[35mPermissao Load (0.2ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPermissao Load (0.2ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1[0m  [["alias", "permissaoGrupo"]]
+  [1m[35mGrupoPermissao Load (0.2ms)[0m  SELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1  [["grupo_id", 3], ["permissao_id", 2]]
+  [1m[36mPermissao Load (0.2ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  Rendered layouts/_menu.html.erb (4.0ms)
+  Rendered layouts/shared/_flash.html.erb (0.2ms)
+Completed 200 OK in 88ms (Views: 84.4ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/" for ::1 at 2015-10-29 13:29:46 -0300
+Processing by DashboardController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mPermissao Load (0.1ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1[0m  [["alias", "permissaoUsuario"]]
+  [1m[35mGrupoPermissao Load (0.1ms)[0m  SELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1  [["grupo_id", 1], ["permissao_id", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered dashboard/index.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_navbar.html.erb (13.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1  [["alias", "permissaoUsuario"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1[0m  [["grupo_id", 1], ["permissao_id", 1]]
+  [1m[35mPermissao Load (0.2ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1[0m  [["alias", "permissaoUsuario"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1  [["grupo_id", 1], ["permissao_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_menu.html.erb (2.7ms)
+  Rendered layouts/shared/_flash.html.erb (0.1ms)
+Completed 200 OK in 1379ms (Views: 1375.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/" for ::1 at 2015-10-29 13:29:47 -0300
+Processing by DashboardController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mPermissao Load (0.2ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1[0m  [["alias", "permissaoUsuario"]]
+  [1m[35mGrupoPermissao Load (0.1ms)[0m  SELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1  [["grupo_id", 1], ["permissao_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered dashboard/index.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_navbar.html.erb (1.9ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1  [["alias", "permissaoUsuario"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1[0m  [["grupo_id", 1], ["permissao_id", 1]]
+  [1m[35mPermissao Load (0.2ms)[0m  SELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."alias" = $1 LIMIT 1[0m  [["alias", "permissaoUsuario"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "grupo_permissoes".* FROM "grupo_permissoes" WHERE "grupo_permissoes"."grupo_id" = $1 AND "grupo_permissoes"."permissao_id" = $2 LIMIT 1  [["grupo_id", 1], ["permissao_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "permissoes".* FROM "permissoes" WHERE "permissoes"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_menu.html.erb (2.4ms)
+  Rendered layouts/shared/_flash.html.erb (0.1ms)
+Completed 200 OK in 82ms (Views: 78.1ms | ActiveRecord: 1.0ms)
