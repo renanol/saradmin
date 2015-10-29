@@ -6,6 +6,6 @@ class DashboardPolicy < ApplicationPolicy
   end
 
   def index?
-    @user.admin? && @user.permissao('permissaoUsuario').sim?
+    @user.admin? && @user.permissao('permissaoUsuario').alterar?
   end
 end
