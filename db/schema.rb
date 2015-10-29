@@ -11,10 +11,73 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025170927) do
+ActiveRecord::Schema.define(version: 20151029023445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bairros", force: :cascade do |t|
+    t.string   "nome"
+    t.integer  "cidade_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bairros", ["cidade_id"], name: "index_bairros_on_cidade_id", using: :btree
+
+  create_table "cidades", force: :cascade do |t|
+    t.string   "nome"
+    t.integer  "estado_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cidades", ["estado_id"], name: "index_cidades_on_estado_id", using: :btree
+
+  create_table "contatos", force: :cascade do |t|
+    t.integer  "tipo"
+    t.string   "descricao"
+    t.integer  "endereco_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "contatos", ["endereco_id"], name: "index_contatos_on_endereco_id", using: :btree
+
+  create_table "enderecos", force: :cascade do |t|
+    t.string   "logradouro"
+    t.string   "numero"
+    t.string   "complemento"
+    t.string   "cep"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "igreja_id"
+    t.integer  "bairro_id"
+    t.integer  "cidade_id"
+    t.integer  "estado_id"
+  end
+
+  add_index "enderecos", ["bairro_id"], name: "index_enderecos_on_bairro_id", using: :btree
+  add_index "enderecos", ["cidade_id"], name: "index_enderecos_on_cidade_id", using: :btree
+  add_index "enderecos", ["estado_id"], name: "index_enderecos_on_estado_id", using: :btree
+  add_index "enderecos", ["igreja_id"], name: "index_enderecos_on_igreja_id", using: :btree
+
+  create_table "estados", force: :cascade do |t|
+    t.string   "nome"
+    t.string   "sigla"
+    t.integer  "pais_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "estados", ["pais_id"], name: "index_estados_on_pais_id", using: :btree
+
+  create_table "foos", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "number"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "grupo_permissoes", force: :cascade do |t|
     t.integer   "valor"
@@ -27,6 +90,19 @@ ActiveRecord::Schema.define(version: 20151025170927) do
   create_table "grupos", force: :cascade do |t|
     t.string   "descricao"
     t.integer  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "igrejas", force: :cascade do |t|
+    t.string   "descricao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pais", force: :cascade do |t|
+    t.string   "nome"
+    t.string   "sigla"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -69,4 +145,6 @@ ActiveRecord::Schema.define(version: 20151025170927) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "bairros", "cidades"
+  add_foreign_key "cidades", "estados"
 end
