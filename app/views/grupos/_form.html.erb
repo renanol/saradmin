@@ -1,0 +1,89 @@
+<%= form_for(@grupo, html: {class: 'form-horizontal', role: 'form'}) do |g| %>
+    <div class="form-group">
+      <%= g.label :descricao, class: 'col-sm-1 control-label no-padding-right' %>
+      <div class="col-sm-11">
+        <%= g.text_field :descricao, type: 'text', class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-title">
+      Permissões
+    </div>
+
+    <table class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <th align="left">Nome</th>
+        <th align="center">Nenhuma</th>
+        <th align="center">Visualizar</th>
+        <th align="center">Alterar</th>
+        <th align="center">Não</th>
+        <th align="center">Sim</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @grupo.grupo_permissaos.each do |gp| %>
+          <tr>
+            <td><%= gp.permissao.descricao %></td>
+            <% if gp.permissao.acesso? %>
+                <td align="center">
+                  <div class="radio">
+                    <label>
+                      <input name="radio_valor_<%= gp.permissao.id %>" type="radio" class="colored-blue" <% if gp.nenhuma? %> checked <% end %>>
+                      <span class="text"></span>
+                    </label>
+                  </div>
+                </td>
+                <td align="center">
+                  <div class="radio">
+                    <label>
+                      <input name="radio_valor_<%= gp.permissao.id %>" type="radio" class="colored-blue" <% if gp.visualizar? %> checked <% end %>>
+                      <span class="text"></span>
+                    </label>
+                  </div>
+                </td>
+                <td align="center">
+                  <div class="radio">
+                    <label>
+                      <input name="radio_valor_<%= gp.permissao.id %>" type="radio" class="colored-blue" <% if gp.alterar? %> checked <% end %>>
+                      <span class="text"></span>
+                    </label>
+                  </div>
+                </td>
+            <% else %>
+                <td></td>
+                <td></td>
+                <td></td>
+            <% end %>
+            <% if gp.permissao.sim_nao? %>
+                <td align="center">
+                  <div class="radio">
+                    <label>
+                      <input name="radio_valor_<%= gp.permissao.id %>" type="radio" class="colored-blue" <% if gp.nao? %> checked <% end %>>
+                      <span class="text"></span>
+                    </label>
+                  </div>
+                </td>
+                <td align="center">
+                  <div class="radio">
+                    <label>
+                      <input name="radio_valor_<%= gp.permissao.id %>" type="radio" class="colored-blue" <% if gp.sim? %> checked <% end %>>
+                      <span class="text"></span>
+                    </label>
+                  </div>
+                </td>
+            <% else %>
+                <td></td>
+                <td></td>
+            <% end %>
+          </tr>
+      <%end%>
+      </tbody>
+    </table>
+
+    <br>
+
+    <div class="form-group" align="center">
+      <button type="submit" class="btn btn-default">Confirmar</button>
+    </div>
+<% end %>

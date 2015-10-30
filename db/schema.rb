@@ -65,12 +65,9 @@ ActiveRecord::Schema.define(version: 20151029023445) do
   create_table "estados", force: :cascade do |t|
     t.string   "nome"
     t.string   "sigla"
-    t.integer  "pais_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "estados", ["pais_id"], name: "index_estados_on_pais_id", using: :btree
 
   create_table "foos", force: :cascade do |t|
     t.string   "description"
@@ -80,7 +77,7 @@ ActiveRecord::Schema.define(version: 20151029023445) do
   end
 
   create_table "grupo_permissoes", force: :cascade do |t|
-    t.integer   "valor"
+    t.integer  "valor"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "grupo_id"
