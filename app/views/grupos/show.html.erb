@@ -1,0 +1,71 @@
+<h1> <%= @grupo.descricao %> </h1>
+<table class="table table-hover table-bordered">
+  <thead>
+  <tr>
+    <th align="left">Nome</th>
+    <th align="center">Nenhuma</th>
+    <th align="center">Visualizar</th>
+    <th align="center">Alterar</th>
+    <th align="center">Não</th>
+    <th align="center">Sim</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @grupo.grupo_permissaos.each do |gp| %>
+      <tr>
+        <td><%= gp.permissao.descricao %></td>
+        <% if gp.permissao.acesso? %>
+            <td align="center">
+              <div class="radio">
+                <label>
+                  <input name="radio_nenhuma_<%= gp.permissao.id %>" type="radio" class="colored-blue" disabled <% if gp.nenhuma? %> checked <% end %>>
+                  <span class="text"></span>
+                </label>
+              </div>
+            </td>
+            <td align="center">
+              <div class="radio">
+                <label>
+                  <input name="radio_visualizar_<%= gp.permissao.id %>" type="radio" class="colored-blue" disabled <% if gp.visualizar? %> checked <% end %>>
+                  <span class="text"></span>
+                </label>
+              </div>
+            </td>
+            <td align="center">
+              <div class="radio">
+                <label>
+                  <input name="radio_alterar_<%= gp.permissao.id %>" type="radio" class="colored-blue" disabled <% if gp.alterar? %> checked <% end %>>
+                  <span class="text"></span>
+                </label>
+              </div>
+            </td>
+        <% else %>
+            <td></td>
+            <td></td>
+            <td></td>
+        <% end %>
+        <% if gp.permissao.sim_nao? %>
+            <td align="center">
+              <div class="radio">
+                <label>
+                  <input name="radio_nao_<%= gp.permissao.id %>" type="radio" class="colored-blue" disabled <% if gp.nao? %> checked <% end %>>
+                  <span class="text"></span>
+                </label>
+              </div>
+            </td>
+            <td align="center">
+              <div class="radio">
+                <label>
+                  <input name="radio_sim_<%= gp.permissao.id %>" type="radio" class="colored-blue" disabled <% if gp.sim? %> checked <% end %>>
+                  <span class="text"></span>
+                </label>
+              </div>
+            </td>
+        <% else %>
+            <td></td>
+            <td></td>
+        <% end %>
+      </tr>
+  <%end%>
+  </tbody>
+</table>

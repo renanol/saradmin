@@ -1,0 +1,27 @@
+<h1> Grupos </h1>
+<table class="table table-hover table-bordered">
+	<thead>
+		<tr>
+          <th>Nome</th>
+          <th width="20"></th>
+          <th width="20"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @grupos.each do |g| %>
+            <tr>
+              <td><%= g.descricao %></td>
+              <td>
+                <%= link_to g, title: 'Visualizar', class: 'btn btn-default btn-circle btn-xs' do %>
+                    <%= fa_icon 'search' %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to edit_grupo_path(g), title: 'Alterar', class: 'btn btn-default btn-circle btn-xs' do %>
+                    <%= fa_icon 'pencil' %>
+                <% end %>
+              </td>
+			</tr>
+		<%end%>
+	</tbody>
+</table>

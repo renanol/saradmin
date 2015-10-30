@@ -25,4 +25,18 @@ class User < ActiveRecord::Base
     GrupoPermissao.find_by(grupo_id: self.grupo_id, permissao_id: permissao.id)
   end
 
+  def tem_permissao(permissoes)
+    permissoes.each do |perm|
+      gp = self.permissao(perm)
+      if gp.permissao.acesso?
+        if not gp.nenhuma?
+          return true
+        end
+      elsif gp.permissao.sim_nao? && gp.sim?
+        return true
+      end
+    end
+    return false
+  end
+
 end

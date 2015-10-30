@@ -6,9 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 grupo_list = [
-    [ 'root', Grupo.status[:ativo] ],
-    [ 'Administrador', Grupo.status[:ativo] ],
-    [ 'Usuário', Grupo.status[:ativo] ]
+  [ 'root', Grupo.status[:ativo] ],
+  [ 'Administrador', Grupo.status[:ativo] ],
+  [ 'Usuário', Grupo.status[:ativo] ]
 ]
 
 grupo_list.each do |name, status|
@@ -16,7 +16,8 @@ grupo_list.each do |name, status|
 end
 
 permissao_list = [
-    [ 'permissaoUsuario', Permissao.modulos[:configuracao], Permissao.tipos[:acesso], 'Nível de acesso ao menu de usuários' ]
+  [ 'permissaoUsuario', Permissao.modulos[:configuracao], Permissao.tipos[:acesso], 'Nível de acesso ao menu de usuários' ],
+  [ 'permissaoGrupo', Permissao.modulos[:configuracao], Permissao.tipos[:acesso], 'Nível de acesso ao menu de grupo de usuário' ]
 ]
 
 permissao_list.each do |aliass, modulo, tipo, descricao|
