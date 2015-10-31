@@ -10,9 +10,13 @@ class IgrejasController < ApplicationController
 
   end
 
+  def edit
+
+  end
+
   def new
     @igreja = Igreja.new
-    @igreja.enderecos.build().build_bairro().build_cidade()
+    @igreja.enderecos.build.build_bairro
   end
 
   def create
@@ -38,7 +42,7 @@ class IgrejasController < ApplicationController
   end
 
   def igreja_params
-    params.require(:igreja).permit(:descricao, enderecos_attributes: [:logradouro, :numero, :complemento, :cep, bairro_attributes: [:bairro] ])
+    params.require(:igreja).permit(:descricao, enderecos_attributes: [:logradouro, :numero, :complemento, :cep, bairro_attributes: [:nome] ])
   end
 
 end
