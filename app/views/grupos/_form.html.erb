@@ -23,60 +23,62 @@
       </thead>
       <tbody>
       <% @grupo.grupo_permissaos.each do |gp| %>
-          <tr>
-            <td><%= gp.permissao.descricao %></td>
-            <% if gp.permissao.acesso? %>
-                <td align="center">
-                  <div class="radio">
-                    <label>
-                      <input name="radio_valor_<%= gp.permissao.id %>" type="radio" class="colored-blue" <% if gp.nenhuma? %> checked <% end %>>
-                      <span class="text"></span>
-                    </label>
-                  </div>
-                </td>
-                <td align="center">
-                  <div class="radio">
-                    <label>
-                      <input name="radio_valor_<%= gp.permissao.id %>" type="radio" class="colored-blue" <% if gp.visualizar? %> checked <% end %>>
-                      <span class="text"></span>
-                    </label>
-                  </div>
-                </td>
-                <td align="center">
-                  <div class="radio">
-                    <label>
-                      <input name="radio_valor_<%= gp.permissao.id %>" type="radio" class="colored-blue" <% if gp.alterar? %> checked <% end %>>
-                      <span class="text"></span>
-                    </label>
-                  </div>
-                </td>
-            <% else %>
-                <td></td>
-                <td></td>
-                <td></td>
-            <% end %>
-            <% if gp.permissao.sim_nao? %>
-                <td align="center">
-                  <div class="radio">
-                    <label>
-                      <input name="radio_valor_<%= gp.permissao.id %>" type="radio" class="colored-blue" <% if gp.nao? %> checked <% end %>>
-                      <span class="text"></span>
-                    </label>
-                  </div>
-                </td>
-                <td align="center">
-                  <div class="radio">
-                    <label>
-                      <input name="radio_valor_<%= gp.permissao.id %>" type="radio" class="colored-blue" <% if gp.sim? %> checked <% end %>>
-                      <span class="text"></span>
-                    </label>
-                  </div>
-                </td>
-            <% else %>
-                <td></td>
-                <td></td>
-            <% end %>
-          </tr>
+          <%= g.fields_for :grupo_permissaos, gp do |gp_fields| %>
+              <tr>
+                <td><%= gp.permissao.descricao %></td>
+                <% if gp.permissao.acesso? %>
+                    <td align="center">
+                      <div class="radio">
+                        <label>
+                          <%= gp_fields.radio_button :valor, GrupoPermissao.valores[:nenhuma], class: 'colored-blue', checked: gp.nenhuma? %>
+                          <span class="text"></span>
+                        </label>
+                      </div>
+                    </td>
+                    <td align="center">
+                      <div class="radio">
+                        <label>
+                          <%= gp_fields.radio_button :valor, GrupoPermissao.valores[:visualizar], class: 'colored-blue', checked: gp.visualizar? %>
+                          <span class="text"></span>
+                        </label>
+                      </div>
+                    </td>
+                    <td align="center">
+                      <div class="radio">
+                        <label>
+                          <%= gp_fields.radio_button :valor, GrupoPermissao.valores[:alterar], class: 'colored-blue', checked: gp.alterar? %>
+                          <span class="text"></span>
+                        </label>
+                      </div>
+                    </td>
+                <% else %>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                <% end %>
+                <% if gp.permissao.sim_nao? %>
+                    <td align="center">
+                      <div class="radio">
+                        <label>
+                          <%= gp_fields.radio_button :valor, GrupoPermissao.valores[:nao], class: 'colored-blue', checked: gp.nao? %>
+                          <span class="text"></span>
+                        </label>
+                      </div>
+                    </td>
+                    <td align="center">
+                      <div class="radio">
+                        <label>
+                          <%= gp_fields.radio_button :valor, GrupoPermissao.valores[:sim], class: 'colored-blue', checked: gp.sim? %>
+                          <span class="text"></span>
+                        </label>
+                      </div>
+                    </td>
+                <% else %>
+                    <td></td>
+                    <td></td>
+                <% end %>
+              </tr>
+          <% end %>
       <%end%>
       </tbody>
     </table>
