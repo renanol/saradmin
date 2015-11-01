@@ -24,6 +24,7 @@
       <tbody>
       <% @grupo.grupo_permissaos.each do |gp| %>
           <%= g.fields_for :grupo_permissaos, gp do |gp_fields| %>
+              <%= gp_fields.hidden_field :permissao_id %>
               <tr>
                 <td><%= gp.permissao.descricao %></td>
                 <% if gp.permissao.acesso? %>
