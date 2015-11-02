@@ -40,9 +40,13 @@
 
         <div class="form-group">
 
-            <%= endereco.select(:endereco, :estado, Estado.all.collect {|p| [ p.nome, p.id ] }, { prompt: 'Selecione'}) %>
-        </div>
 
+        <%= endereco.select :estado_id, options_for_select(@estados.collect { |country|
+                                                       [country.nome.titleize, country.id] }, 1), {}, { id: 'estados_select' } %>
+
+        <%= endereco.select :cidade_id, options_for_select(@cidades.collect { |city|
+                                                    [city.nome.titleize, city.id] }, 0), {}, { id: 'cidades_select' } %>
+        </div>
 
         <div class="form-group">
           <%= endereco.text_field  :complemento, class: 'form-control', placeholder: 'Complemento'  %>
