@@ -24,10 +24,8 @@ class IgrejasController < ApplicationController
   end
 
   def buscar_cidades
-    @cidades = Cidade.where("estado_id = ?", params[:estado_id])
-    respond_to do |format|
-      format.js
-    end
+    @cidades = Cidade.where("estado_id = ?", params[:igreja_id])
+    render json: @cidades
   end
 
   def create

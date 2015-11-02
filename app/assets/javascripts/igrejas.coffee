@@ -2,5 +2,5 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$("#cities_select").empty()
+$("#cidade_select").empty()
 .append("<%= escape_javascript(render(:partial => @cidades)) %>")

@@ -4,7 +4,7 @@
 
 $ ->
   $(document).on 'change', '#estados_select', (evt) ->
-    $.ajax 'buscar_cidades',
+    $.ajax $("#estados_select option:selected").val()+'/buscar_cidades',
       type: 'GET'
       dataType: 'script'
       data: {
