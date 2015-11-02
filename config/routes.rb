@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :foos
   resources :grupos
-  resources :users
+  resources :usuarios
   devise_for :users
 
 
@@ -14,8 +14,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'dashboard#index'
-
-  get 'dashboard/clear' => 'dashboard#clear'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
