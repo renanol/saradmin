@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :foos
   resources :grupos
-  resources :users
+  resources :usuarios
   devise_for :users
 
 
