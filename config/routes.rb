@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :foos
   resources :igrejas
   resources :grupos
+  resources :usuarios
   devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -14,8 +15,7 @@ Rails.application.routes.draw do
 
   get 'igrejas/buscar_cidades' => 'igrejas#buscar_cidades'
 
-
-
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -4,8 +4,4 @@ class DashboardPolicy < ApplicationPolicy
       scope
     end
   end
-
-  def index?
-    @user.admin? && @user.permissao('permissaoUsuario').alterar?
-  end
 end
