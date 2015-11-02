@@ -4,13 +4,17 @@
 
 $ ->
   $(document).on 'change', '#estados_select', (evt) ->
-    $.ajax $("#estados_select option:selected").val()+'/buscar_cidades',
+    $.ajax '/igrejas/buscar_cidades',
       type: 'GET'
-      dataType: 'script'
+      contentType: "application/json"
+      dataType: "json"
       data: {
         estado_id: $("#estados_select option:selected").val()
       }
       error: (jqXHR, textStatus, errorThrown) ->
         console.log("AJAX Error: #{textStatus}")
       success: (data, textStatus, jqXHR) ->
-        console.log("Dynamic country select OK!")
+        $("#cidades_select").empty()
+        for cidade in data
+          $("#cidades_select").append($("<option />").val(cidade.id).text(cidade.nome));
+

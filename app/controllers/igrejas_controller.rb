@@ -8,15 +8,21 @@ class IgrejasController < ApplicationController
 
   def index
 
+    @igrejas = Igreja.all
+
   end
 
   def edit
+
+    @estados = Estado.all
+    @cidades = Cidade.where("estado_id = ?", @igreja.enderecos[0].cidade.estado.id)
 
   end
 
   def new
     @igreja = Igreja.new
     @igreja.enderecos.build.build_bairro
+    @igreja.igreja_contatos.build(3).build_contato
 
     @estados = Estado.all
     @cidades = Cidade.where("estado_id = ?", Estado.first.id)
@@ -24,8 +30,20 @@ class IgrejasController < ApplicationController
   end
 
   def buscar_cidades
-    @cidades = Cidade.where("estado_id = ?", params[:igreja_id])
+    @cidades = Cidade.where("estado_id = ?", params[:estado_id])
     render json: @cidades
+  end
+
+  def update
+    respond_to do |format|
+      if @igreja.update(igreja_params)
+        format.html { redirect_to @igreja, notice: 'Igreja alterada com sucesso' }
+        format.json { render :show, status: :ok, location: @igreja }
+      else
+        format.html { render :edit }
+        format.json { render json: @igreja.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def create
@@ -51,7 +69,7 @@ class IgrejasController < ApplicationController
   end
 
   def igreja_params
-    params.require(:igreja).permit(:descricao, enderecos_attributes: [:logradouro, :numero, :complemento, :cep, bairro_attributes: [:nome] ])
+    params.require(:igreja).permit(:descricao, enderecos_attributes: [:id,:cidade_id, :logradouro, :numero, :complemento, :cep, bairro_attributes: [:id,:nome] ])
   end
 
 

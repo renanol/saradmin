@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Cadastrar', new_igreja_path, class: 'btn btn-success' %>
+
+
+<table class="table table-hover table-striped table-bordered">
+  <thead class="bordered-blueberry">
+    <tr>
+      <th>Nome </th>
+      <th>Endereco</th>
+      <th width="20"></th>
+      <th width="20"></th>
+      <th width="20"></th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @igrejas.each do |igreja| %>
+      <tr>
+        <td><%= igreja.descricao %></td>
+        <td>
+          <%  igreja.enderecos.each do |endereco| %>
+          <%= endereco %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to igreja, title: 'Visualizar', class: 'btn btn-default btn-xs shiny icon-only success' do %>
+              <%= fa_icon 'search' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_igreja_path(igreja), title: 'Editar', class: 'btn btn-default btn-xs shiny icon-only success' do %>
+              <%= fa_icon 'pencil' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to igreja, title: 'Editar', class: 'btn btn-default btn-xs shiny icon-only success', method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <%= fa_icon 'close' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

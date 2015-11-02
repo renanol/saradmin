@@ -16,6 +16,13 @@
         <span class="menu-text"> Dashboard </span>
       <% end %>
     </li>
+
+    <li>
+      <%= link_to igrejas_path do %>
+          <%= fa_icon 'home', class: 'menu-icon' %>
+          <span class="menu-text"> Igreja </span>
+      <% end %>
+    </li>
     <!--Configuracao-->
     <% if current_user.tem_permissao(['permissaoUsuario', 'permissaoGrupo']) %>
         <li>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029023445) do
+ActiveRecord::Schema.define(version: 20151102185835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,14 +35,11 @@ ActiveRecord::Schema.define(version: 20151029023445) do
   add_index "cidades", ["estado_id"], name: "index_cidades_on_estado_id", using: :btree
 
   create_table "contatos", force: :cascade do |t|
-    t.integer  "tipo"
     t.string   "descricao"
-    t.integer  "endereco_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "tipo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "contatos", ["endereco_id"], name: "index_contatos_on_endereco_id", using: :btree
 
   create_table "enderecos", force: :cascade do |t|
     t.string   "logradouro"
@@ -90,6 +87,16 @@ ActiveRecord::Schema.define(version: 20151029023445) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "igreja_contatos", force: :cascade do |t|
+    t.integer  "contato_id"
+    t.integer  "igreja_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "igreja_contatos", ["contato_id"], name: "index_igreja_contatos_on_contato_id", using: :btree
+  add_index "igreja_contatos", ["igreja_id"], name: "index_igreja_contatos_on_igreja_id", using: :btree
 
   create_table "igrejas", force: :cascade do |t|
     t.string   "descricao"
@@ -144,4 +151,6 @@ ActiveRecord::Schema.define(version: 20151029023445) do
 
   add_foreign_key "bairros", "cidades"
   add_foreign_key "cidades", "estados"
+  add_foreign_key "igreja_contatos", "contatos"
+  add_foreign_key "igreja_contatos", "igrejas"
 end

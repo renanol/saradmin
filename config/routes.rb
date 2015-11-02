@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
 
   resources :igrejas do
-    get 'buscar_cidades'
+    get 'buscar_cidades', on: :collection
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
