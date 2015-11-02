@@ -34,21 +34,32 @@
                   <% end %>
 
                   <ul class="submenu">
-                    <li>
-                      <%= link_to '#', class: 'menu-dropdown' do %>
-                          <span class="menu-text"> Grupos de Usuário </span>
-                          <i class="menu-expand"></i>
-                      <% end %>
 
-                      <ul class="submenu">
-                        <li>
-                          <%= link_to grupos_path do %>
-                              <%= fa_icon 'rocket', class: 'menu-icon' %>
-                              <span class="menu-text"> Listar </span>
-                          <% end %>
-                        </li>
-                      </ul>
+                    <li>
+                      <%= link_to users_path do %>
+                          <%= fa_icon 'rocket', class: 'menu-icon' %>
+                          <span class="menu-text"> Listar </span>
+                      <% end %>
                     </li>
+
+                    <% if not current_user.permissao('permissaoGrupo').nenhuma? %>
+                        <li>
+                          <%= link_to '#', class: 'menu-dropdown' do %>
+                              <span class="menu-text"> Grupos de Usuário </span>
+                              <i class="menu-expand"></i>
+                          <% end %>
+
+                          <ul class="submenu">
+
+                            <li>
+                              <%= link_to grupos_path do %>
+                                  <%= fa_icon 'rocket', class: 'menu-icon' %>
+                                  <span class="menu-text"> Listar </span>
+                              <% end %>
+                            </li>
+                          </ul>
+                        </li>
+                    <% end %>
                   </ul>
 
                 </li>

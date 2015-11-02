@@ -17,6 +17,15 @@ class IgrejasController < ApplicationController
   def new
     @igreja = Igreja.new
     @igreja.enderecos.build.build_bairro
+
+    @estados = Estado.all
+    @cidades = Cidade.where("estado_id = ?", Estado.first.id)
+
+  end
+
+  def buscar_cidades
+    @cidades = Cidade.where("estado_id = ?", params[:igreja_id])
+    render json: @cidades
   end
 
   def create
@@ -44,5 +53,7 @@ class IgrejasController < ApplicationController
   def igreja_params
     params.require(:igreja).permit(:descricao, enderecos_attributes: [:logradouro, :numero, :complemento, :cep, bairro_attributes: [:nome] ])
   end
+
+
 
 end
