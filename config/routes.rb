@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :foos
   resources :igrejas
   resources :grupos
+  resources :usuarios
   devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -9,8 +10,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'dashboard#index'
-
-  get 'dashboard/clear' => 'dashboard#clear'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
