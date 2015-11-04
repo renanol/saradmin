@@ -41,7 +41,14 @@ Grupo.all.each do |grupo|
   end
 end
 
-
+User.create(
+    name: 'root',
+    email: 'arraytechbr@gmail.com',
+    password: 'alexS2renan',
+    password_confirmation: 'alexS2renan',
+    status: User.status[:ativo],
+    grupo_id: 1
+)
 
 e = Estado.create(:sigla => 'AC', :nome => "Acre")
 e.cidades.create(:nome => "Acrelândia")
