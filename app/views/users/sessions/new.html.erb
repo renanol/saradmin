@@ -26,12 +26,6 @@
           <%= f.submit :login, class: 'btn btn-primary btn-block'%>
         </div>
 
-        <div class="loginbox-signup">
-          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-              Ainda não é cadastrado? <%= link_to 'Cadastre-se!', new_registration_path(resource_name) %>
-          <% end -%>
-        </div>
-
     <% end %>
 
   </div>

@@ -33,12 +33,10 @@
                   <a><%= current_user.email %></a>
                 </li>
                 <li class="edit">
-                  <%= link_to 'Perfil', destroy_user_session_path, class: 'pull-left' %>
-                  <%= link_to 'Editar', new_user_session_path, class: 'pull-right' %>
+                  <%= link_to 'Editar', edit_user_registration_path, class: 'pull-left' %>
+                  <%= link_to 'Sign out', destroy_user_session_path, class: 'pull-right', method: :delete  %>
                 </li>
-                <li class="dropdown-footer">
-                  <%= link_to 'Sign out', destroy_user_session_path, method: :delete  %>
-                </li>
+                <li class="dropdown-footer"></li>
               </ul>
               <!--/Login Area Dropdown-->
             </li>

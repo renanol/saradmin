@@ -1,9 +1,21 @@
 Rails.application.routes.draw do
   resources :foos
   resources :grupos
-  resources :usuarios
-  devise_for :users
 
+  resources :usuarios do
+    get 'reset_password', on: :collection
+  end
+
+  get 'users', to: 'usuarios#index'
+
+  devise_for :users, controllers: {
+                 confirmations: 'users/confirmations',
+                 omniauth: 'users/omniauth',
+                 passwords: 'users/passwords',
+                 registrations: 'users/registrations',
+                 sessions: 'users/sessions',
+                 unlocks: 'users/unlocks'
+                   }
 
   resources :igrejas do
     get 'buscar_cidades', on: :collection
