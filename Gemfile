@@ -51,6 +51,9 @@ gem 'pundit'
 # rename project
 gem 'rename'
 
+#nested forms
+gem "cocoon"
+
 #group :development, :test do
 #  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
 #  gem 'byebug'

@@ -83,28 +83,23 @@
 
     <% end %>
 
+    <div class="form-title">
+      Contatos
+    </div>
 
-    <%	tipo = ['Telefone', 'Email']  %>
+    <div id="igreja-contatos">
 
-    <%	f.fields_for :igreja_contatos do |ic|  %>
-        <%	ic.fields_for :contato do |contato|  %>
-            <div class="form-group">
-              <label class="col-lg-1 control-label">Descrição</label>
-              <div class="col-lg-11">
-                <%= contato.text_field  :cep, class: 'form-control', placeholder: 'Descrição'  %>
-                <%	contato.select(:tipo, options_for_select(Array[tipo.collect {|v,i| [v,tipo.index(v)] }], :selected => f.object.test)) %>
-              </div>
-            </div>
+        <%=	f.fields_for :igreja_contatos do |ic|  %>
 
-        <%	end  %>
+            <%= render 'contato_fields', :g => ic %>
 
-    <% end %>
+        <% end %>
+
+    </div>
 
     <%= link_to 'Listar', igrejas_path, class: 'btn btn-blue' %>
 
     <%= f.submit class: 'btn btn-blue' %>
-
-
 
 <% end %>
 

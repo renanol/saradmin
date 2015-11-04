@@ -1,0 +1,31 @@
+<%	tipo = ['Telefone', 'Email']  %>
+
+<%=	g.fields_for :contato do |contato|  %>
+
+<div class="form-group">
+
+  <label class="col-lg-1 control-label">Descrição</label>
+
+  <div class="col-lg-6">
+    <%= contato.text_field  :descricao, class: 'form-control', placeholder: 'Descrição'  %>
+  </div>
+
+  <div class="col-lg-2">
+    <%=	contato.select(:tipo, options_for_select(tipo.collect { |v,i| [v ,tipo.index(v) ] },:selected => contato.object.tipo)) %>
+  </div>
+
+    <div class="col-lg-2">
+
+        <%= link_to_remove_fields "remove", contato %>
+
+      </label>
+
+    </div>
+
+
+</div>
+
+<% end %>
+
+
+
