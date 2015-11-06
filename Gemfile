@@ -55,6 +55,9 @@ gem 'rename'
 #nested forms
 gem "cocoon"
 
+gem 'nested_form_fields'
+
+
 gem 'puma'
 
 #group :development, :test do

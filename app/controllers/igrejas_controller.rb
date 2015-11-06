@@ -2,6 +2,8 @@ class IgrejasController < ApplicationController
 
   before_action :set_igreja, only: [:show, :edit, :update, :destroys]
 
+  ## TODO REFATORAR METODOS CARREGA ESTADO E CIDADES
+
   def show
 
   end
@@ -18,24 +20,11 @@ class IgrejasController < ApplicationController
     @cidades = Cidade.where("estado_id = ?", @igreja.enderecos[0].cidade.estado.id).order("nome")
 
   end
-  def mais_contatos
 
-    @igreja = Igreja.new
-
-    @igreja.igreja_contatos.build.build_contato
-
-    respond_to do |format|
-      format.html { render :new }
-    end
-
-  end
   def new
     @igreja = Igreja.new
     @igreja.enderecos.build.build_bairro
-
-    3.times do
-      @igreja.igreja_contatos.build.build_contato
-    end
+    @igreja.igreja_contatos.build.build_contato
 
     @estados = Estado.order('nome')
     @cidades = Cidade.where("estado_id = ?", Estado.first.id).order("nome")
@@ -59,6 +48,18 @@ class IgrejasController < ApplicationController
     end
   end
 
+  def add_contato
+
+    @igreja = Igreja.new(igreja_params)
+
+    @igreja.igreja_contatos.build.build_contato
+
+    @estados = Estado.order('nome')
+    @cidades = Cidade.where("estado_id = ?", @igreja.enderecos[0].cidade.estado.id).order("nome")
+
+
+  end
+
   def create
 
     @igreja = Igreja.new(igreja_params)
@@ -80,12 +81,13 @@ class IgrejasController < ApplicationController
 
   private
 
+
   def set_igreja
     @igreja = Igreja.find(params[:id])
   end
 
   def igreja_params
-    params.require(:igreja).permit(:descricao, enderecos_attributes: [:id,:cidade_id, :logradouro, :numero, :complemento, :cep, bairro_attributes: [:id,:nome], igreja_contatos_attributes:[:id, :contato, :_destroy] ])
+    params.require(:igreja).permit(:descricao, igreja_contatos_attributes:[:id, :descricao, :_destroy], enderecos_attributes: [:id,:cidade_id, :logradouro, :numero, :complemento, :cep, bairro_attributes: [:id,:nome] ])
   end
 
 

@@ -87,14 +87,23 @@
       Contatos
     </div>
 
-    <div id="igreja-contatos">
+    <div class="form-group">
 
-        <%=	f.fields_for :igreja_contatos do |ic|  %>
+    <%=	f.fields_for :igreja_contatos do |ic|  %>
 
-            <%= render 'contato_fields', :g => ic %>
+        <% tipo = ['Telefone', 'Email']  %>
 
-        <% end %>
+            <label class="col-lg-1 control-label">Descrição</label>
 
+            <div class="col-lg-6">
+              <%= ic.text_field  :descricao, class: 'form-control', placeholder: 'Descrição'  %>
+            </div>
+
+
+    <% end %>
+      <div class="col-lg-6">
+        <%= link_to "Teste", :controller => :igrejas , :action => :add_contato, :method => :post %>
+      </div>
     </div>
 
     <%= link_to 'Listar', igrejas_path, class: 'btn btn-blue' %>

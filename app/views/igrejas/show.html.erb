@@ -79,6 +79,19 @@
 
                   <%  end  %>
 
+                <div class="form-title">
+                    Contato
+                </div>
+
+
+                  <%	@igreja.igreja_contatos.each do |contato|  %>
+                      <div class="form-group">
+                        <label class="col-lg-1 control-label">Descrição</label>
+                        <div class="col-lg-11">
+                          <input type="text" class='form-control' disabled value="<%= contato.descricao %>">
+                        </div>
+                      </div>
+                  <% end %>
 
                 <%= link_to 'Listar', igrejas_path, class: 'btn btn-blue' %>
                 <%= link_to 'Editar', edit_igreja_path(@igreja), class: 'btn btn-blue' %>
