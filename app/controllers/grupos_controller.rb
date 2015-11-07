@@ -12,14 +12,12 @@ class GruposController < ApplicationController
     @grupo = Grupo.new
 
     Permissao.all.each do |perm|
-      valor = GrupoPermissao.valores[:nenhuma]
       if perm.sim_nao?
-        valor = GrupoPermissao.valores[:nao]
+        @grupo.grupo_permissaos.build(grupo: @grupo, permissao_id: perm.id, valor: GrupoPermissao.valores[:nao])
+      else
+        @grupo.grupo_permissaos.build(grupo: @grupo, permissao_id: perm.id, valor: GrupoPermissao.valores[:nenhuma])
       end
-      @grupo.grupo_permissaos.build(grupo: @grupo, permissao_id: perm.id, valor: valor)
     end
-
-    puts @grupo
   end
 
   def edit
