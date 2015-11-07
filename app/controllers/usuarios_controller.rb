@@ -2,7 +2,7 @@ class UsuariosController < ApplicationController
   before_action :set_usuario, only: [:show, :edit, :update, :destroy, :reset_password]
 
   def index
-    @usuarios = User.all
+    @usuarios = User.todos
   end
 
   def show
@@ -11,7 +11,7 @@ class UsuariosController < ApplicationController
 
   def new
     @usuario = User.new
-    @grupo_opts = Grupo.where(status: Grupo.status[:ativo]).collect.map{|g| [ g.descricao, g.id ] }
+    @grupo_opts = Grupo.ativos.collect.map{|g| [ g.descricao, g.id ] }
   end
 
   def create
@@ -33,7 +33,8 @@ class UsuariosController < ApplicationController
 
   def reset_password
     @usuario.update_attributes(password: '123mudar', password_confirmation: '123mudar')
-    render usuarios_path
+    flash[:notice] = 'Senha resetada com sucesso!'
+    redirect_to usuarios_path
   end
 
   private

@@ -2,7 +2,7 @@ class GruposController < ApplicationController
   before_action :set_grupo, only: [:show, :edit, :update, :destroy]
 
   def index
-    @grupos = Grupo.all
+    @grupos = Grupo.todos
   end
 
   def show

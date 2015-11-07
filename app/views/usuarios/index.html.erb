@@ -20,8 +20,8 @@
         <td><%= user.email %></td>
         <td><%= user.grupo.descricao %></td>
         <td align="center">
-          <%= link_to 'usuarios/reset_password?id='+user.id.to_s, title: 'Alterar', class: 'btn btn-' + color +' btn-circle btn-xs' do %>
-              <%= fa_icon 'pencil' %>
+          <%= link_to 'usuarios/reset_password?id='+user.id.to_s, title: 'Resetar Senha', class: 'btn btn-' + color +' btn-circle btn-xs' do %>
+              <%= fa_icon 'refresh' %>
           <% end %>
         </td>
       </tr>

@@ -10,6 +10,8 @@ class Grupo < ActiveRecord::Base
 
   enum status: [:ativo, :cancelado]
 
+  scope :ativos, -> {where(status: Grupo.status[:ativo])}
+  scope :todos, -> {where('id <> ?', 1)}
 
   def set_default_attr
     self.status ||= :ativo
