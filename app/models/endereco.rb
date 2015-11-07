@@ -7,5 +7,8 @@ class Endereco < ActiveRecord::Base
 
   accepts_nested_attributes_for :bairro
 
+  def to_s
+    "#{cidade}"
+  end
 
 end

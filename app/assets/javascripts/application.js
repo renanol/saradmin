@@ -16,4 +16,5 @@
 //= require beyond/skins.min
 //= require beyond/beyond.min
 //= require turbolinks
+//= require nested_form_fields
 //= require_tree .
