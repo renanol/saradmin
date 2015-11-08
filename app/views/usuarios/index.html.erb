@@ -1,36 +1,79 @@
-<h1> Usuários </h1>
-<table class="table table-hover table-bordered">
-  <thead>
-  <tr>
-    <th align="left">Nome</th>
-    <th align="left" width="200">e-mail</th>
-    <th align="left" width="200">Grupo</th>
-    <th width="20"></th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @usuarios.each do |user| %>
-      <% if user.ativo? %>
-          <% color = 'success' %>
-      <% else %>
-          <% color = 'danger' %>
-      <% end %>
-      <tr class="<%= color %>">
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.grupo.descricao %></td>
-        <td align="center">
-          <%= link_to 'usuarios/reset_password?id='+user.id.to_s, title: 'Resetar Senha', class: 'btn btn-' + color +' btn-circle btn-xs' do %>
-              <%= fa_icon 'refresh' %>
-          <% end %>
-        </td>
+<%= form_tag({}, id: 'listar-form', class: 'form-horizontal', role: 'form') do %>
+    <h1> Usuários </h1>
+    <table class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <th align="left">Nome</th>
+        <th align="left" width="200">e-mail</th>
+        <th align="left" width="200">Grupo</th>
+        <th width="20"></th>
+        <th width="20"></th>
+        <th width="20"></th>
       </tr>
-  <%end%>
-  </tbody>
-</table>
+      </thead>
+      <tbody>
+      <% @usuarios.each do |user| %>
+          <% if user.ativo? %>
+              <% color = 'success' %>
+          <% else %>
+              <% color = 'danger' %>
+          <% end %>
+          <tr class="<%= color %>">
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.grupo.descricao %></td>
+            <td align="center">
+              <%= link_to '#', title: 'Mudar grupo de usuário', class: 'btn-change-grupo btn btn-' + color +' btn-xs icon-only',
+                          'data-user-id' => user.id, 'data-grupo-id' => user.grupo.id, 'data-user-name' => user.name do %>
+                  <%= fa_icon 'group' %>
+              <% end %>
+            </td>
+            <td align="center">
+              <%= link_to reset_password_usuario_path(user), title: 'Resetar Senha', class: 'btn btn-' + color +' btn-xs icon-only' do %>
+                  <%= fa_icon 'refresh' %>
+              <% end %>
+            </td>
+            <td align="center">
+              <% if user.ativo? %>
+                  <%= link_to bloquear_usuario_path(user), title: 'Bloquear', class: 'btn btn-danger btn-xs icon-only' do %>
+                      <%= fa_icon 'times' %>
+                  <% end %>
+              <% else %>
+                  <%= link_to ativar_usuario_path(user), title: 'Ativar', class: 'btn btn-success btn-xs icon-only' do %>
+                      <%= fa_icon 'check' %>
+                  <% end %>
+              <% end %>
+            </td>
+          </tr>
+      <%end%>
+      </tbody>
+    </table>
 
-<br>
+    <br>
 
-<div align="center">
-  <%= link_to 'Cadastrar', new_usuario_path, class: 'btn btn-default' %>
-</div>
+    <div align="center">
+      <%= link_to 'Cadastrar', new_usuario_path, class: 'btn btn-default' %>
+    </div>
+
+    <div class="modal modal-primary fade modal-alterar-grupo" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="mySmallModalLabel">Alterar grupo</h4>
+          </div>
+
+          <div class="modal-body">
+            <div>Alterando Grupo de <span id="user-span">foo</span></div>
+            <%= select(:params, :grupo_id, @grupo_opts, {}, {class: 'form-control'}) %>
+          </div>
+
+          <div class="modal-footer">
+            <%= link_to 'Cancelar', '#', class: 'btn btn-default', 'data-dismiss' => 'modal' %>
+            <%= link_to 'Confirmar', '#', class: 'btn-confirm-change-grupo btn btn-default' %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
