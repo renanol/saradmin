@@ -18,3 +18,8 @@
 //= require turbolinks
 //= require nested_form_fields
 //= require_tree .
+
+function teste(){
+    $("form").attr("action","/igrejas/add_contato");
+    $("form").submit();
+}

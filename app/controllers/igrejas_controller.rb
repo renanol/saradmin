@@ -57,6 +57,9 @@ class IgrejasController < ApplicationController
     @estados = Estado.order('nome')
     @cidades = Cidade.where("estado_id = ?", @igreja.enderecos[0].cidade.estado.id).order("nome")
 
+    respond_to do |format|
+        format.html { render :new }
+    end
 
   end
 
