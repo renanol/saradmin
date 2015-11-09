@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :grupos
 
   resources :usuarios do
-    get 'reset_password', on: :collection
+    get 'reset_password', on: :member
+    post 'change_grupo', on: :member
+    get 'ativar', on: :member
+    get 'bloquear', on: :member
   end
 
   get 'users', to: 'usuarios#index'

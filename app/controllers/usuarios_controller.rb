@@ -1,8 +1,11 @@
 class UsuariosController < ApplicationController
-  before_action :set_usuario, only: [:show, :edit, :update, :destroy, :reset_password]
+  before_action :set_usuario, except: [:index, :new, :create]
 
   def index
     @usuarios = User.todos
+    @grupo_opts = Grupo.todos.ativos.collect.map do |g|
+      [g.descricao, g.id]
+    end
   end
 
   def show
@@ -11,7 +14,9 @@ class UsuariosController < ApplicationController
 
   def new
     @usuario = User.new
-    @grupo_opts = Grupo.ativos.collect.map{|g| [ g.descricao, g.id ] }
+    @grupo_opts = Grupo.todos.ativos.collect.map do |g|
+      [g.descricao, g.id]
+    end
   end
 
   def create
@@ -34,6 +39,24 @@ class UsuariosController < ApplicationController
   def reset_password
     @usuario.update_attributes(password: '123mudar', password_confirmation: '123mudar')
     flash[:notice] = 'Senha resetada com sucesso!'
+    redirect_to usuarios_path
+  end
+
+  def change_grupo
+    @usuario.update_attributes(grupo_id: params[:grupo_id])
+    flash[:notice] = 'Grupo alterado com sucesso!'
+    redirect_to usuarios_path
+  end
+
+  def ativar
+    @usuario.update_attributes(status: User.status[:ativo])
+    flash[:notice] = 'Usuario ativado com sucesso!'
+    redirect_to usuarios_path
+  end
+
+  def bloquear
+    @usuario.update_attributes(status: User.status[:cancelado])
+    flash[:notice] = 'Usuario cancelado com sucesso!'
     redirect_to usuarios_path
   end
 
