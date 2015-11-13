@@ -2,6 +2,7 @@ class GruposController < ApplicationController
   before_action :set_grupo, only: [:show, :edit, :update, :destroy]
 
   def index
+    @tela = "Listar Grupos"
     @grupos = Grupo.todos
   end
 

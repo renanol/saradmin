@@ -11,6 +11,7 @@ class IgrejasController < ApplicationController
   def index
 
     @igrejas = Igreja.all
+    @igreja = Igreja.new
 
   end
 
@@ -24,7 +25,10 @@ class IgrejasController < ApplicationController
   def new
     @igreja = Igreja.new
     @igreja.enderecos.build.build_bairro
-    @igreja.igreja_contatos.build.build_contato
+
+
+    @igreja.igreja_contatos.build.build_contato({tipo: Contato.tipos[:telefone]})
+    @igreja.igreja_contatos.build.build_contato({tipo: Contato.tipos[:email]})
 
     @estados = Estado.order('nome')
     @cidades = Cidade.where("estado_id = ?", Estado.first.id).order("nome")
@@ -90,9 +94,8 @@ class IgrejasController < ApplicationController
   end
 
   def igreja_params
-    params.require(:igreja).permit(:descricao, igreja_contatos_attributes:[:id, :descricao, :_destroy], enderecos_attributes: [:id,:cidade_id, :logradouro, :numero, :complemento, :cep, bairro_attributes: [:id,:nome] ])
+    params.require(:igreja).permit(:descricao, igreja_contatos_attributes:[:id, contato_attributes:[:id, :tipo, :descricao]], enderecos_attributes: [:id,:cidade_id, :logradouro, :numero, :complemento, :cep, bairro_attributes: [:id,:nome] ])
   end
 
-
-
 end
+

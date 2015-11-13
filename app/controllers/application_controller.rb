@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  @tela = 'tela'
+
   protected
 
   def layout_by_resource

@@ -19,7 +19,26 @@
 //= require nested_form_fields
 //= require_tree .
 
-function teste(){
-    $("form").attr("action","/igrejas/add_contato");
-    $("form").submit();
-}
+$(function(){
+
+    $("#cadastrar_igreja").on("click", function(){
+        $(".modal-alterar-grupo").modal()
+    });
+
+    $("#submeter").on("click", function(){
+
+        var dados = $("form").serialize(),
+            url = $("form").attr("action"),
+            method = $("form").attr("method");
+        console.log(url)
+        $.ajax({
+            type: method,
+            url: url,
+            data: dados,
+            dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+        }).success(function(json){
+            console.log("success", json);
+        });
+    })
+
+});
