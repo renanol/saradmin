@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     self.status ||= :ativo
   end
 
+  def active_for_authentication?
+    super && self.ativo?
+  end
+
   def admin?
     self.grupo_id == 1 || self.grupo_id == 2
   end
