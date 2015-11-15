@@ -24,17 +24,6 @@
 
     <div class="page-content">
 
-      <!-- Page Breadcrumb -->
-      <div class="page-breadcrumbs">
-        <ul class="breadcrumb">
-          <li class="active">
-            <i class="fa fa-home"></i>
-            <%= @tela %>
-          </li>
-        </ul>
-      </div>
-      <!-- /Page Breadcrumb -->
-
       <!-- Page Body -->
       <div class="page-body">
 
@@ -44,7 +33,10 @@
 
           <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
             <div class="widget">
-              <div class="widget-body">
+              <div class="widget-header bordered-bottom bordered-blue" style="min-height: 50px">
+                <span class="widget-caption"><h3><%= @tela %></h3></span>
+              </div>
+              <div class="widget-body" style="padding-top: 20px">
 
                 <%= yield %>
 

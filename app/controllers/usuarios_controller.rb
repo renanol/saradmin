@@ -2,6 +2,7 @@ class UsuariosController < ApplicationController
   before_action :set_usuario, except: [:index, :new, :create]
 
   def index
+    @tela = 'Listar Usuários'
     @usuarios = User.todos
     @grupo_opts = Grupo.todos.ativos.collect.map do |g|
       [g.descricao, g.id]
@@ -13,10 +14,13 @@ class UsuariosController < ApplicationController
   end
 
   def new
+    @tela = 'Cadastrar Usuário'
+    @action = 'create'
     @usuario = User.new
     @grupo_opts = Grupo.todos.ativos.collect.map do |g|
       [g.descricao, g.id]
     end
+    @igrejas = Igreja.all
   end
 
   def create
@@ -25,12 +29,50 @@ class UsuariosController < ApplicationController
     @usuario.password_confirmation = '123mudar'
     @usuario.status = User.status[:ativo]
 
+    params[:igreja].each do |igreja|
+      if igreja[1][:id] == '1'
+        @usuario.user_igrejas.build(igreja_id: igreja[0])
+      end
+    end
+
     respond_to do |format|
       if @usuario.save
         format.html { redirect_to usuarios_path, notice: 'Usuário cadastrado com sucesso.' }
         format.json { render :show, status: :created, location: usuarios_path }
       else
         format.html { render :new }
+        format.json { render json: @usuario.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def edit
+    @tela = 'Alterar Usuário'
+    @action = 'update'
+    @grupo_opts = Grupo.todos.ativos.collect.map do |g|
+      [g.descricao, g.id]
+    end
+    @igrejas = Igreja.all.order(:descricao)
+  end
+
+  def update
+
+    @usuario.user_igrejas.each do |ui|
+      ui.destroy
+    end
+
+    params[:igreja].each do |igreja|
+      if igreja[1][:id] == '1'
+        @usuario.user_igrejas.build(igreja_id: igreja[0])
+      end
+    end
+
+    respond_to do |format|
+      if @usuario.update(usuario_params)
+        format.html { redirect_to usuarios_path, notice: 'Usuário alterado com sucesso.' }
+        format.json { render :index, status: :ok, location: usuarios_path }
+      else
+        format.html { render :edit }
         format.json { render json: @usuario.errors, status: :unprocessable_entity }
       end
     end
@@ -66,7 +108,7 @@ class UsuariosController < ApplicationController
   end
 
   def usuario_params
-    params.require(:user).permit(:name, :email, :grupo_id)
+    params.require(:user).permit(:name, :email, :grupo_id, igreja:[:id])
   end
 
 end

@@ -1,8 +1,10 @@
-<%= form_for(@usuario, url: url_for(:controller => 'usuarios', :action => 'create'), html: {class: 'form-horizontal', role: 'form'}) do |g| %>
+<%= form_for(@usuario, url: url_for(:controller => 'usuarios', :action => @action), html: {class: 'form-horizontal', role: 'form'}) do |g| %>
     <div class="form-group">
-      <%= g.label 'Nome', class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-11">
-        <%= g.text_field :name, type: 'text', class: 'form-control' %>
+      <div class="col-md-12">
+        <%= g.label 'Nome', class: 'col-md-1 control-label no-padding-right' %>
+        <div class="col-md-11">
+          <%= g.text_field :name, type: 'text', class: 'form-control' %>
+        </div>
       </div>
     </div>
 
@@ -21,9 +23,34 @@
       </div>
     </div>
 
+    <div class="form-title">
+      Igrejas Visíveis
+    </div>
+
+    <% @igrejas.each do |igreja| %>
+
+        <div class="col-md-4">
+        <%= fields_for 'igreja[]' , igreja do |igreja_fields| %>
+
+            <div class="checkbox">
+              <label>
+                <%= igreja_fields.check_box :id, class: 'inverted', checked: @usuario.igrejas.include?(igreja) %>
+                <span class="text"><%= igreja.descricao %></span>
+              </label>
+            </div>
+
+        <% end %>
+        </div>
+
+    <% end %>
+
+    <br>
+    <br>
     <br>
 
     <div class="form-group" align="center">
-      <button type="submit" class="btn btn-default">Confirmar</button>
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-default">Confirmar</button>
+      </div>
     </div>
 <% end %>

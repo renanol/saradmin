@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_one :profile
   belongs_to :grupo
 
+  has_many :user_igrejas
+  has_many :igrejas, through: :user_igrejas
+
   enum status: [:ativo, :cancelado]
 
   scope :todos, -> {where(['grupo_id <> ?', 1])}

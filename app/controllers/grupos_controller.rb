@@ -2,14 +2,16 @@ class GruposController < ApplicationController
   before_action :set_grupo, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tela = "Listar Grupos"
+    @tela = 'Listar Grupos'
     @grupos = Grupo.todos
   end
 
   def show
+    @tela = 'Visualizar Grupo'
   end
 
   def new
+    @tela = 'Cadastrar Grupo'
     @grupo = Grupo.new
 
     Permissao.all.each do |perm|
@@ -22,6 +24,7 @@ class GruposController < ApplicationController
   end
 
   def edit
+    @tela = 'Alterar Grupo'
   end
 
   def create
