@@ -1,0 +1,2 @@
+class SubEquipeController < ApplicationController
+end
