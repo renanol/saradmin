@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :equipes
   resources :sub_equipes
   resources :celulas
+  resources :cargos
 
   resources :usuarios do
     get 'reset_password', on: :member

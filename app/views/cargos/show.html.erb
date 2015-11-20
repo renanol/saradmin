@@ -1,0 +1,24 @@
+<form action="" class="form-horizontal">
+
+  <div class="form-title">
+    Informações
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-1 control-label">Descrição</label>
+    <div class="col-lg-11">
+      <input type="text" class='form-control' disabled value="<%=	 @cargo.descricao  %>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-1 control-label">Lideranca</label>
+    <div class="col-lg-11">
+      <input type="text" class='form-control' disabled value="<%=	 @cargo.lidera  %>">
+    </div>
+  </div>
+
+  <%= link_to 'Listar', cargos_path, class: 'btn btn-blue' %>
+  <%= link_to 'Editar', edit_cargo_path(@cargo), class: 'btn btn-blue' %>
+
+</form>
