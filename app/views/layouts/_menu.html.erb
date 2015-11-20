@@ -37,6 +37,13 @@
       <% end %>
     </li>
 
+    <li>
+      <%= link_to celulas_path do %>
+          <%= fa_icon 'home', class: 'menu-icon' %>
+          <span class="menu-text"> Celulas </span>
+      <% end %>
+    </li>
+
     <!--Configuracao-->
     <% if current_user.tem_permissao(['permissaoUsuario', 'permissaoGrupo']) %>
         <li>

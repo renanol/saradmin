@@ -1,2 +1,0 @@
-class CelulaController < ApplicationController
-end

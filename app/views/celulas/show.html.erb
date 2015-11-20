@@ -1,0 +1,26 @@
+<form action="" class="form-horizontal">
+
+  <div class="form-title">
+    Informações
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-1 control-label">Descrição</label>
+    <div class="col-lg-11">
+      <input type="text" class='form-control' disabled value="<%=	 @celula.descricao  %>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-1 control-label">Sub Equipe</label>
+    <div class="col-lg-11">
+      <input type="text" class='form-control' disabled value="<%=	 @celula.sub_equipe  %>">
+    </div>
+  </div>
+
+
+
+  <%= link_to 'Listar', celulas_path, class: 'btn btn-blue' %>
+  <%= link_to 'Editar', edit_celula_path(@celula), class: 'btn btn-blue' %>
+
+</form>

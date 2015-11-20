@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   resources :redes
   resources :equipes
-  resources :sub_equipes 
+  resources :sub_equipes
+  resources :celulas
 
   resources :usuarios do
     get 'reset_password', on: :member

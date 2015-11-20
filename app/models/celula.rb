@@ -1,3 +1,3 @@
 class Celula < ActiveRecord::Base
-  belongs_to :SubEquipe
+  belongs_to :sub_equipe
 end
