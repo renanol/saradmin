@@ -1,2 +1,0 @@
-class SubEquipeController < ApplicationController
-end

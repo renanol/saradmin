@@ -3,4 +3,8 @@ class Equipe < ActiveRecord::Base
 
   validates :descricao, presence: true
   validates :rede_id, presence: true
+
+  def to_s
+    descricao
+  end
 end

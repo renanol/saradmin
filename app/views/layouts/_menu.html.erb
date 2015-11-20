@@ -30,6 +30,13 @@
       <% end %>
     </li>
 
+    <li>
+      <%= link_to sub_equipes_path do %>
+          <%= fa_icon 'home', class: 'menu-icon' %>
+          <span class="menu-text"> Sub Equipes </span>
+      <% end %>
+    </li>
+
     <!--Configuracao-->
     <% if current_user.tem_permissao(['permissaoUsuario', 'permissaoGrupo']) %>
         <li>
