@@ -15,6 +15,35 @@
           <span class="menu-text"> Igreja </span>
       <% end %>
     </li>
+
+    <li>
+      <%= link_to redes_path do %>
+          <%= fa_icon 'home', class: 'menu-icon' %>
+          <span class="menu-text"> Redes </span>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to equipes_path do %>
+          <%= fa_icon 'home', class: 'menu-icon' %>
+          <span class="menu-text"> Equipes </span>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to sub_equipes_path do %>
+          <%= fa_icon 'home', class: 'menu-icon' %>
+          <span class="menu-text"> Sub Equipes </span>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to celulas_path do %>
+          <%= fa_icon 'home', class: 'menu-icon' %>
+          <span class="menu-text"> Celulas </span>
+      <% end %>
+    </li>
+
     <!--Configuracao-->
     <% if current_user.tem_permissao(['permissaoUsuario', 'permissaoGrupo']) %>
         <li>

@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Cadastrar', new_rede_path, class: 'btn btn-success' %>
+
+
+<table class="table table-hover table-striped table-bordered">
+  <thead class="bordered-blueberry">
+  <tr>
+    <th>#</th>
+    <th>Descrição </th>
+    <th width="20"></th>
+    <th width="20"></th>
+    <th width="20"></th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @redes.each do |rede| %>
+      <tr>
+        <td><%= rede.id %></td>
+        <td><%= rede.descricao %></td>
+        <td>
+          <%= link_to rede, title: 'Visualizar', class: 'btn btn-default btn-xs shiny icon-only success' do %>
+              <%= fa_icon 'search' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_rede_path(rede), title: 'Editar', class: 'btn btn-default btn-xs shiny icon-only success' do %>
+              <%= fa_icon 'pencil' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to rede, title: 'Editar', class: 'btn btn-default btn-xs shiny icon-only success', method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <%= fa_icon 'close' %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

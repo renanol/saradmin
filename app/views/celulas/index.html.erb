@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Cadastrar', new_celula_path, class: 'btn btn-success' %>
+
+
+<table class="table table-hover table-striped table-bordered">
+  <thead class="bordered-blueberry">
+  <tr>
+    <th>#</th>
+    <th>Descrição </th>
+    <th>Sub Equipe</th>
+    <th width="20"></th>
+    <th width="20"></th>
+    <th width="20"></th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @celulas.each do |celula| %>
+      <tr>
+        <td><%= celula.id %></td>
+        <td><%= celula.descricao %></td>
+        <td><%= celula.sub_equipe %></td>
+        <td>
+          <%= link_to celula, title: 'Visualizar', class: 'btn btn-default btn-xs shiny icon-only success' do %>
+              <%= fa_icon 'search' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_celula_path(celula), title: 'Editar', class: 'btn btn-default btn-xs shiny icon-only success' do %>
+              <%= fa_icon 'pencil' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to celula, title: 'Editar', class: 'btn btn-default btn-xs shiny icon-only success', method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <%= fa_icon 'close' %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,32 @@
+<%= form_for @equipe, :html => {:class => "form-horizontal"} do |f| %>
+
+  <% if @equipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@equipe.errors.count, "error") %> erros </h2>
+      <ul>
+      <% @equipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="form-group">
+        <label class="col-lg-1 control-label">Descrição</label>
+        <div class="col-lg-11">
+            <%= f.text_field  :descricao, class: 'form-control', placeholder: 'Descrição'  %>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-lg-1 control-label">Rede</label>
+      <div class="col-lg-11">
+        <%=  f.collection_select(:rede_id,  @redes , :id, :descricao, { :prompt => true  } )    %>
+      </div>
+    </div>
+
+    <%= link_to 'Listar', equipes_path, class: 'btn btn-blue' %>
+
+    <%= f.submit class: 'btn btn-blue' %>
+
+<% end %>

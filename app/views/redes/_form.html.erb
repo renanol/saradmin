@@ -1,0 +1,25 @@
+<%= form_for @rede, :html => {:class => "form-horizontal"} do |f| %>
+
+  <% if @rede.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rede.errors.count, "error") %> prohibited this rede from being saved:</h2>
+      <ul>
+      <% @rede.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="form-group">
+        <label class="col-lg-1 control-label">Descrição</label>
+        <div class="col-lg-11">
+            <%= f.text_field  :descricao, class: 'form-control', placeholder: 'Descrição'  %>
+        </div>
+    </div>
+
+    <%= link_to 'Listar', redes_path, class: 'btn btn-blue' %>
+
+    <%= f.submit class: 'btn btn-blue' %>
+
+<% end %>

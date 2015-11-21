@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   resources :foos
   resources :grupos
 
+  resources :redes
+  resources :equipes
+  resources :sub_equipes
+  resources :celulas
+  resources :cargos
+
   resources :usuarios do
     get 'reset_password', on: :member
     post 'change_grupo', on: :member

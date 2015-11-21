@@ -25,6 +25,22 @@ ActiveRecord::Schema.define(version: 20151115114158) do
 
   add_index "bairros", ["cidade_id"], name: "index_bairros_on_cidade_id", using: :btree
 
+  create_table "cargos", force: :cascade do |t|
+    t.string   "descricao"
+    t.boolean  "lideranca"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "celulas", force: :cascade do |t|
+    t.string   "descricao"
+    t.integer  "sub_equipe_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "celulas", ["sub_equipe_id"], name: "index_celulas_on_sub_equipe_id", using: :btree
+
   create_table "cidades", force: :cascade do |t|
     t.string   "nome"
     t.integer  "estado_id"
@@ -58,6 +74,15 @@ ActiveRecord::Schema.define(version: 20151115114158) do
   add_index "enderecos", ["cidade_id"], name: "index_enderecos_on_cidade_id", using: :btree
   add_index "enderecos", ["estado_id"], name: "index_enderecos_on_estado_id", using: :btree
   add_index "enderecos", ["igreja_id"], name: "index_enderecos_on_igreja_id", using: :btree
+
+  create_table "equipes", force: :cascade do |t|
+    t.string   "descricao"
+    t.integer  "rede_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "equipes", ["rede_id"], name: "index_equipes_on_rede_id", using: :btree
 
   create_table "estados", force: :cascade do |t|
     t.string   "nome"
@@ -146,6 +171,21 @@ ActiveRecord::Schema.define(version: 20151115114158) do
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
+  create_table "redes", force: :cascade do |t|
+    t.string   "descricao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sub_equipes", force: :cascade do |t|
+    t.string   "descricao"
+    t.integer  "equipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sub_equipes", ["equipe_id"], name: "index_sub_equipes_on_equipe_id", using: :btree
+
   create_table "user_igrejas", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -175,7 +215,10 @@ ActiveRecord::Schema.define(version: 20151115114158) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "bairros", "cidades"
+  add_foreign_key "celulas", "sub_equipes"
   add_foreign_key "cidades", "estados"
+  add_foreign_key "equipes", "redes"
   add_foreign_key "igreja_contatos", "contatos"
   add_foreign_key "igreja_contatos", "igrejas"
+  add_foreign_key "sub_equipes", "equipes"
 end
