@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require beyond/bootstrap.min
+//= require beyond/datetime/bootstrap-datepicker.js
 //= require beyond/slimscroll/jquery.slimscroll.min
 //= require beyond/skins.min
 //= require beyond/beyond.min
@@ -40,5 +41,7 @@ $(function(){
             console.log("success", json);
         });
     })
+
+    $('.date-picker').datepicker();
 
 });

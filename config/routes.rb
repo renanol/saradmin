@@ -23,8 +23,9 @@ Rails.application.routes.draw do
   resources :igrejas do
     get 'buscar_cidades', on: :collection
     post 'add_contato', on: :collection
-
   end
+
+  resources :membros
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

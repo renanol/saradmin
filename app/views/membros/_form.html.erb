@@ -1,0 +1,61 @@
+<%= form_for(@membro_form, html: {class: 'form-horizontal', role: 'form'}) do |g| %>
+    <div class="form-group">
+      <%= g.label :cadastro, class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= g.text_field :numero_cadastro, type: 'text', class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= g.label :nome, class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-11">
+        <%= g.text_field :nome, type: 'text', class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= g.label :data_nascimento, class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= g.text_field :data_nascimento, type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
+      </div>
+
+      <%= g.label :estado_civil, class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-2">
+        <div class="radio">
+          <label>
+            <%= g.radio_button :estado_civil, Pessoa.estado_civis[:solteiro], class: 'colored-blue',
+                               checked: @membro_form.estado_civil == Pessoa.estado_civis[:solteiro] %>
+            <span class="text">Solteiro</span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="radio">
+          <label>
+            <%= g.radio_button :estado_civil, Pessoa.estado_civis[:casado], class: 'colored-blue',
+                               checked: @membro_form.estado_civil == Pessoa.estado_civis[:casado] %>
+            <span class="text">Casado</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= g.label :rg, class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= g.text_field :rg, type: 'text', class: 'form-control' %>
+      </div>
+
+      <%= g.label :cpf, class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= g.text_field :cpf, type: 'text', class: 'form-control' %>
+      </div>
+    </div>
+
+
+    <br>
+
+    <div class="form-group" align="center">
+      <button type="submit" class="btn btn-default">Confirmar</button>
+    </div>
+<% end %>
