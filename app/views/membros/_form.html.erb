@@ -4,6 +4,10 @@
       <div class="col-md-5">
         <%= g.text_field :numero_cadastro, type: 'text', class: 'form-control' %>
       </div>
+      <%= g.label 'Igreja', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= g.select(:igreja_id, @igreja_ops, {}, {class: 'form-control'}) %>
+      </div>
     </div>
 
     <div class="form-group">
@@ -52,6 +56,75 @@
       </div>
     </div>
 
+    <div class="form-title">
+      Endereço
+    </div>
+
+    <%= g.fields_for :endereco  do |endereco| %>
+
+        <div class="form-group">
+          <%= g.label :estado, class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-lg-5">
+            <%= endereco.select :estado_id, options_for_select(@estados.collect { |country|
+              [country.nome.titleize, country.id] }, 1), {}, { id: 'estados_select', class: 'form-control' } %>
+          </div>
+
+          <%= g.label :cidade, class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-lg-5">
+            <%= endereco.select :cidade_id, options_for_select(@cidades.collect { |city|
+              [city.nome.titleize, city.id] }, 0), {}, { id: 'cidades_select', class: 'form-control' } %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= g.label :logradouro, class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-lg-8">
+            <%= endereco.text_field  :logradouro, class: 'form-control' %>
+          </div>
+
+          <%= g.label 'Número', class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-lg-2">
+            <%= endereco.text_field  :numero, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= g.label :cep, class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-lg-5">
+            <%= endereco.text_field  :cep, class: 'form-control' %>
+          </div>
+
+          <%= endereco.fields_for :bairro  do |bairro| %>
+              <%= g.label :bairro, class: 'col-md-1 control-label no-padding-right' %>
+              <div class="col-lg-5">
+                <%= bairro.text_field :nome, class: 'form-control' %>
+              </div>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <%= g.label :complemento, class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-lg-11">
+            <%= endereco.text_field  :complemento, class: 'form-control' %>
+          </div>
+        </div>
+    <% end %>
+
+    <div class="form-title">
+      Contatos
+    </div>
+
+    <div class="form-group">
+      <%= g.label 'E-mail', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= g.text_field :email, type: 'text', class: 'form-control' %>
+      </div>
+
+      <%= g.label :telefone, class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= g.text_field :telefone, type: 'text', class: 'form-control' %>
+      </div>
+    </div>
 
     <br>
 

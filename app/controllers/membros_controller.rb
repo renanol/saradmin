@@ -3,13 +3,18 @@ class MembrosController < ApplicationController
   def new
     @tela = 'Cadastrar Membro'
     @membro_form = MembroForm.new
-    @membro_form.estado_civil = Pessoa.estado_civis[:solteiro]
+    @estados = Estado.order('nome')
+    @cidades = Cidade.where('estado_id = ?', Estado.first.id).order('nome')
+    @igreja_ops = Igreja.all.collect.map do |i|
+      [i.descricao, i.id]
+    end
   end
 
   def create
     @form = MembroForm.new(membro_form_params)
 
     membro = Membro.new(
+        igreja_id: @form.igreja_id,
         pessoa: Pessoa.new(
             numero_cadastro: @form.numero_cadastro,
             nome: @form.nome,
@@ -19,6 +24,20 @@ class MembrosController < ApplicationController
             estado_civil: @form.estado_civil
         )
     )
+
+    membro.pessoa.enderecos << Endereco.new(
+        logradouro: @form.endereco[:logradouro],
+        numero: @form.endereco[:numero],
+        cep: @form.endereco[:cep],
+        complemento: @form.endereco[:complemento],
+        estado_id: @form.endereco[:estado_id],
+        cidade_id: @form.endereco[:cidade_id],
+        bairro: Bairro.new(nome: @form.endereco[:bairro][:nome])
+    )
+
+    membro.pessoa.contatos << Contato.new(tipo: Contato.tipos[:email], descricao: @form.email)
+
+    membro.pessoa.contatos << Contato.new(tipo: Contato.tipos[:telefone], descricao: @form.telefone)
 
     respond_to do |format|
       if membro.save
@@ -33,7 +52,28 @@ class MembrosController < ApplicationController
 
   private
   def membro_form_params
-    params.require(:membro).permit(:numero_cadastro, :nome, :data_nascimento, :cpf, :rg, :estado_civil)
+    params.require(:membro).permit(
+        :numero_cadastro,
+        :nome,
+        :data_nascimento,
+        :cpf,
+        :rg,
+        :estado_civil,
+        :email,
+        :telefone,
+        :igreja_id,
+        endereco: [
+            :logradouro,
+            :numero,
+            :estado_id,
+            :cidade_id,
+            :complemento,
+            :cep,
+            bairro: [
+                :nome
+            ]
+        ]
+    )
   end
 
 end

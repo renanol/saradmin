@@ -6,7 +6,15 @@ class MembroForm
   attribute :data_nascimento
   attribute :cpf
   attribute :rg
-  attribute :numero_cadastro, default: Membro.maximum(:id)
-  attribute :estado_civil, default: Pessoa.estado_civis[:solteiro]
+  attribute :numero_cadastro
+  attribute :estado_civil, Integer, default: Pessoa.estado_civis[:solteiro]
+  attribute :endereco
+
+  attribute :tipo_contato
+  attribute :desc_contato
+  attribute :email
+  attribute :telefone
+
+  attribute :igreja_id
 
 end
