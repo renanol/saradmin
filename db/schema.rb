@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206100149) do
+ActiveRecord::Schema.define(version: 20151208124125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,10 +131,12 @@ ActiveRecord::Schema.define(version: 20151206100149) do
   end
 
   create_table "membros", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "pessoa_id"
     t.integer  "igreja_id"
+    t.integer  "cargo_id"
+    t.integer  "numero_cadastro"
   end
 
   create_table "pais", force: :cascade do |t|
@@ -172,7 +174,6 @@ ActiveRecord::Schema.define(version: 20151206100149) do
     t.date     "data_nascimento"
     t.string   "cpf"
     t.string   "rg"
-    t.string   "numero_cadastro"
     t.integer  "estado_civil"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

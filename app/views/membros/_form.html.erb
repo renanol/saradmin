@@ -1,130 +1,148 @@
-<%= form_for(@membro_form, html: {class: 'form-horizontal', role: 'form'}) do |g| %>
+<%= form_for(@membro, html: {class: 'form-horizontal', role: 'form'}) do |g| %>
     <div class="form-group">
       <%= g.label :cadastro, class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-5">
+      <div class="col-md-3">
         <%= g.text_field :numero_cadastro, type: 'text', class: 'form-control' %>
       </div>
+
       <%= g.label 'Igreja', class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-5">
+      <div class="col-md-3">
         <%= g.select(:igreja_id, @igreja_ops, {}, {class: 'form-control'}) %>
       </div>
-    </div>
 
-    <div class="form-group">
-      <%= g.label :nome, class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-11">
-        <%= g.text_field :nome, type: 'text', class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= g.label :data_nascimento, class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-5">
-        <%= g.text_field :data_nascimento, type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
-      </div>
-
-      <%= g.label :estado_civil, class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-2">
-        <div class="radio">
-          <label>
-            <%= g.radio_button :estado_civil, Pessoa.estado_civis[:solteiro], class: 'colored-blue',
-                               checked: @membro_form.estado_civil == Pessoa.estado_civis[:solteiro] %>
-            <span class="text">Solteiro</span>
-          </label>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="radio">
-          <label>
-            <%= g.radio_button :estado_civil, Pessoa.estado_civis[:casado], class: 'colored-blue',
-                               checked: @membro_form.estado_civil == Pessoa.estado_civis[:casado] %>
-            <span class="text">Casado</span>
-          </label>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= g.label :rg, class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-5">
-        <%= g.text_field :rg, type: 'text', class: 'form-control' %>
-      </div>
-
-      <%= g.label :cpf, class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-5">
-        <%= g.text_field :cpf, type: 'text', class: 'form-control' %>
+      <%= g.label 'Cargo', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-3">
+        <%= g.select(:cargo_id, @cargo_ops, {}, {class: 'form-control'}) %>
       </div>
     </div>
 
     <div class="form-title">
-      Endereço
+      Dados Pessoais
     </div>
 
-    <%= g.fields_for :endereco  do |endereco| %>
-
+    <%= g.fields_for :pessoa do |p| %>
+        <%= p.hidden_field :id %>
         <div class="form-group">
-          <%= g.label :estado, class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-lg-5">
-            <%= endereco.select :estado_id, options_for_select(@estados.collect { |country|
-              [country.nome.titleize, country.id] }, 1), {}, { id: 'estados_select', class: 'form-control' } %>
-          </div>
-
-          <%= g.label :cidade, class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-lg-5">
-            <%= endereco.select :cidade_id, options_for_select(@cidades.collect { |city|
-              [city.nome.titleize, city.id] }, 0), {}, { id: 'cidades_select', class: 'form-control' } %>
+          <%= p.label :nome, class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-md-11">
+            <%= p.text_field :nome, type: 'text', class: 'form-control' %>
           </div>
         </div>
 
         <div class="form-group">
-          <%= g.label :logradouro, class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-lg-8">
-            <%= endereco.text_field  :logradouro, class: 'form-control' %>
+          <%= p.label :data_nascimento, class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-md-5">
+            <%= p.text_field :data_nascimento, type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
           </div>
 
-          <%= g.label 'Número', class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-lg-2">
-            <%= endereco.text_field  :numero, class: 'form-control' %>
+          <%= p.label :estado_civil, class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-md-2">
+            <div class="radio">
+              <label>
+                <%= p.radio_button :estado_civil, Pessoa.estado_civis[:solteiro], class: 'colored-blue', checked: @membro.pessoa.solteiro? %>
+                <span class="text">Solteiro</span>
+              </label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="radio">
+              <label>
+                <%= p.radio_button :estado_civil, Pessoa.estado_civis[:casado], class: 'colored-blue', checked: @membro.pessoa.casado? %>
+                <span class="text">Casado</span>
+              </label>
+            </div>
           </div>
         </div>
 
         <div class="form-group">
-          <%= g.label :cep, class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-lg-5">
-            <%= endereco.text_field  :cep, class: 'form-control' %>
+          <%= p.label :rg, class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-md-5">
+            <%= p.text_field :rg, type: 'text', class: 'form-control' %>
           </div>
 
-          <%= endereco.fields_for :bairro  do |bairro| %>
-              <%= g.label :bairro, class: 'col-md-1 control-label no-padding-right' %>
-              <div class="col-lg-5">
-                <%= bairro.text_field :nome, class: 'form-control' %>
-              </div>
+          <%= p.label :cpf, class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-md-5">
+            <%= p.text_field :cpf, type: 'text', class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-title">
+          Endereço
+        </div>
+
+        <% @membro.pessoa.enderecos.each do |ad| %>
+            <%= p.fields_for :enderecos, ad do |endr| %>
+                <%= endr.hidden_field :id %>
+                <div class="form-group">
+                  <%= endr.label :estado, class: 'col-md-1 control-label no-padding-right' %>
+                  <div class="col-lg-5">
+                    <%= endr.select :estado_id, options_for_select(@estados.collect { |country|
+                      [country.nome.titleize, country.id] }, 1), {}, { id: 'estados_select', class: 'form-control' } %>
+                  </div>
+
+                  <%= endr.label :cidade, class: 'col-md-1 control-label no-padding-right' %>
+                  <div class="col-lg-5">
+                    <%= endr.select :cidade_id, options_for_select(@cidades.collect { |city|
+                      [city.nome.titleize, city.id] }, 0), {}, { id: 'cidades_select', class: 'form-control' } %>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= endr.label :logradouro, class: 'col-md-1 control-label no-padding-right' %>
+                  <div class="col-lg-8">
+                    <%= endr.text_field :logradouro, class: 'form-control' %>
+                  </div>
+
+                  <%= endr.label 'Número', class: 'col-md-1 control-label no-padding-right' %>
+                  <div class="col-lg-2">
+                    <%= endr.text_field :numero, class: 'form-control' %>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= endr.label :cep, class: 'col-md-1 control-label no-padding-right' %>
+                  <div class="col-lg-5">
+                    <%= endr.text_field :cep, class: 'form-control' %>
+                  </div>
+
+                  <%= endr.fields_for :bairro  do |b| %>
+                      <%= b.hidden_field :id %>
+                      <%= b.label :nome, 'Bairro', class: 'col-md-1 control-label no-padding-right' %>
+                      <div class="col-lg-5">
+                        <%= b.text_field :nome, class: 'form-control' %>
+                      </div>
+                  <% end %>
+                </div>
+
+                <div class="form-group">
+                  <%= endr.label :complemento, class: 'col-md-1 control-label no-padding-right' %>
+                  <div class="col-lg-11">
+                    <%= endr.text_field  :complemento, class: 'form-control' %>
+                  </div>
+                </div>
+            <% end %>
+        <% end %>
+
+        <div class="form-title">
+          Contatos
+        </div>
+        <div class="form-group">
+          <% @membro.pessoa.contatos.each do |ct| %>
+              <%= p.fields_for :contatos, ct do |ctt| %>
+                  <%= ctt.hidden_field :id %>
+                  <%= ctt.hidden_field :tipo %>
+                  <% if ct.email? %>
+                      <%= ctt.label :descricao, 'E-mail', class: 'col-md-1 control-label no-padding-right' %>
+                  <% elsif ct.telefone? %>
+                      <%= ctt.label :descricao, 'Telefone', class: 'col-md-1 control-label no-padding-right' %>
+                  <% end %>
+                  <div class="col-md-5">
+                    <%= ctt.text_field :descricao, class: 'form-control' %>
+                  </div>
+              <% end %>
           <% end %>
         </div>
-
-        <div class="form-group">
-          <%= g.label :complemento, class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-lg-11">
-            <%= endereco.text_field  :complemento, class: 'form-control' %>
-          </div>
-        </div>
     <% end %>
-
-    <div class="form-title">
-      Contatos
-    </div>
-
-    <div class="form-group">
-      <%= g.label 'E-mail', class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-5">
-        <%= g.text_field :email, type: 'text', class: 'form-control' %>
-      </div>
-
-      <%= g.label :telefone, class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-5">
-        <%= g.text_field :telefone, type: 'text', class: 'form-control' %>
-      </div>
-    </div>
 
     <br>
 

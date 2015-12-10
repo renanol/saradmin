@@ -1,76 +1,106 @@
 class MembrosController < ApplicationController
+  before_action :preencher_listas, only: [:new, :edit]
+  before_action :set_membro, only: [:show, :edit, :update, :destroy]
+
+  def index
+    @tela = 'Listar Membros'
+    @membros = Membro.all
+  end
 
   def new
     @tela = 'Cadastrar Membro'
-    @membro_form = MembroForm.new
-    @estados = Estado.order('nome')
-    @cidades = Cidade.where('estado_id = ?', Estado.first.id).order('nome')
-    @igreja_ops = Igreja.all.collect.map do |i|
-      [i.descricao, i.id]
-    end
+    @membro = Membro.new
+    @membro.build_pessoa(estado_civil: Pessoa.estado_civis[:solteiro])
+    @membro.pessoa.enderecos.build
+    @membro.pessoa.enderecos.first.build_bairro
+    @membro.pessoa.contatos.build(tipo: Contato.tipos[:email])
+    @membro.pessoa.contatos.build(tipo: Contato.tipos[:telefone])
   end
 
   def create
-    @form = MembroForm.new(membro_form_params)
-
-    membro = Membro.new(
-        igreja_id: @form.igreja_id,
-        pessoa: Pessoa.new(
-            numero_cadastro: @form.numero_cadastro,
-            nome: @form.nome,
-            data_nascimento: @form.data_nascimento,
-            cpf: @form.cpf,
-            rg: @form.rg,
-            estado_civil: @form.estado_civil
-        )
-    )
-
-    membro.pessoa.enderecos << Endereco.new(
-        logradouro: @form.endereco[:logradouro],
-        numero: @form.endereco[:numero],
-        cep: @form.endereco[:cep],
-        complemento: @form.endereco[:complemento],
-        estado_id: @form.endereco[:estado_id],
-        cidade_id: @form.endereco[:cidade_id],
-        bairro: Bairro.new(nome: @form.endereco[:bairro][:nome])
-    )
-
-    membro.pessoa.contatos << Contato.new(tipo: Contato.tipos[:email], descricao: @form.email)
-
-    membro.pessoa.contatos << Contato.new(tipo: Contato.tipos[:telefone], descricao: @form.telefone)
+    @membro = Membro.new(membro_params)
 
     respond_to do |format|
-      if membro.save
-        format.html { redirect_to membro, notice: 'Membro cadastrado com sucesso.' }
-        format.json { render :show, status: :created, location: membro }
+      if @membro.save
+        format.html { redirect_to @membro, notice: 'Membro criado com sucesso.' }
+        format.json { render :show, status: :created, location: @membro }
       else
         format.html { render :new }
-        format.json { render json: membro.errors, status: :unprocessable_entity }
+        format.json { render json: @membro.errors, status: :unprocessable_entity }
       end
     end
   end
 
+  def edit
+    @tela = 'Alterar Membro'
+  end
+
+  def update
+    respond_to do |format|
+      if @membro.update(membro_params)
+        format.html { redirect_to @membro, notice: 'Membro alterado com sucesso.' }
+        format.json { render :show, status: :ok, location: @membro }
+      else
+        format.html { render :edit }
+        format.json { render json: @membro.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def show
+    @tela = 'Visualizar Membro'
+  end
+
   private
-  def membro_form_params
+
+  def set_membro
+    @membro = Membro.find(params[:id])
+  end
+
+  def preencher_listas
+    @estados = Estado.order('nome')
+    @cidades = Cidade.where('estado_id = ?', Estado.first.id).order('nome')
+
+    @igreja_ops = Igreja.all.collect.map do |i|
+      [i.descricao, i.id]
+    end
+
+    @cargo_ops = Cargo.all.collect.map do |i|
+      [i.descricao, i.id]
+    end
+  end
+
+  def membro_params
     params.require(:membro).permit(
         :numero_cadastro,
-        :nome,
-        :data_nascimento,
-        :cpf,
-        :rg,
-        :estado_civil,
+        :igreja_id,
+        :cargo_id,
         :email,
         :telefone,
-        :igreja_id,
-        endereco: [
-            :logradouro,
-            :numero,
-            :estado_id,
-            :cidade_id,
-            :complemento,
-            :cep,
-            bairro: [
-                :nome
+        pessoa_attributes: [
+            :id,
+            :nome,
+            :data_nascimento,
+            :cpf,
+            :rg,
+            :estado_civil,
+            enderecos_attributes: [
+                :id,
+                :estado_id,
+                :cidade_id,
+                :logradouro,
+                :numero,
+                :cep,
+                :complemento,
+                bairro_attributes: [
+                    :id,
+                    :nome
+                ]
+            ],
+            contatos_attributes: [
+                :id,
+                :tipo,
+                :descricao
             ]
         ]
     )

@@ -1,0 +1,50 @@
+<table class="table table-hover table-bordered">
+	<thead>
+		<tr>
+      <th>Cadastro</th>
+      <th>Nome</th>
+      <th>Igreja</th>
+      <th>Cargo</th>
+      <th width="20"></th>
+      <th width="20"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @membros.each do |m| %>
+      <tr>
+        <td><%= m.numero_cadastro %></td>
+        <td>
+          <% if not m.pessoa.nil? %>
+              <%= m.pessoa.nome %>
+          <% end %>
+        </td>
+        <td>
+          <% if not m.igreja.nil? %>
+              <%= m.igreja.descricao %>
+          <% end %>
+        </td>
+        <td>
+          <% if not m.cargo.nil? %>
+              <%= m.cargo.descricao %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to m, title: 'Visualizar', class: 'btn btn-default btn-circle btn-xs' do %>
+              <%= fa_icon 'search' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_membro_path(m), title: 'Alterar', class: 'btn btn-default btn-circle btn-xs' do %>
+              <%= fa_icon 'pencil' %>
+          <% end %>
+        </td>
+      </tr>
+		<%end%>
+	</tbody>
+</table>
+
+<br>
+
+<div align="center">
+  <%= link_to 'Cadastrar', new_membro_path, class: 'btn btn-default' %>
+</div>

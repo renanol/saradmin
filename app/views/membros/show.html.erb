@@ -1,0 +1,116 @@
+<div class="form-group">
+  <%= label_tag :cadastro, nil, class: 'col-md-1 control-label no-padding-right' %>
+  <div class="col-md-3">
+    <%= text_field_tag :cadastro, @membro.numero_cadastro, class: 'form-control', disabled: 'disabled' %>
+  </div>
+
+  <%= label_tag :igreja, nil, class: 'col-md-1 control-label no-padding-right' %>
+  <div class="col-md-3">
+    <%= text_field_tag :igreja, @membro.igreja.descricao, class: 'form-control', disabled: 'disabled' %>
+  </div>
+
+  <%= label_tag :cargo, nil, class: 'col-md-1 control-label no-padding-right' %>
+  <div class="col-md-3">
+    <%= text_field_tag :cargo, @membro.cargo.descricao, class: 'form-control', disabled: 'disabled' %>
+  </div>
+</div>
+
+<div class="form-title">
+  Dados Pessoais
+</div>
+
+<div class="form-group">
+  <%= label_tag :pessoa_nome, 'Nome', class: 'col-md-1 control-label no-padding-right' %>
+  <div class="col-md-11">
+    <%= text_field_tag :pessoa_nome, @membro.pessoa.nome, class: 'form-control', disabled: 'disabled' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= label_tag :pessoa_data_nascimento, 'Data Nascimento', class: 'col-md-1 control-label no-padding-right' %>
+  <div class="col-md-5">
+    <%= text_field_tag :pessoa_data_nascimento, @membro.pessoa.data_nascimento, class: 'form-control', disabled: 'disabled' %>
+  </div>
+
+  <%= label_tag :pessoa_estado_civil, 'Estado Civil', class: 'col-md-1 control-label no-padding-right' %>
+  <div class="col-md-5">
+    <%= text_field_tag :pessoa_estado_civil, @membro.pessoa.estado_civil_dsc, class: 'form-control', disabled: 'disabled' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= label_tag :pessoa_rg, 'RG', class: 'col-md-1 control-label no-padding-right' %>
+  <div class="col-md-5">
+    <%= text_field_tag :pessoa_rg, @membro.pessoa.rg, class: 'form-control', disabled: 'disabled' %>
+  </div>
+
+  <%= label_tag :pessoa_cpf, 'CPF', class: 'col-md-1 control-label no-padding-right' %>
+  <div class="col-md-5">
+    <%= text_field_tag :pessoa_cpf, @membro.pessoa.cpf, class: 'form-control', disabled: 'disabled' %>
+  </div>
+</div>
+
+<div class="form-title">
+  Endereço
+</div>
+
+<% @membro.pessoa.enderecos.each do |ad| %>
+    <div class="form-group">
+      <%= label_tag :pessoa_endereco_estado, 'Estado', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= text_field_tag :pessoa_endereco_estado, ad.estado.nome, class: 'form-control', disabled: 'disabled' %>
+      </div>
+
+      <%= label_tag :pessoa_endereco_cidade, 'Cidade', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= text_field_tag :pessoa_endereco_cidade, ad.cidade.nome, class: 'form-control', disabled: 'disabled' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :pessoa_endereco_logradouro, 'Logradouro', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-8">
+        <%= text_field_tag :pessoa_endereco_logradouro, ad.logradouro, class: 'form-control', disabled: 'disabled' %>
+      </div>
+
+      <%= label_tag :pessoa_endereco_numero, 'Número', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-2">
+        <%= text_field_tag :pessoa_endereco_numero, ad.numero, class: 'form-control', disabled: 'disabled' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :pessoa_endereco_cep, 'Cep', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= text_field_tag :pessoa_endereco_cep, ad.cep, class: 'form-control', disabled: 'disabled' %>
+      </div>
+
+      <%= label_tag :pessoa_endereco_bairro, 'Bairro', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= text_field_tag :pessoa_endereco_bairro, ad.bairro.nome, class: 'form-control', disabled: 'disabled' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :pessoa_endereco_complemento, 'Complemento', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-11">
+        <%= text_field_tag :pessoa_endereco_complemento, ad.complemento, class: 'form-control', disabled: 'disabled' %>
+      </div>
+    </div>
+<% end %>
+
+<div class="form-title">
+  Contatos
+</div>
+<div class="form-group">
+  <% @membro.pessoa.contatos.each do |ct| %>
+      <% if ct.email? %>
+          <%= label_tag :contato, 'E-mail', class: 'col-md-1 control-label no-padding-right' %>
+      <% elsif ct.telefone? %>
+          <%= label_tag :contato, 'Telefone', class: 'col-md-1 control-label no-padding-right' %>
+      <% end %>
+      <div class="col-md-5">
+        <%= text_field_tag :contato, ct.descricao, class: 'form-control', disabled: 'disabled' %>
+      </div>
+  <% end %>
+</div>
