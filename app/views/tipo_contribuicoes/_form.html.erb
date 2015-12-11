@@ -1,0 +1,27 @@
+<%= form_for @tipo_contribuicao do |f| %>
+
+    <% if @tipo_contribuicao.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@tipo_contribuicao.errors.count, "error") %> prohibited this tipo contribuicao from being saved:</h2>
+          <ul>
+            <% @tipo_contribuicao.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :descricao, 'Descrição', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-11">
+        <%= f.text_field :descricao, type: 'text', class: 'form-control' %>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="form-group" align="center">
+      <button type="submit" class="btn btn-default">Confirmar</button>
+    </div>
+
+<% end %>

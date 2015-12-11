@@ -1,0 +1,32 @@
+<table class="table table-hover table-bordered">
+  <thead>
+  <tr>
+    <th>Descrição</th>
+    <th width="20"></th>
+    <th width="20"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @tipo_contribuicoes.each do |tc| %>
+      <tr>
+        <td><%= tc.descricao %></td>
+        <td>
+          <%= link_to tc, title: 'Visualizar', class: 'btn btn-default btn-circle btn-xs' do %>
+              <%= fa_icon 'search' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_tipo_contribuicao_path(tc), title: 'Alterar', class: 'btn btn-default btn-circle btn-xs' do %>
+              <%= fa_icon 'pencil' %>
+          <% end %>
+        </td>
+      </tr>
+  <%end%>
+  </tbody>
+</table>
+
+<br>
+
+<div align="center">
+  <%= link_to 'Cadastrar', new_membro_path, class: 'btn btn-default' %>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208124125) do
+ActiveRecord::Schema.define(version: 20151210233345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20151208124125) do
     t.integer  "tipo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "contribuicoes", force: :cascade do |t|
+    t.decimal  "valor",                precision: 10, scale: 2
+    t.integer  "tipo_contribuicao_id"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
   end
 
   create_table "enderecos", force: :cascade do |t|
@@ -201,6 +208,12 @@ ActiveRecord::Schema.define(version: 20151208124125) do
   end
 
   add_index "sub_equipes", ["equipe_id"], name: "index_sub_equipes_on_equipe_id", using: :btree
+
+  create_table "tipo_contribuicoes", force: :cascade do |t|
+    t.string   "descricao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "user_igrejas", force: :cascade do |t|
     t.datetime "created_at", null: false
