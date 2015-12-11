@@ -26,6 +26,10 @@ $(function(){
         $(".modal-alterar-grupo").modal()
     });
 
+    if(window.location.pathname === "/"){
+        localStorage.setItem('link_menu', '/');
+    }
+
     $("#submeter").on("click", function(){
 
         var dados = $("form").serialize(),
@@ -43,5 +47,19 @@ $(function(){
     })
 
     $('.date-picker').datepicker();
+
+    $(".open-menu").click(function(){
+        localStorage.setItem('link_menu', $(this).attr('href'));
+    });
+
+
+    $('.nav a').each(function(index) {
+
+        if($(this).attr("href") == localStorage.getItem("link_menu")){
+          $(this).parent("li").addClass("active").parents("li").addClass("active open");
+        }
+
+    });
+
 
 });
