@@ -1,0 +1,23 @@
+<table class="table table-hover table-bordered">
+  <thead>
+  <tr>
+    <th>Tipo</th>
+    <th>Valor</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @contribuicoes.each do |c| %>
+      <tr>
+        <td><%= c.tipo_contribuicao.descricao %></td>
+        <td><%= c.valor %></td>
+      </tr>
+  <%end%>
+  </tbody>
+</table>
+
+<br>
+
+<div align="center">
+  <%= link_to 'Listar Membros', membros_path, class: 'btn btn-default' %>
+  <%= link_to 'Cadastrar', new_membro_contribuicao_path(@membro), class: 'btn btn-default' %>
+</div>

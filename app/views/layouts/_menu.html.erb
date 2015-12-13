@@ -4,13 +4,13 @@
     <!--Dashboard-->
     <li>
       <%= link_to root_path do %>
-        <%= fa_icon 'home', class: 'menu-icon' %>
+        <%= fa_icon 'tachometer', class: 'menu-icon' %>
         <span class="menu-text"> Dashboard </span>
       <% end %>
     </li>
 
     <li>
-      <%= link_to igrejas_path, class: 'menu-dropdown' do %>
+      <%= link_to '#', class: 'menu-dropdown' do %>
           <%= fa_icon 'home', class: 'menu-icon' %>
           <span class="menu-text"> Igreja </span>
           <i class="menu-expand"></i>
@@ -21,13 +21,15 @@
 
         <li>
           <%= link_to igrejas_path, class: 'open-menu' do %>
+              <%= fa_icon 'navicon', class: 'menu-icon' %>
               <span class="menu-text"> Listar </span>
           <% end %>
         </li>
 
         <li>
 
-          <%= link_to "#", class: 'menu-dropdown' do %>
+          <%= link_to '#', class: 'menu-dropdown' do %>
+              <%= fa_icon 'child', class: 'menu-icon' %>
               <span class="menu-text"> Membros </span>
           <% end %>
 
@@ -42,8 +44,14 @@
             </li>
 
             <li>
+              <%= link_to cargos_path, class: 'open-menu' do %>
+                  <span class="menu-text"> Cargos </span>
+              <% end %>
+            </li>
 
-              <%= link_to "#", class: 'menu-dropdown' do %>
+            <li>
+
+              <%= link_to '#', class: 'menu-dropdown' do %>
                   <span class="menu-text"> Contribuição </span>
               <% end %>
 
@@ -51,15 +59,7 @@
 
                 <li>
 
-                  <%= link_to membros_path, class: 'open-menu' do %>
-                      <span class="menu-text"> Listar </span>
-                  <% end %>
-
-                </li>
-
-                <li>
-
-                  <%= link_to "#", class: 'menu-dropdown' do %>
+                  <%= link_to tipo_contribuicoes_path, class: 'menu-dropdown' do %>
                       <span class="menu-text"> Tipo Contribuição </span>
                   <% end %>
 
@@ -78,31 +78,29 @@
 
         <li>
           <%= link_to redes_path, class: 'open-menu' do %>
+              <%= fa_icon 'code-fork', class: 'menu-icon' %>
               <span class="menu-text"> Redes </span>
           <% end %>
         </li>
 
         <li>
           <%= link_to equipes_path, class: 'open-menu' do %>
+              <%= fa_icon 'users', class: 'menu-icon' %>
               <span class="menu-text"> Equipes </span>
           <% end %>
         </li>
 
         <li>
           <%= link_to sub_equipes_path, class: 'open-menu' do %>
+              <%= fa_icon 'users', class: 'menu-icon' %>
               <span class="menu-text"> Sub Equipes </span>
           <% end %>
         </li>
 
         <li>
           <%= link_to celulas_path, class: 'open-menu' do %>
+              <%= fa_icon 'dot-circle-o', class: 'menu-icon' %>
               <span class="menu-text"> Celulas </span>
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to cargos_path, class: 'open-menu' do %>
-              <span class="menu-text"> Cargos </span>
           <% end %>
         </li>
 
@@ -117,7 +115,7 @@
     <% if current_user.tem_permissao(['permissaoUsuario', 'permissaoGrupo']) %>
         <li>
           <%= link_to '#', class: 'menu-dropdown' do %>
-              <%= fa_icon 'home', class: 'menu-icon' %>
+              <%= fa_icon 'cog', class: 'menu-icon' %>
               <span class="menu-text"> Configuração </span>
               <i class="menu-expand"></i>
           <% end %>
@@ -126,6 +124,7 @@
               <ul class="submenu">
                 <li>
                   <%= link_to '#', class: 'menu-dropdown' do %>
+                      <%= fa_icon 'user', class: 'menu-icon' %>
                       <span class="menu-text"> Usuários </span>
                       <i class="menu-expand"></i>
                   <% end %>
@@ -134,7 +133,6 @@
 
                     <li>
                       <%= link_to usuarios_path, class: 'open-menu' do %>
-                          <%= fa_icon 'rocket', class: 'menu-icon' %>
                           <span class="menu-text"> Listar </span>
                       <% end %>
                     </li>

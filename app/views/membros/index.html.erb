@@ -7,6 +7,8 @@
       <th>Cargo</th>
       <th width="20"></th>
       <th width="20"></th>
+      <th width="20"></th>
+      <th width="20"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -36,6 +38,16 @@
         <td>
           <%= link_to edit_membro_path(m), title: 'Alterar', class: 'btn btn-default btn-circle btn-xs' do %>
               <%= fa_icon 'pencil' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to new_membro_contribuicao_path(m), title: 'Cadastrar Contribuição', class: 'btn btn-default btn-circle btn-xs' do %>
+              <%= fa_icon 'money' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to membro_contribuicoes_path(m), title: 'Listar Contribuições', class: 'btn btn-default btn-circle btn-xs' do %>
+              <%= fa_icon 'th-list' %>
           <% end %>
         </td>
       </tr>

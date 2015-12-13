@@ -1,0 +1,32 @@
+<%= form_for [@membro, @contribuicao] do |f| %>
+
+    <% if @contribuicao.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@contribuicao.errors.count, "error") %> prohibited this contribuicao from being saved:</h2>
+          <ul>
+            <% @contribuicao.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :tipo_contribuicao_id, 'Tipo', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= f.select(:tipo_contribuicao_id, @tipo_ops, {}, {class: 'form-control'}) %>
+      </div>
+
+      <%= f.label :valor, class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= f.text_field :valor, type: 'text', class: 'form-control' %>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="form-group" align="center">
+      <button type="submit" class="btn btn-default">Confirmar</button>
+    </div>
+
+<% end %>

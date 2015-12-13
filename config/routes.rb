@@ -31,7 +31,10 @@ Rails.application.routes.draw do
     post 'add_contato', on: :collection
   end
 
-  resources :membros
+  resources :membros do
+    resources :contribuicoes
+  end
+
   resources :tipo_contribuicoes
 
   # The priority is based upon order of creation: first created -> highest priority.
