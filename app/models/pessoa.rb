@@ -30,4 +30,9 @@ class Pessoa < ActiveRecord::Base
     end
   end
 
+  def to_s
+    nome
+  end
+
+
 end

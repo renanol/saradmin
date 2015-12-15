@@ -5,6 +5,8 @@ class Igreja < ActiveRecord::Base
   has_many :user_igrejas
   has_many :users, through: :user_igrejas
 
+  belongs_to :membro
+
   accepts_nested_attributes_for :enderecos, :allow_destroy => true
   accepts_nested_attributes_for :igreja_contatos, :allow_destroy => true
 

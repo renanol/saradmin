@@ -45,6 +45,7 @@ class RedesController < ApplicationController
 
   private
 
+
   def set_rede
     @rede = Rede.find(params[:id])
   end

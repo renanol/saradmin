@@ -20,7 +20,15 @@
                   </div>
                 </div>
 
-                <div class="form-title">
+              <div class="form-group">
+                <label class="col-lg-1 control-label">Membro</label>
+                <div class="col-lg-11">
+                  <input type="text" class='form-control' disabled value="<%=	 @igreja.membro %>">
+                </div>
+              </div>
+
+
+              <div class="form-title">
                   Endereço
                 </div>
                     <% @igreja.enderecos.each do |endereco| %>
