@@ -33,6 +33,8 @@ Rails.application.routes.draw do
 
   resources :membros do
     resources :contribuicoes
+
+    get :report, on: :collection
   end
 
   resources :tipo_contribuicoes

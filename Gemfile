@@ -57,6 +57,9 @@ gem 'nested_form_fields'
 
 gem 'puma'
 
+gem 'prawn', '~> 2.0', '>= 2.0.2'
+gem 'prawn-table', '~> 0.2.2'
+
 #group :development, :test do
 #  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
 #  gem 'byebug'
