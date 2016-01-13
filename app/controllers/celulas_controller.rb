@@ -1,10 +1,11 @@
 class CelulasController < ApplicationController
   before_action :set_celula, only: [:show, :edit, :update]
-  before_action :set_sub_equipes, only: [:new, :edit, :create, :update]
+  before_action :set_listas, only: [:new, :edit]
 
   def index
     @celulas = Celula.all
   end
+
   def show
 
   end
@@ -18,7 +19,7 @@ class CelulasController < ApplicationController
   end
 
   def create
-    @celula =   Celula.new(celula_params)
+    @celula = Celula.new(celula_params)
 
     respond_to do |format|
       if @celula.save
@@ -32,7 +33,7 @@ class CelulasController < ApplicationController
 
   def update
 
-    @celula =   Celula.new(celula_params)
+    @celula = Celula.new(celula_params)
 
     respond_to do |format|
       if @celula.save
@@ -46,8 +47,9 @@ class CelulasController < ApplicationController
 
   private
 
-  def set_sub_equipes
+  def set_listas
     @sub_equipes = SubEquipe.all
+    @membros = Membro.all
   end
 
   def set_celula
@@ -55,6 +57,6 @@ class CelulasController < ApplicationController
   end
 
   def celula_params
-    params.require(:celula).permit(:descricao, :sub_equipe_id)
+    params.require(:celula).permit(:descricao, :sub_equipe_id, :responsavel_id)
   end
 end

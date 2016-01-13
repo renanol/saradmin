@@ -51,6 +51,16 @@ class MembrosController < ApplicationController
     @tela = 'Visualizar Membro'
   end
 
+  def report
+    @membros = Membro.where(igreja_id: 34)
+    respond_to do |format|
+      format.pdf do
+        pdf = MembroReport.new(@membros)
+        send_data pdf.render, filename: "membros_report.pdf", type: "application/pdf"
+      end
+    end
+  end
+
   private
 
   def set_membro

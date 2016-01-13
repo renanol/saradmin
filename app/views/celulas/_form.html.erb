@@ -19,9 +19,16 @@
     </div>
 
     <div class="form-group">
-      <label class="col-lg-1 control-label">Sub Equipe</label>
-      <div class="col-lg-11">
-        <%=  f.collection_select(:sub_equipe_id,  @sub_equipes , :id, :descricao, { :prompt => true  } )    %>
+      <%= f.label :sub_equipe_id, 'Sub Equipe', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-lg-5">
+        <%= f.select :sub_equipe_id, options_for_select(@sub_equipes.collect { |se|
+          [se.descricao.titleize, se.id] }, 0), {}, { class: 'form-control' } %>
+      </div>
+
+      <%= f.label :responsavel_id, 'Responsável', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-lg-5">
+        <%= f.select :responsavel_id, options_for_select(@membros.collect { |m|
+          [m.pessoa.nome.titleize, m.id] }, 0), {}, { class: 'form-control' } %>
       </div>
     </div>
 
