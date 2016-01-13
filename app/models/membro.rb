@@ -6,6 +6,8 @@ class Membro < ActiveRecord::Base
 
   has_many :contribuicaos
 
+  has_many :redes, :foreign_key => 'responsavel_id'
+
   accepts_nested_attributes_for :pessoa
   accepts_nested_attributes_for :contribuicaos
 
