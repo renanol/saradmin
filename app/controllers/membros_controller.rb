@@ -56,7 +56,7 @@ class MembrosController < ApplicationController
     respond_to do |format|
       format.pdf do
         pdf = MembroReport.new(@membros)
-        send_data pdf.render, filename: "membros_report.pdf", type: "application/pdf"
+        send_data pdf.render, filename: "membros_report.pdf", type: "application/pdf", disposition: "inline"
       end
     end
   end

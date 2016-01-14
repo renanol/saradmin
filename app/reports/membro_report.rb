@@ -17,7 +17,7 @@ class MembroReport < PdfReport
       if table_data.empty?
         text "No Membros Found"
       else
-        table table_data,
+        table TABLE_HEADERS + table_data,
               header: true,
               column_widths: TABLE_WIDTHS,
               row_colors: TABLE_ROW_COLORS
@@ -25,8 +25,6 @@ class MembroReport < PdfReport
     end
 
     def table_data
-      cabecalho = TABLE_HEADERS
       @table_data ||= @membros.map { |m| [m.id, m.pessoa.nome, m.cargo.descricao, m.igreja.descricao] }
-      @table_data = cabecalho + @table_data
     end
 end
