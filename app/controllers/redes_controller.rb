@@ -33,10 +33,8 @@ class RedesController < ApplicationController
 
   def update
 
-    @rede =   Rede.new(rede_params)
-
     respond_to do |format|
-      if @rede.save
+      if @rede.update(rede_params)
         format.html { redirect_to @rede, notice: 'Atualizado com sucesso.' }
       else
         format.html { render :edit }

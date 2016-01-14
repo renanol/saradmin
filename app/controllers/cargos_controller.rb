@@ -31,10 +31,9 @@ class CargosController < ApplicationController
 
   def update
 
-    @cargo =   Cargo.new(cargo_params)
-
     respond_to do |format|
-      if @cargo.save
+
+      if @cargo.update(cargo_params)
         format.html { redirect_to @cargo, notice: 'Atualizado com sucesso.' }
       else
         format.html { render :edit }
