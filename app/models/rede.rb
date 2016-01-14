@@ -1,6 +1,7 @@
 class Rede < ActiveRecord::Base
 
-  belongs_to :responsavel, :class_name => 'Membro', :foreign_key => 'resposavel_id'
+  belongs_to :responsavel, class_name: "Membro", foreign_key: "responsavel_id"
+
 
   def to_s
     descricao
