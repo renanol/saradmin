@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116140918) do
+ActiveRecord::Schema.define(version: 20160116161836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,11 +72,12 @@ ActiveRecord::Schema.define(version: 20160116140918) do
     t.string   "numero"
     t.string   "complemento"
     t.string   "cep"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "bairro_id"
     t.integer  "cidade_id"
     t.integer  "estado_id"
+    t.string   "ponto_referencia"
   end
 
   add_index "enderecos", ["bairro_id"], name: "index_enderecos_on_bairro_id", using: :btree

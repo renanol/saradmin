@@ -106,6 +106,7 @@ class MembrosController < ApplicationController
                 :numero,
                 :cep,
                 :complemento,
+                :ponto_referencia,
                 bairro_attributes: [
                     :id,
                     :nome
