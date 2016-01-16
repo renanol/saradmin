@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 20160115232702) do
     t.string   "descricao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "membro_id"
   end
 
   create_table "membros", force: :cascade do |t|
@@ -199,8 +200,9 @@ ActiveRecord::Schema.define(version: 20160115232702) do
 
   create_table "redes", force: :cascade do |t|
     t.string   "descricao"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "responsavel_id"
   end
 
   create_table "sub_equipes", force: :cascade do |t|

@@ -31,11 +31,8 @@ class SubEquipesController < ApplicationController
   end
 
   def update
-
-    @sub_equipe =   SubEquipe.new(sub_equipe_params)
-
     respond_to do |format|
-      if @sub_equipe.save
+      if @sub_equipe.update((sub_equipe_params))
         format.html { redirect_to @sub_equipe, notice: 'Atualizado com sucesso.' }
       else
         format.html { render :edit }

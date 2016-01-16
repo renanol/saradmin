@@ -9,4 +9,9 @@ class Membro < ActiveRecord::Base
   accepts_nested_attributes_for :pessoa
   accepts_nested_attributes_for :contribuicaos
 
+  def to_s
+    pessoa
+  end
+
+
 end

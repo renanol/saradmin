@@ -32,11 +32,8 @@ class CelulasController < ApplicationController
   end
 
   def update
-
-    @celula = Celula.new(celula_params)
-
     respond_to do |format|
-      if @celula.save
+      if @celula.update(celula_params)
         format.html { redirect_to @celula, notice: 'Atualizado com sucesso.' }
       else
         format.html { render :edit }

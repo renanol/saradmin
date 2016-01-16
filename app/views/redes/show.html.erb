@@ -11,7 +11,12 @@
     </div>
   </div>
 
-
+  <div class="form-group">
+    <label class="col-lg-1 control-label">Membro</label>
+    <div class="col-lg-11">
+      <input type="text" class='form-control' disabled value="<%= @rede.responsavel.pessoa.nome %>">
+    </div>
+  </div>
 
   <%= link_to 'Listar', redes_path, class: 'btn btn-blue' %>
   <%= link_to 'Editar', edit_rede_path(@rede), class: 'btn btn-blue' %>

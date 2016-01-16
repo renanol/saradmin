@@ -32,10 +32,8 @@ class EquipesController < ApplicationController
 
   def update
 
-    @equipe =   Equipe.new(equipe_params)
-
     respond_to do |format|
-      if @equipe.save
+      if @equipe.update(equipe_params)
         format.html { redirect_to @equipe, notice: 'Atualizado com sucesso.' }
       else
         format.html { render :edit }
