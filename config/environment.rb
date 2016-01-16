@@ -4,6 +4,7 @@ require File.expand_path('../application', __FILE__)
 # Initialize the Rails application.
 Rails.application.initialize!
 
+# Formatações de Numeros
 
 module Currency
   BRL = {:delimiter => ".", :separator => ",", :unit => "R$", :precision => 2, :position => "before"}
@@ -65,3 +66,7 @@ class Fixnum; include Currency::Number; end
 class Bignum; include Currency::Number; end
 class Float; include Currency::Number; end
 class String; include Currency::String; end
+
+# Formatações de Data
+Date::DATE_FORMATS[:br] = "%d/%m/%Y"
+

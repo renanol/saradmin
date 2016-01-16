@@ -1,15 +1,24 @@
 <table class="table table-hover table-bordered">
   <thead>
   <tr>
+    <th>Data</th>
     <th>Tipo</th>
     <th>Valor</th>
+    <th width="20"></th>
   </tr>
   </thead>
   <tbody>
   <% @contribuicoes.each do |c| %>
       <tr>
+        <td><%= c.data.to_s(:br) %></td>
         <td><%= c.tipo_contribuicao.descricao %></td>
         <td><%= c.valorFormatado %></td>
+        <td>
+          <%= link_to edit_membro_contribuicao_path(c.membro, c), title: 'Alterar', class: 'btn btn-default btn-xs icon-only' do %>
+              <%= fa_icon 'pencil' %>
+          <% end %>
+        </td>
+
       </tr>
   <%end%>
   </tbody>

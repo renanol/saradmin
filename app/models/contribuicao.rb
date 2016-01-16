@@ -16,4 +16,8 @@ class Contribuicao < ActiveRecord::Base
     self.valor.to_currency(Currency::BRL) if self.valor != nil
   end
 
+  def set_default_attr
+    self.data ||= Time.new.to_date
+  end
+
 end

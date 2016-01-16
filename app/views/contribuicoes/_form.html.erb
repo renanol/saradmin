@@ -12,13 +12,19 @@
     <% end %>
 
     <div class="form-group">
+      <%= f.label :data, 'Data', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-3">
+        <%= f.text_field :data, value: @contribuicao.data.to_s(:br), type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
+      </div>
+
       <%= f.label :tipo_contribuicao_id, 'Tipo', class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-5">
+      <div class="col-md-3">
         <%= f.select(:tipo_contribuicao_id, @tipo_ops, {}, {class: 'form-control'}) %>
       </div>
 
       <%= f.label :valor, class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-5">
+
+      <div class="col-md-3">
         <%= f.text_field :valor, type: 'text', class: 'form-control formatarMoeda' %>
       </div>
     </div>
