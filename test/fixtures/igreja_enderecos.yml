@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  igreja_id: 1
+  endereco_id: 1
+  descricao: MyString
+
+two:
+  igreja_id: 1
+  endereco_id: 1
+  descricao: MyString

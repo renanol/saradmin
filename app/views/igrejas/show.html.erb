@@ -7,105 +7,105 @@
       <div class="widget-body">
         <div id="registration-form">
 
-            <form action="" class="form-horizontal">
+          <form action="" class="form-horizontal">
+
+            <div class="form-title">
+              Informações
+            </div>
+
+            <div class="form-group">
+              <label class="col-lg-1 control-label">Descrição</label>
+              <div class="col-lg-11">
+                <input type="text" class='form-control' disabled value="<%=	 @igreja.descricao  %>">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-lg-1 control-label">Responsável</label>
+              <div class="col-lg-11">
+                <input type="text" class='form-control' disabled value="<%= @igreja.responsavel.pessoa.nome %>">
+              </div>
+            </div>
+
+            <% @igreja.igreja_enderecos.each do |ie| %>
 
                 <div class="form-title">
-                  Informações
+                  Endereço <%= ie.descricao %>
                 </div>
 
                 <div class="form-group">
-                  <label class="col-lg-1 control-label">Descrição</label>
+                  <label class="col-lg-1 control-label">Logradouro</label>
                   <div class="col-lg-11">
-                    <input type="text" class='form-control' disabled value="<%=	 @igreja.descricao  %>">
+                    <input type="text" class='form-control' disabled value="<%=	ie.endereco.logradouro %>">
                   </div>
                 </div>
 
-              <div class="form-group">
-                <label class="col-lg-1 control-label">Responsável</label>
-                <div class="col-lg-11">
-                  <input type="text" class='form-control' disabled value="<%= @igreja.responsavel.pessoa.nome %>">
+                <div class="form-group">
+                  <label class="col-lg-1 control-label">Número</label>
+                  <div class="col-lg-11">
+                    <input type="text" class='form-control' disabled value="<%=	ie.endereco.numero %>">
+                  </div>
                 </div>
-              </div>
 
 
-              <div class="form-title">
-                  Endereço
+                <div class="form-group">
+                  <label class="col-lg-1 control-label">Bairro</label>
+                  <div class="col-lg-11">
+                    <input type="text" class='form-control' disabled value="<%=	ie.endereco.bairro.nome %>">
+                  </div>
                 </div>
-                    <% @igreja.enderecos.each do |endereco| %>
 
-                    <div class="form-group">
-                      <label class="col-lg-1 control-label">Logradouro</label>
-                      <div class="col-lg-11">
-                        <input type="text" class='form-control' disabled value="<%=	 endereco.logradouro %>">
-                      </div>
-                    </div>
+                <div class="form-group">
+                  <label class="col-lg-1 control-label">Complemento</label>
+                  <div class="col-lg-11">
+                    <input type="text" class='form-control' disabled value="<%=	ie.endereco.complemento %>">
+                  </div>
+                </div>
 
-                    <div class="form-group">
-                      <label class="col-lg-1 control-label">Número</label>
-                      <div class="col-lg-11">
-                        <input type="text" class='form-control' disabled value="<%=	 endereco.numero %>">
-                      </div>
-                    </div>
+                <div class="form-group">
+                  <label class="col-lg-1 control-label">Cidade</label>
+                  <div class="col-lg-11">
+                    <input type="text" class='form-control' disabled value="<%=	ie.endereco.cidade.nome %>">
+                  </div>
+                </div>
 
+                <div class="form-group">
+                  <label class="col-lg-1 control-label">Estado</label>
+                  <div class="col-lg-11">
+                    <input type="text" class='form-control' disabled value="<%=	ie.endereco.cidade.estado.nome %>">
+                  </div>
+                </div>
 
-                    <div class="form-group">
-                      <label class="col-lg-1 control-label">Bairro</label>
-                      <div class="col-lg-11">
-                        <input type="text" class='form-control' disabled value="<%=	 endereco.bairro.nome %>">
-                      </div>
-                    </div>
+                <div class="form-group">
+                  <label class="col-lg-1 col-md-1 control-label no-padding-right">Cep</label>
+                  <div class="col-lg-11">
+                    <input type="text" class='form-control' disabled value="<%=	ie.endereco.cep %>">
+                  </div>
+                </div>
 
-                    <div class="form-group">
-                      <label class="col-lg-1 control-label">Complemento</label>
-                      <div class="col-lg-11">
-                        <input type="text" class='form-control' disabled value="<%=	 endereco.complemento %>">
-                      </div>
-                    </div>
+            <%  end  %>
 
-                  <div class="form-group">
-                    <label class="col-lg-1 control-label">Cidade</label>
-                    <div class="col-lg-11">
-                      <input type="text" class='form-control' disabled value="<%=	 endereco.cidade.nome %>">
-                    </div>
+            <div class="form-title">
+              Contato
+            </div>
+
+            <div class="form-group">
+
+              <%	@igreja.contatos.each do |contato|  %>
+
+                  <label class="col-lg-1 control-label"><%= contato.tipo.titleize %></label>
+                  <div class="col-lg-5">
+                    <input type="text" class='form-control' disabled value="<%= contato.descricao %>">
                   </div>
 
-                  <div class="form-group">
-                    <label class="col-lg-1 control-label">Estado</label>
-                    <div class="col-lg-11">
-                      <input type="text" class='form-control' disabled value="<%=	 endereco.cidade.estado.nome %>">
-                    </div>
-                  </div>
+              <% end %>
 
-                    <div class="form-group">
-                      <label class="col-lg-1 control-label">Cep</label>
-                      <div class="col-lg-11">
-                        <input type="text" class='form-control' disabled value="<%=	 endereco.cep %>">
-                      </div>
-                    </div>
+            </div>
 
+            <%= link_to 'Listar', igrejas_path, class: 'btn btn-blue' %>
+            <%= link_to 'Editar', edit_igreja_path(@igreja), class: 'btn btn-blue' %>
 
-
-                  <%  end  %>
-
-                <div class="form-title">
-                    Contato
-                </div>
-
-
-                  <%	@igreja.igreja_contatos.each do |contato|  %>
-                      <div class="form-group">
-                        <label class="col-lg-1 control-label">Descrição</label>
-                        <div class="col-lg-11">
-                          <input type="text" class='form-control' disabled value="<%= contato.descricao %>">
-                        </div>
-                      </div>
-                  <% end %>
-
-                <%= link_to 'Listar', igrejas_path, class: 'btn btn-blue' %>
-                <%= link_to 'Editar', edit_igreja_path(@igreja), class: 'btn btn-blue' %>
-
-                </form>
-
+          </form>
 
         </div>
       </div>

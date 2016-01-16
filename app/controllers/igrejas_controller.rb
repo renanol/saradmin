@@ -20,14 +20,26 @@ class IgrejasController < ApplicationController
   def edit
 
     @estados = Estado.order('nome')
-    @cidades = Cidade.where("estado_id = ?", @igreja.enderecos[0].cidade.estado.id).order("nome")
+    @cidades = Cidade.where("estado_id = ?", Estado.first.id).order("nome")
+
+    if not(@igreja.enderecos.nil?) && @igreja.enderecos.length > 0
+      if not(@igreja.enderecos[0].cidade.nil?)
+        @cidades = Cidade.where("estado_id = ?", @igreja.enderecos[0].cidade.estado.id).order("nome")
+      end
+    else
+      @igreja.enderecos.build.build_bairro
+    end
+
+    if @igreja.contatos.nil? || @igreja.contatos.length == 0
+      @igreja.contatos.build(tipo: Contato.tipos[:telefone])
+      @igreja.contatos.build(tipo: Contato.tipos[:email])
+    end
 
   end
 
   def new
     @igreja = Igreja.new
     @igreja.enderecos.build.build_bairro
-
 
     @igreja.igreja_contatos.build.build_contato({tipo: Contato.tipos[:telefone]})
     @igreja.igreja_contatos.build.build_contato({tipo: Contato.tipos[:email]})
@@ -54,27 +66,9 @@ class IgrejasController < ApplicationController
     end
   end
 
-  def add_contato
-
-    @igreja = Igreja.new(igreja_params)
-
-    @igreja.igreja_contatos.build.build_contato
-
-    @estados = Estado.order('nome')
-    @cidades = Cidade.where("estado_id = ?", @igreja.enderecos[0].cidade.estado.id).order("nome")
-
-    respond_to do |format|
-        format.html { render :new }
-    end
-
-  end
-
   def create
 
     @igreja = Igreja.new(igreja_params)
-
-    @estados = Estado.order('nome')
-    @cidades = Cidade.where("estado_id = ?", @igreja.enderecos[0].cidade.estado.id).order("nome")
 
     respond_to do |format|
       if @igreja.save
@@ -100,7 +94,32 @@ class IgrejasController < ApplicationController
   end
 
   def igreja_params
-    params.require(:igreja).permit(:descricao, :responsavel_id, igreja_contatos_attributes:[:id, contato_attributes:[:id, :tipo, :descricao]], enderecos_attributes: [:id,:cidade_id, :logradouro, :numero, :complemento, :cep, bairro_attributes: [:id,:nome] ])
+    params.require(:igreja).permit(
+        :descricao,
+        :responsavel_id,
+        contatos_attributes: [
+            :id,
+            :tipo,
+            :descricao
+        ],
+        igreja_enderecos_attributes: [
+            :id,
+            :descricao,
+            endereco_attributes: [
+                :id,
+                :estado_id,
+                :cidade_id,
+                :logradouro,
+                :numero,
+                :cep,
+                :complemento,
+                bairro_attributes: [
+                    :id,
+                    :nome
+                ]
+            ]
+        ]
+    )
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115232702) do
+ActiveRecord::Schema.define(version: 20160116140918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 20160115232702) do
     t.string   "cep"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "igreja_id"
     t.integer  "bairro_id"
     t.integer  "cidade_id"
     t.integer  "estado_id"
@@ -83,7 +82,6 @@ ActiveRecord::Schema.define(version: 20160115232702) do
   add_index "enderecos", ["bairro_id"], name: "index_enderecos_on_bairro_id", using: :btree
   add_index "enderecos", ["cidade_id"], name: "index_enderecos_on_cidade_id", using: :btree
   add_index "enderecos", ["estado_id"], name: "index_enderecos_on_estado_id", using: :btree
-  add_index "enderecos", ["igreja_id"], name: "index_enderecos_on_igreja_id", using: :btree
 
   create_table "equipes", force: :cascade do |t|
     t.string   "descricao"
@@ -134,6 +132,14 @@ ActiveRecord::Schema.define(version: 20160115232702) do
 
   add_index "igreja_contatos", ["contato_id"], name: "index_igreja_contatos_on_contato_id", using: :btree
   add_index "igreja_contatos", ["igreja_id"], name: "index_igreja_contatos_on_igreja_id", using: :btree
+
+  create_table "igreja_enderecos", force: :cascade do |t|
+    t.integer  "igreja_id"
+    t.integer  "endereco_id"
+    t.string   "descricao"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "igrejas", force: :cascade do |t|
     t.string   "descricao"
