@@ -5,7 +5,7 @@ class Igreja < ActiveRecord::Base
   has_many :user_igrejas
   has_many :users, through: :user_igrejas
 
-  belongs_to :membro
+  belongs_to :responsavel, class_name: "Membro", foreign_key: "responsavel_id"
 
   accepts_nested_attributes_for :enderecos, :allow_destroy => true
   accepts_nested_attributes_for :igreja_contatos, :allow_destroy => true

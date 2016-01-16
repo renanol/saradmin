@@ -1,6 +1,7 @@
 class EquipesController < ApplicationController
   before_action :set_equipe, only: [:show, :edit, :update]
   before_action :set_redes, only: [:new, :edit, :create, :update]
+  before_action :set_responsaveis, only: [:new, :edit, :create, :update]
 
   def index
     @equipes = Equipe.all
@@ -44,6 +45,10 @@ class EquipesController < ApplicationController
 
   private
 
+  def set_responsaveis
+    @responsaveis = Membro.all
+  end
+
   def set_redes
     @redes = Rede.all
   end
@@ -53,6 +58,6 @@ class EquipesController < ApplicationController
   end
 
   def equipe_params
-    params.require(:equipe).permit(:descricao, :rede_id)
+    params.require(:equipe).permit(:descricao, :rede_id, :responsavel_id)
   end
 end

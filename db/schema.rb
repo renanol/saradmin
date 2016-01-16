@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111234133) do
+ActiveRecord::Schema.define(version: 20160115003520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,8 +87,9 @@ ActiveRecord::Schema.define(version: 20160111234133) do
   create_table "equipes", force: :cascade do |t|
     t.string   "descricao"
     t.integer  "rede_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "responsavel_id"
   end
 
   add_index "equipes", ["rede_id"], name: "index_equipes_on_rede_id", using: :btree
@@ -135,9 +136,10 @@ ActiveRecord::Schema.define(version: 20160111234133) do
 
   create_table "igrejas", force: :cascade do |t|
     t.string   "descricao"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "membro_id"
+    t.integer  "responsavel_id"
   end
 
   create_table "membros", force: :cascade do |t|
@@ -207,8 +209,9 @@ ActiveRecord::Schema.define(version: 20160111234133) do
   create_table "sub_equipes", force: :cascade do |t|
     t.string   "descricao"
     t.integer  "equipe_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "responsavel_id"
   end
 
   add_index "sub_equipes", ["equipe_id"], name: "index_sub_equipes_on_equipe_id", using: :btree

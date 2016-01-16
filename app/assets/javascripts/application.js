@@ -18,6 +18,7 @@
 //= require beyond/beyond.min
 //= require turbolinks
 //= require nested_form_fields
+//= require jquery.maskMoney.min
 //= require_tree .
 
 $(function(){
@@ -61,5 +62,6 @@ $(function(){
 
     });
 
+    $(".formatarMoeda").maskMoney({thousands:'.', decimal:',',  allowZero:true });
 
 });

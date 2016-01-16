@@ -1,6 +1,8 @@
 class SubEquipesController < ApplicationController
   before_action :set_sub_equipe, only: [:show, :edit, :update]
   before_action :set_equipes, only: [:new, :edit, :create, :update]
+  before_action :set_responsaveis, only: [:new, :edit, :create, :update]
+
 
   def index
     @sub_equipes = SubEquipe.all
@@ -32,7 +34,7 @@ class SubEquipesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @sub_equipe.update((sub_equipe_params))
+      if @sub_equipe.update(sub_equipe_params)
         format.html { redirect_to @sub_equipe, notice: 'Atualizado com sucesso.' }
       else
         format.html { render :edit }
@@ -43,6 +45,10 @@ class SubEquipesController < ApplicationController
 
   private
 
+  def set_responsaveis
+    @responsaveis = Membro.all
+  end
+
   def set_equipes
     @equipes = Equipe.all
   end
@@ -52,6 +58,6 @@ class SubEquipesController < ApplicationController
   end
 
   def sub_equipe_params
-    params.require(:sub_equipe).permit(:descricao, :equipe_id)
+    params.require(:sub_equipe).permit(:descricao, :equipe_id, :responsavel_id)
   end
 end

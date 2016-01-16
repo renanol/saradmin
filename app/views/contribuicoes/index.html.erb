@@ -9,7 +9,7 @@
   <% @contribuicoes.each do |c| %>
       <tr>
         <td><%= c.tipo_contribuicao.descricao %></td>
-        <td><%= c.valor %></td>
+        <td><%= c.valorFormatado %></td>
       </tr>
   <%end%>
   </tbody>

@@ -1,7 +1,7 @@
 class IgrejasController < ApplicationController
 
   before_action :set_igreja, only: [:show, :edit, :update, :destroys]
-  before_action :set_membros, only: [:new, :edit, :create, :update]
+  before_action :set_responsaveis, only: [:new, :edit, :create, :update]
 
 
   ## TODO REFATORAR METODOS CARREGA ESTADO E CIDADES
@@ -91,8 +91,8 @@ class IgrejasController < ApplicationController
   private
 
 
-  def set_membros
-    @membros = Membro.all
+  def set_responsaveis
+    @resonsaveis = Membro.all
   end
 
   def set_igreja
@@ -100,7 +100,7 @@ class IgrejasController < ApplicationController
   end
 
   def igreja_params
-    params.require(:igreja).permit(:descricao, :membro_id, igreja_contatos_attributes:[:id, contato_attributes:[:id, :tipo, :descricao]], enderecos_attributes: [:id,:cidade_id, :logradouro, :numero, :complemento, :cep, bairro_attributes: [:id,:nome] ])
+    params.require(:igreja).permit(:descricao, :responsavel_id, igreja_contatos_attributes:[:id, contato_attributes:[:id, :tipo, :descricao]], enderecos_attributes: [:id,:cidade_id, :logradouro, :numero, :complemento, :cep, bairro_attributes: [:id,:nome] ])
   end
 
 end
