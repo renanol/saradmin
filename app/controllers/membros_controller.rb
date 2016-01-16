@@ -78,6 +78,10 @@ class MembrosController < ApplicationController
     @cargo_ops = Cargo.all.collect.map do |i|
       [i.descricao, i.id]
     end
+
+    @estados_civis_ops = Pessoa.estado_civis.collect.map do |e|
+      e
+    end
   end
 
   def membro_params

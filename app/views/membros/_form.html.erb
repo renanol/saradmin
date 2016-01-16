@@ -32,35 +32,22 @@
         <div class="form-group">
           <%= p.label :data_nascimento, class: 'col-md-1 control-label no-padding-right' %>
           <div class="col-md-5">
-            <%= p.text_field :data_nascimento, type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
+            <%= p.text_field :data_nascimento, value: @membro.pessoa.data_nascimento.to_s(:br), type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
           </div>
 
           <%= p.label :estado_civil, class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-md-2">
-            <div class="radio">
-              <label>
-                <%= p.radio_button :estado_civil, Pessoa.estado_civis[:solteiro], class: 'colored-blue', checked: @membro.pessoa.solteiro? %>
-                <span class="text">Solteiro</span>
-              </label>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="radio">
-              <label>
-                <%= p.radio_button :estado_civil, Pessoa.estado_civis[:casado], class: 'colored-blue', checked: @membro.pessoa.casado? %>
-                <span class="text">Casado</span>
-              </label>
-            </div>
+          <div class="col-md-5">
+            <%= p.select(:estado_civil, Pessoa.estado_civis.keys, {}, {class: 'form-control'}) %>
           </div>
         </div>
 
         <div class="form-group">
-          <%= p.label :rg, class: 'col-md-1 control-label no-padding-right' %>
+          <%= p.label :rg, 'RG', class: 'col-md-1 control-label no-padding-right' %>
           <div class="col-md-5">
             <%= p.text_field :rg, type: 'text', class: 'form-control' %>
           </div>
 
-          <%= p.label :cpf, class: 'col-md-1 control-label no-padding-right' %>
+          <%= p.label :cpf, 'CPF', class: 'col-md-1 control-label no-padding-right' %>
           <div class="col-md-5">
             <%= p.text_field :cpf, type: 'text', class: 'form-control' %>
           </div>
@@ -93,14 +80,14 @@
                     <%= endr.text_field :logradouro, class: 'form-control' %>
                   </div>
 
-                  <%= endr.label 'Número', class: 'col-md-1 control-label no-padding-right' %>
+                  <%= endr.label :numero, 'Número', class: 'col-md-1 control-label no-padding-right' %>
                   <div class="col-lg-2">
                     <%= endr.text_field :numero, class: 'form-control' %>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <%= endr.label :cep, class: 'col-md-1 control-label no-padding-right' %>
+                  <%= endr.label :cep, 'CEP', class: 'col-md-1 control-label no-padding-right' %>
                   <div class="col-lg-5">
                     <%= endr.text_field :cep, class: 'form-control' %>
                   </div>
