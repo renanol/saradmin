@@ -29,6 +29,7 @@
       </div>
     </div>
 
+    <% idx = 0 %>
     <% @igreja.igreja_enderecos.each do |ie| %>
 
         <%= f.fields_for :igreja_enderecos, ie do |ief| %>
@@ -61,7 +62,7 @@
                   <label class="col-lg-1 control-label">Estado</label>
                   <div class="col-lg-11">
                     <%= edf.select :estado_id, options_for_select(@estados.collect { |country|
-                      [country.nome.titleize, country.id] }, 1), {}, { id: 'estados_select' } %>
+                      [country.nome.titleize, country.id] }, 1), {}, { class: 'uf-select', id: "uf-#{idx}", data: {city_select: "cidade-#{idx}"} } %>
                   </div>
                 </div>
 
@@ -69,7 +70,7 @@
                   <label class="col-lg-1 control-label">Cidade</label>
                   <div class="col-lg-11">
                     <%= edf.select :cidade_id, options_for_select(@cidades.collect { |city|
-                      [city.nome.titleize, city.id] }, 0), {}, { id: 'cidades_select' } %>
+                      [city.nome.titleize, city.id] }, 0), {}, { id: "cidade-#{idx}" } %>
                   </div>
                 </div>
 
@@ -106,6 +107,8 @@
             <% end %>
 
         <% end %>
+
+        <% idx = idx + 1 %>
 
     <% end %>
 

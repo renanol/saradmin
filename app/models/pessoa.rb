@@ -8,8 +8,7 @@ class Pessoa < ActiveRecord::Base
   has_many :pessoa_contatos
   has_many :contatos, through: :pessoa_contatos
 
-  accepts_nested_attributes_for :membro
-  accepts_nested_attributes_for :enderecos
+  accepts_nested_attributes_for :pessoa_enderecos
   accepts_nested_attributes_for :contatos
 
   enum estado_civil: [:solteiro, :casado, :divorciado, :viuvo, :outros]

@@ -1,7 +1,7 @@
 class IgrejasController < ApplicationController
 
   before_action :set_igreja, only: [:show, :edit, :update, :destroys]
-  before_action :set_responsaveis, only: [:new, :edit, :create, :update]
+  before_action :preencher_listas, only: [:new, :edit, :create, :update]
 
 
   ## TODO REFATORAR METODOS CARREGA ESTADO E CIDADES
@@ -19,15 +19,14 @@ class IgrejasController < ApplicationController
 
   def edit
 
-    @estados = Estado.order('nome')
-    @cidades = Cidade.where("estado_id = ?", Estado.first.id).order("nome")
+    @tela = 'Alterar Igreja'
 
     if not(@igreja.enderecos.nil?) && @igreja.enderecos.length > 0
       if not(@igreja.enderecos[0].cidade.nil?)
         @cidades = Cidade.where("estado_id = ?", @igreja.enderecos[0].cidade.estado.id).order("nome")
       end
     else
-      @igreja.enderecos.build.build_bairro
+      @igreja.igreja_enderecos.build(descricao: 'Principal').build_endereco.build_bairro
     end
 
     if @igreja.contatos.nil? || @igreja.contatos.length == 0
@@ -38,14 +37,14 @@ class IgrejasController < ApplicationController
   end
 
   def new
+    @tela = 'Cadastrar Igreja'
+
     @igreja = Igreja.new
-    @igreja.enderecos.build.build_bairro
 
-    @igreja.igreja_contatos.build.build_contato({tipo: Contato.tipos[:telefone]})
-    @igreja.igreja_contatos.build.build_contato({tipo: Contato.tipos[:email]})
+    @igreja.igreja_enderecos.build(descricao: 'Principal').build_endereco.build_bairro
 
-    @estados = Estado.order('nome')
-    @cidades = Cidade.where("estado_id = ?", Estado.first.id).order("nome")
+    @igreja.contatos.build({tipo: Contato.tipos[:telefone]})
+    @igreja.contatos.build({tipo: Contato.tipos[:email]})
 
   end
 
@@ -84,9 +83,10 @@ class IgrejasController < ApplicationController
 
   private
 
-
-  def set_responsaveis
+  def preencher_listas
     @resonsaveis = Membro.all
+    @estados = Estado.order('nome')
+    @cidades = Cidade.where("estado_id = ?", Estado.first.id).order("nome")
   end
 
   def set_igreja

@@ -11,10 +11,13 @@ class MembrosController < ApplicationController
     @tela = 'Cadastrar Membro'
     @membro = Membro.new
     @membro.build_pessoa(estado_civil: Pessoa.estado_civis[:solteiro])
-    @membro.pessoa.enderecos.build
-    @membro.pessoa.enderecos.first.build_bairro
+
+    @membro.pessoa.pessoa_enderecos.build(descricao: 'Principal').build_endereco.build_bairro
+    @membro.pessoa.pessoa_enderecos.build(descricao: 'Comercial').build_endereco.build_bairro
+
     @membro.pessoa.contatos.build(tipo: Contato.tipos[:email])
     @membro.pessoa.contatos.build(tipo: Contato.tipos[:telefone])
+    @membro.pessoa.contatos.build(tipo: Contato.tipos[:telefone_comercial])
   end
 
   def create
@@ -33,6 +36,15 @@ class MembrosController < ApplicationController
 
   def edit
     @tela = 'Alterar Membro'
+
+    if not(@membro.pessoa.enderecos.nil?) && @membro.pessoa.enderecos.length > 0
+      if not(@membro.pessoa.enderecos[0].cidade.nil?)
+        @cidades = Cidade.where("estado_id = ?", @membro.pessoa.enderecos[0].cidade.estado.id).order("nome")
+      end
+    else
+      @membro.pessoa.pessoa_enderecos.build(descricao: 'Principal').build_endereco.build_bairro
+      @membro.pessoa.pessoa_enderecos.build(descricao: 'Comercial').build_endereco.build_bairro
+    end
   end
 
   def update
@@ -102,18 +114,22 @@ class MembrosController < ApplicationController
             :titulo_eleitor_zona,
             :titulo_eleitor_secao,
             :titulo_eleitor_data_emissao,
-            enderecos_attributes: [
+            pessoa_enderecos_attributes: [
                 :id,
-                :estado_id,
-                :cidade_id,
-                :logradouro,
-                :numero,
-                :cep,
-                :complemento,
-                :ponto_referencia,
-                bairro_attributes: [
+                :descricao,
+                endereco_attributes: [
                     :id,
-                    :nome
+                    :estado_id,
+                    :cidade_id,
+                    :logradouro,
+                    :numero,
+                    :cep,
+                    :complemento,
+                    :ponto_referencia,
+                    bairro_attributes: [
+                        :id,
+                        :nome
+                    ]
                 ]
             ],
             contatos_attributes: [

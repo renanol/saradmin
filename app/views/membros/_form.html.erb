@@ -79,68 +79,87 @@
           </div>
         </div>
 
-        <div class="form-title">
-          Endereço
-        </div>
+        <% idx = 0 %>
+        <% @membro.pessoa.pessoa_enderecos.each do |pe| %>
 
-        <% @membro.pessoa.enderecos.each do |ad| %>
-            <%= p.fields_for :enderecos, ad do |endr| %>
-                <%= endr.hidden_field :id %>
-                <div class="form-group">
-                  <%= endr.label :estado, class: 'col-md-1 control-label no-padding-right' %>
-                  <div class="col-lg-5">
-                    <%= endr.select :estado_id, options_for_select(@estados.collect { |country|
-                      [country.nome.titleize, country.id] }, 1), {}, { id: 'estados_select', class: 'form-control' } %>
-                  </div>
+            <%= p.fields_for :pessoa_enderecos, pe do |pef| %>
 
-                  <%= endr.label :cidade, class: 'col-md-1 control-label no-padding-right' %>
-                  <div class="col-lg-5">
-                    <%= endr.select :cidade_id, options_for_select(@cidades.collect { |city|
-                      [city.nome.titleize, city.id] }, 0), {}, { id: 'cidades_select', class: 'form-control' } %>
-                  </div>
+                <%= pef.hidden_field :id %>
+                <%= pef.hidden_field :descricao %>
+                <div class="form-title">
+                  Endereço <%= pe.descricao %>
                 </div>
 
-                <div class="form-group">
-                  <%= endr.label :logradouro, class: 'col-md-1 control-label no-padding-right' %>
-                  <div class="col-lg-8">
-                    <%= endr.text_field :logradouro, class: 'form-control' %>
-                  </div>
+                <%= pef.fields_for :endereco do |edf| %>
 
-                  <%= endr.label :numero, 'Número', class: 'col-md-1 control-label no-padding-right' %>
-                  <div class="col-lg-2">
-                    <%= endr.text_field :numero, class: 'form-control' %>
-                  </div>
-                </div>
+                    <%= edf.hidden_field :id %>
 
-                <div class="form-group">
-                  <%= endr.label :cep, 'CEP', class: 'col-md-1 control-label no-padding-right' %>
-                  <div class="col-lg-5">
-                    <%= endr.text_field :cep, class: 'form-control' %>
-                  </div>
-
-                  <%= endr.fields_for :bairro  do |b| %>
-                      <%= b.hidden_field :id %>
-                      <%= b.label :nome, 'Bairro', class: 'col-md-1 control-label no-padding-right' %>
-                      <div class="col-lg-5">
-                        <%= b.text_field :nome, class: 'form-control' %>
+                    <div class="form-group">
+                      <label class="col-lg-1 control-label">Logradouro</label>
+                      <div class="col-lg-11">
+                        <%= edf.text_field  :logradouro, class: 'form-control', placeholder: 'Logradouro'  %>
                       </div>
-                  <% end %>
-                </div>
+                    </div>
 
-                <div class="form-group">
-                  <%= endr.label :complemento, class: 'col-md-1 control-label no-padding-right' %>
-                  <div class="col-lg-11">
-                    <%= endr.text_field  :complemento, class: 'form-control' %>
-                  </div>
-                </div>
+                    <div class="form-group">
+                      <label class="col-lg-1 control-label">Número</label>
+                      <div class="col-lg-11">
+                        <%= edf.text_field  :numero, class: 'form-control', placeholder: 'Número'  %>
+                      </div>
+                    </div>
 
-                <div class="form-group">
-                  <%= endr.label :ponto_referencia,'Ponto de Referência', class: 'col-md-1 control-label no-padding-right' %>
-                  <div class="col-lg-11">
-                    <%= endr.text_field  :ponto_referencia, class: 'form-control' %>
-                  </div>
-                </div>
+                    <div class="form-group">
+                      <label class="col-lg-1 control-label">Estado</label>
+                      <div class="col-lg-11">
+                        <%= edf.select :estado_id, options_for_select(@estados.collect { |country|
+                          [country.nome.titleize, country.id] }, 1), {}, { class: 'uf-select', id: "uf-#{idx}", data: {city_select: "cidade-#{idx}"} } %>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-lg-1 control-label">Cidade</label>
+                      <div class="col-lg-11">
+                        <%= edf.select :cidade_id, options_for_select(@cidades.collect { |city|
+                          [city.nome.titleize, city.id] }, 0), {}, { id: "cidade-#{idx}" } %>
+                      </div>
+                    </div>
+
+                    <%= edf.fields_for :bairro do |bf| %>
+                        <div class="form-group">
+                          <label class="col-lg-1 control-label">Bairro</label>
+                          <div class="col-lg-11">
+                            <%= bf.text_field :nome, class: 'form-control', placeholder: 'Bairro'  %>
+                          </div>
+                        </div>
+                    <% end %>
+
+                    <div class="form-group">
+                      <label class="col-lg-1 control-label">Complemento</label>
+                      <div class="col-lg-11">
+                        <%= edf.text_field :complemento, class: 'form-control', placeholder: 'Complemento'  %>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-lg-1 control-label">Cep</label>
+                      <div class="col-lg-11">
+                        <%= edf.text_field  :cep, class: 'form-control', placeholder: 'Cep'  %>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-lg-1 control-label">Ponto de Referência</label>
+                      <div class="col-lg-11">
+                        <%= edf.text_field :ponto_referencia, class: 'form-control', placeholder: 'Ponto de Referência'  %>
+                      </div>
+                    </div>
+
+                <% end %>
+
             <% end %>
+
+            <% idx = idx + 1 %>
+
         <% end %>
 
         <div class="form-title">
@@ -151,12 +170,8 @@
               <%= p.fields_for :contatos, ct do |ctt| %>
                   <%= ctt.hidden_field :id %>
                   <%= ctt.hidden_field :tipo %>
-                  <% if ct.email? %>
-                      <%= ctt.label :descricao, 'E-mail', class: 'col-md-1 control-label no-padding-right' %>
-                  <% elsif ct.telefone? %>
-                      <%= ctt.label :descricao, 'Telefone', class: 'col-md-1 control-label no-padding-right' %>
-                  <% end %>
-                  <div class="col-md-5">
+                  <%= ctt.label :descricao, ct.tipo.titleize, class: 'col-md-1 control-label no-padding-right' %>
+                  <div class="col-md-3">
                     <%= ctt.text_field :descricao, class: 'form-control' %>
                   </div>
               <% end %>
