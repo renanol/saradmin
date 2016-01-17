@@ -14,7 +14,7 @@
     <div class="form-group">
       <%= f.label :data, 'Data', class: 'col-md-1 control-label no-padding-right' %>
       <div class="col-md-3">
-        <%= f.text_field :data, value: @contribuicao.data.to_s(:br), type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
+        <%= f.text_field :data, value: (@contribuicao.data.to_s(:br) unless @contribuicao.data.nil?), type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
       </div>
 
       <%= f.label :tipo_contribuicao_id, 'Tipo', class: 'col-md-1 control-label no-padding-right' %>

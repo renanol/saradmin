@@ -98,6 +98,10 @@ class MembrosController < ApplicationController
             :cpf,
             :rg,
             :estado_civil,
+            :titulo_eleitor_numero_inscricao,
+            :titulo_eleitor_zona,
+            :titulo_eleitor_secao,
+            :titulo_eleitor_data_emissao,
             enderecos_attributes: [
                 :id,
                 :estado_id,

@@ -32,7 +32,7 @@
         <div class="form-group">
           <%= p.label :data_nascimento, class: 'col-md-1 control-label no-padding-right' %>
           <div class="col-md-5">
-            <%= p.text_field :data_nascimento, value: @membro.pessoa.data_nascimento.to_s(:br), type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
+            <%= p.text_field :data_nascimento, value: (@membro.pessoa.data_nascimento.to_s(:br) unless @membro.pessoa.data_nascimento.nil?), type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
           </div>
 
           <%= p.label :estado_civil, class: 'col-md-1 control-label no-padding-right' %>
@@ -50,6 +50,32 @@
           <%= p.label :cpf, 'CPF', class: 'col-md-1 control-label no-padding-right' %>
           <div class="col-md-5">
             <%= p.text_field :cpf, type: 'text', class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="databox-text darkgray" align="center">
+          Título de Eleitor
+        </div>
+
+        <div class="form-group">
+          <%= p.label :titulo_eleitor_data_emissao, 'Data de Emissão', class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-md-2">
+            <%= p.text_field :titulo_eleitor_data_emissao, value: (@membro.pessoa.titulo_eleitor_data_emissao.to_s(:br) unless @membro.pessoa.titulo_eleitor_data_emissao.nil?), type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
+          </div>
+
+          <%= p.label :titulo_eleitor_numero_inscricao, 'Nº Inscrição', class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-md-4">
+            <%= p.text_field :titulo_eleitor_numero_inscricao, type: 'text', class: 'form-control' %>
+          </div>
+
+          <%= p.label :titulo_eleitor_zona, 'Zona', class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-md-1">
+            <%= p.text_field :titulo_eleitor_zona, type: 'text', class: 'form-control' %>
+          </div>
+
+          <%= p.label :titulo_eleitor_secao, 'Seção', class: 'col-md-1 control-label no-padding-right' %>
+          <div class="col-md-1">
+            <%= p.text_field :titulo_eleitor_secao, type: 'text', class: 'form-control' %>
           </div>
         </div>
 

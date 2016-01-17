@@ -10,7 +10,7 @@
   <tbody>
   <% @contribuicoes.each do |c| %>
       <tr>
-        <td><%= c.data.to_s(:br) %></td>
+        <td><%= c.data.to_s(:br) unless c.data.nil? %></td>
         <td><%= c.tipo_contribuicao.descricao %></td>
         <td><%= c.valorFormatado %></td>
         <td>

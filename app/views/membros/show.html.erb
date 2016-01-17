@@ -48,6 +48,31 @@
   <div class="col-md-5">
     <%= text_field_tag :pessoa_cpf, @membro.pessoa.cpf, class: 'form-control', disabled: 'disabled' %>
   </div>
+
+  <div class="databox-text darkgray" align="center">
+    Título de Eleitor
+  </div>
+
+  <%= label_tag :pessoa_te_data_emissao, 'Data de Emissão', class: 'col-md-1 control-label no-padding-right' %>
+  <div class="col-md-2">
+    <%= text_field_tag :pessoa_te_data_emissao, (@membro.pessoa.titulo_eleitor_data_emissao.to_s(:br) unless @membro.pessoa.titulo_eleitor_data_emissao.nil?), class: 'form-control', disabled: 'disabled' %>
+  </div>
+
+  <%= label_tag :pessoa_te_numero_inscricao, 'Nº Inscrição', class: 'col-md-1 control-label no-padding-right' %>
+  <div class="col-md-4">
+    <%= text_field_tag :pessoa_te_numero_inscricao, @membro.pessoa.titulo_eleitor_numero_inscricao, class: 'form-control', disabled: 'disabled' %>
+  </div>
+
+  <%= label_tag :pessoa_te_zona, 'Zona', class: 'col-md-1 control-label no-padding-right' %>
+  <div class="col-md-1">
+    <%= text_field_tag :pessoa_te_zona, @membro.pessoa.titulo_eleitor_zona, class: 'form-control', disabled: 'disabled' %>
+  </div>
+
+  <%= label_tag :pessoa_te_secao, 'Seção', class: 'col-md-1 control-label no-padding-right' %>
+  <div class="col-md-1">
+    <%= text_field_tag :pessoa_te_secao, @membro.pessoa.titulo_eleitor_secao, class: 'form-control', disabled: 'disabled' %>
+  </div>
+
 </div>
 
 <div class="form-title">
