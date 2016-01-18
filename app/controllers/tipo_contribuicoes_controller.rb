@@ -3,7 +3,7 @@ class TipoContribuicoesController < ApplicationController
 
     def index
       @tela = 'Listar Tipos de Contribuição'
-      @tipo_contribuicoes = TipoContribuicao.all
+      @tipo_contribuicoes = TipoContribuicao.all.order(:descricao)
     end
 
     def show
