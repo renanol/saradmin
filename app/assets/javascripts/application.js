@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require beyond/bootstrap.min
-//= require beyond/datetime/bootstrap-datepicker.js
+//= require jquery-ui.min
 //= require beyond/slimscroll/jquery.slimscroll.min
 //= require beyond/skins.min
 //= require beyond/beyond.min
@@ -20,20 +20,6 @@
 //= require nested_form_fields
 //= require jquery.maskMoney.min
 //= require_tree .
-
-;(function($){
-    $.fn.datepicker.dates['pt-BR'] = {
-        days: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
-        daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
-        daysMin: ["Do", "Se", "Te", "Qu", "Qu", "Se", "Sa"],
-        months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
-        monthsShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
-        today: "Hoje",
-        monthsTitle: "Meses",
-        clear: "Limpar",
-        format: "dd/mm/yyyy"
-    };
-}(jQuery));
 
 $(function(){
 
@@ -60,7 +46,7 @@ $(function(){
             console.log("success", json);
         });
     })
-    
+
     $(".open-menu").click(function(){
         localStorage.setItem('link_menu', $(this).attr('href'));
     });
@@ -75,5 +61,36 @@ $(function(){
     });
 
     $(".formatarMoeda").maskMoney({thousands:'.', decimal:',',  allowZero:true });
+
+    jQuery(function($){
+        $.datepicker.regional['pt-BR'] = {
+            closeText: 'Fechar',
+            prevText: '&#x3c;Anterior',
+            nextText: 'Pr&oacute;ximo&#x3e;',
+            currentText: 'Hoje',
+            monthNames: ['Janeiro','Fevereiro','Mar&ccedil;o','Abril','Maio','Junho',
+                'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+            monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun',
+                'Jul','Ago','Set','Out','Nov','Dez'],
+            dayNames: ['Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','S&aacute;bado'],
+            dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','S&aacute;b'],
+            dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','S&aacute;b'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 0,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: '',
+            changeMonth: true,
+            changeYear: true
+        };
+        $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
+    });
+
+
+    $( '.date-picker' ).datepicker({ numberOfMonths: 2, dateFormat: 'dd/mm/yy' });
+
+
+
 
 });
