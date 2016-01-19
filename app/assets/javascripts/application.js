@@ -60,12 +60,7 @@ $(function(){
             console.log("success", json);
         });
     })
-
-    $('.date-picker').datepicker({
-        format: "dd/mm/yyyy",
-        language: "pt-BR"
-    });
-
+    
     $(".open-menu").click(function(){
         localStorage.setItem('link_menu', $(this).attr('href'));
     });
