@@ -4,8 +4,25 @@ class RedesController < ApplicationController
   before_action :set_membros, only: [:new, :edit, :create, :update]
 
   def index
-    @redes = Rede.all
+    @redes = Rede.none
+
+    if current_user.tem_permissao ['usuarioPodeAcessarTodosOsNiveisDaIgreja']
+      # para adicionar no where igreja_id: current_user.igrejas_ids,
+      @redes = Rede.all
+    else
+      membro = Membro.find_by_user_id(current_user.id)
+
+      unless membro.nil?
+        # para adicionar no where igreja_id: current_user.igrejas_ids,
+        @redes = Rede.where(responsavel_id: membro.id)
+      else
+        @redes = Rede.none
+      end
+    end
+
+    authorize @redes
   end
+
   def show
 
   end

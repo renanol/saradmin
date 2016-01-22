@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160117122016) do
+ActiveRecord::Schema.define(version: 20160120001830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 20160117122016) do
     t.string   "titulo_eleitor_zona"
     t.string   "titulo_eleitor_secao"
     t.date     "titulo_eleitor_data_emissao"
+    t.integer  "user_id"
   end
 
   create_table "pais", force: :cascade do |t|
