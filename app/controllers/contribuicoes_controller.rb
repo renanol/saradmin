@@ -6,7 +6,7 @@ class ContribuicoesController < ApplicationController
   def index
     @membro = Membro.find(params[:membro_id])
     @tela = "Listar Contribuições de #{@membro.pessoa.nome}"
-    @contribuicoes = Contribuicao.where(membro_id: params[:membro_id])
+    @contribuicoes = Contribuicao.where(membro_id: params[:membro_id]).reverse_order
   end
 
   def show

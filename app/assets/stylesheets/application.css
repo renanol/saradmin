@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require beyond/bootstrap.css
+ *= require jquery-ui.min
  *= require font-awesome.css.erb
  *= require beyond/weather-icons.min
  *= require beyond/beyond
