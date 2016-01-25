@@ -5,7 +5,7 @@
   <tr>
     <th>#</th>
     <th>Descrição </th>
-    <th width="20"></th>
+    <th>Responsável </th>
     <th width="20"></th>
     <th width="20"></th>
 
@@ -17,6 +17,7 @@
       <tr>
         <td><%= rede.id %></td>
         <td><%= rede.descricao %></td>
+        <td><%= rede.responsavel.pessoa.nome unless rede.responsavel.nil? %></td>
         <td>
           <%= link_to rede, title: 'Visualizar', class: 'btn btn-default btn-xs shiny icon-only success' do %>
               <%= fa_icon 'search' %>
@@ -25,11 +26,6 @@
         <td>
           <%= link_to edit_rede_path(rede), title: 'Editar', class: 'btn btn-default btn-xs shiny icon-only success' do %>
               <%= fa_icon 'pencil' %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to rede, title: 'Editar', class: 'btn btn-default btn-xs shiny icon-only success', method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <%= fa_icon 'close' %>
           <% end %>
         </td>
       </tr>

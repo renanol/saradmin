@@ -20,7 +20,26 @@ class UsuariosController < ApplicationController
     @grupo_opts = Grupo.todos.ativos.collect.map do |g|
       [g.descricao, g.id]
     end
-    @igrejas = Igreja.all
+
+    if current_user.admin?
+      @igrejas = Igreja.all
+    else
+      @igrejas = current_user.igrejas
+    end
+
+    @membro = nil
+    unless params[:membro_id].nil?
+      @membro = Membro.find(params[:membro_id])
+      @usuario.name = @membro.pessoa.nome
+      email = ''
+      @membro.pessoa.contatos.each do |c|
+        if c.email?
+          email = c.descricao
+        end
+      end
+      @usuario.email = email
+    end
+
   end
 
   def create
@@ -37,6 +56,12 @@ class UsuariosController < ApplicationController
 
     respond_to do |format|
       if @usuario.save
+
+        unless params[:membro_id].nil?
+          @membro = Membro.find(params[:membro_id])
+          @membro.update_attributes(user_id: @usuario.id)
+        end
+
         format.html { redirect_to usuarios_path, notice: 'Usuário cadastrado com sucesso.' }
         format.json { render :show, status: :created, location: usuarios_path }
       else

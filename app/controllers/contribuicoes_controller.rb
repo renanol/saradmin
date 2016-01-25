@@ -10,7 +10,7 @@ class ContribuicoesController < ApplicationController
   end
 
   def show
-    @tela = 'Visualizar Tipo de Contribuição'
+    @tela = 'Visualizar Contribuição'
   end
 
   def edit

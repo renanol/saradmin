@@ -17,7 +17,8 @@ end
 
 permissao_list = [
   [ 'permissaoUsuario', Permissao.modulos[:configuracao], Permissao.tipos[:acesso], 'Nível de acesso ao menu de usuários' ],
-  [ 'permissaoGrupo', Permissao.modulos[:configuracao], Permissao.tipos[:acesso], 'Nível de acesso ao menu de grupo de usuário' ]
+  [ 'permissaoGrupo', Permissao.modulos[:configuracao], Permissao.tipos[:acesso], 'Nível de acesso ao menu de grupo de usuário' ],
+  [ 'usuarioPodeAcessarTodosOsNiveisDaIgreja', Permissao.modulos[:configuracao], Permissao.tipos[:sim_nao], 'Usuário pode acessar todos os níveis da igreja' ]
 ]
 
 permissao_list.each do |aliass, modulo, tipo, descricao|

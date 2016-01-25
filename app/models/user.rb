@@ -48,4 +48,12 @@ class User < ActiveRecord::Base
     return false
   end
 
+  def igrejas_ids
+    ids = Array.new
+    this.user_igrejas.each do |ie|
+      ids << ie.igreja_id
+    end
+    return ids
+  end
+
 end

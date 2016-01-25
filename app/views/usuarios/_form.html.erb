@@ -1,4 +1,9 @@
 <%= form_for(@usuario, url: url_for(:controller => 'usuarios', :action => @action), html: {class: 'form-horizontal', role: 'form'}) do |g| %>
+
+    <% unless @membro.nil? %>
+        <%= hidden_field_tag 'membro_id', @membro.id %>
+    <% end %>
+
     <div class="form-group">
       <div class="col-md-12">
         <%= g.label 'Nome', class: 'col-md-1 control-label no-padding-right' %>

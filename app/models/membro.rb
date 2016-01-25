@@ -1,5 +1,6 @@
 class Membro < ActiveRecord::Base
 
+  belongs_to :user
   belongs_to :pessoa
   belongs_to :igreja
   belongs_to :cargo
