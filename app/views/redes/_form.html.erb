@@ -1,15 +1,6 @@
 <%= form_for @rede, :html => {:class => "form-horizontal"} do |f| %>
 
-  <% if @rede.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@rede.errors.count, "error") %> prohibited this rede from being saved:</h2>
-      <ul>
-      <% @rede.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= render 'layouts/erros', object: @rede %>
 
     <div class="form-group">
         <label class="col-lg-1 control-label">Descrição</label>
@@ -19,10 +10,18 @@
     </div>
 
     <div class="form-group">
-      <label class="col-lg-1 control-label">Responsável</label>
-      <div class="col-lg-11">
-        <%=  f.collection_select(:responsavel_id,  @responsaveis , :id, :pessoa, { :prompt => true  } )    %>
-      </div>
+        <label class="col-lg-1 control-label">Responsável</label>
+        <div class="col-lg-5">
+            <%= f.select :responsavel_id, options_for_select(@responsaveis.collect { |m|
+                [m.pessoa.nome.titleize, m.id] }, 0), {}, { class: 'form-control' } %>
+        </div>
+
+        <label class="col-lg-1 control-label">Igreja</label>
+        <div class="col-lg-5">
+            <%= f.select :igreja_id, options_for_select(@igrejas.collect { |m|
+                [m.descricao.titleize, m.id] }, 0), {}, { class: 'form-control' } %>
+        </div>
+
     </div>
 
     <%= link_to 'Listar', redes_path, class: 'btn btn-blue' %>

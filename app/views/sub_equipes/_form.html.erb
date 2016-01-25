@@ -1,15 +1,6 @@
 <%= form_for @sub_equipe, :html => {:class => "form-horizontal"} do |f| %>
 
-  <% if @sub_equipe.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@sub_equipe.errors.count, "error") %> erros </h2>
-      <ul>
-      <% @sub_equipe.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= render 'layouts/erros', object: @sub_equipe %>
 
     <div class="form-group">
         <label class="col-lg-1 control-label">Descrição</label>
@@ -20,15 +11,15 @@
 
     <div class="form-group">
       <label class="col-lg-1 control-label">Rede</label>
-      <div class="col-lg-11">
-        <%=  f.collection_select(:equipe_id,  @equipes , :id, :descricao, { :prompt => true  } )    %>
+      <div class="col-lg-5">
+        <%= f.select :equipe_id, options_for_select(@equipes.collect { |se|
+          [se.descricao.titleize, se.id] }, 0), {}, { class: 'form-control' } %>
       </div>
-    </div>
 
-    <div class="form-group">
       <label class="col-lg-1 control-label">Responsável</label>
-      <div class="col-lg-11">
-        <%=  f.collection_select(:responsavel_id,  @responsaveis , :id, :pessoa, { :prompt => true  } )    %>
+      <div class="col-lg-5">
+        <%= f.select :responsavel_id, options_for_select(@responsaveis.collect { |m|
+               [m.pessoa.nome.titleize, m.id] }, 0), {}, { class: 'form-control' } %>
       </div>
     </div>
 

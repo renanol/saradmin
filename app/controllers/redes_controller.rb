@@ -2,6 +2,7 @@ class RedesController < ApplicationController
 
   before_action :set_rede, only: [:show, :edit, :update]
   before_action :set_membros, only: [:new, :edit, :create, :update]
+  before_action :set_igrejas, only: [:new, :edit, :create, :update]
 
   def index
     @redes = Rede.all
@@ -49,11 +50,15 @@ class RedesController < ApplicationController
     @responsaveis= Membro.all
   end
 
+  def set_igrejas
+    @igrejas= Igreja.all
+  end
+
   def set_rede
     @rede = Rede.find(params[:id])
   end
 
   def rede_params
-    params.require(:rede).permit(:descricao, :responsavel_id)
+    params.require(:rede).permit(:descricao, :responsavel_id, :igreja_id)
   end
 end

@@ -13,8 +13,12 @@
 
   <div class="form-group">
     <label class="col-lg-1 control-label">Responsável</label>
-    <div class="col-lg-11">
+    <div class="col-lg-5">
       <input type="text" class='form-control' disabled value="<%= @rede.responsavel.pessoa.nome %>">
+    </div>
+    <label class="col-lg-1 control-label">Igreja</label>
+    <div class="col-lg-5">
+      <input type="text" class='form-control' disabled value="<%= @rede.igreja.descricao %>">
     </div>
   </div>
 

@@ -13,8 +13,6 @@ class Pessoa < ActiveRecord::Base
 
   enum estado_civil: [:solteiro, :casado, :divorciado, :viuvo, :outros]
 
-
-
   #def estado_civil_dsc
   #  if self.solteiro?
   #    'Solteiro'

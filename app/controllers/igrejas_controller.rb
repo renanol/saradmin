@@ -8,9 +8,12 @@ class IgrejasController < ApplicationController
 
   def show
 
+    @tela = 'Visualizar Igreja'
+
   end
 
   def index
+    @tela = 'Listar Igreja'
 
     @igrejas = Igreja.all
     @igreja = Igreja.new

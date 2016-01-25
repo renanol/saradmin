@@ -1,15 +1,6 @@
 <%= form_for @tipo_contribuicao do |f| %>
 
-    <% if @tipo_contribuicao.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@tipo_contribuicao.errors.count, "error") %> prohibited this tipo contribuicao from being saved:</h2>
-          <ul>
-            <% @tipo_contribuicao.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+    <%= render 'layouts/erros', object: @tipo_contribuicao %>
 
     <div class="form-group">
       <%= f.label :descricao, 'Descrição', class: 'col-md-1 control-label no-padding-right' %>

@@ -6,7 +6,7 @@
 
   <%= label_tag :igreja, nil, class: 'col-md-1 control-label no-padding-right' %>
   <div class="col-md-3">
-    <%= text_field_tag :igreja, @membro.igreja.descricao, class: 'form-control', disabled: 'disabled' %>
+    <%= text_field_tag :igreja, @membro.nome_igreja  , class: 'form-control', disabled: 'disabled' %>
   </div>
 
   <%= label_tag :cargo, nil, class: 'col-md-1 control-label no-padding-right' %>

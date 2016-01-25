@@ -1,15 +1,7 @@
 <%= form_for [@membro, @contribuicao] do |f| %>
 
-    <% if @contribuicao.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@contribuicao.errors.count, "error") %> prohibited this contribuicao from being saved:</h2>
-          <ul>
-            <% @contribuicao.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+    <%= render 'layouts/erros', object: @contribuicao %>
+
 
     <div class="form-group">
       <%= f.label :data, 'Data', class: 'col-md-1 control-label no-padding-right' %>
