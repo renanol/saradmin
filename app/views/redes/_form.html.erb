@@ -1,28 +1,14 @@
-<%= form_for @rede, :html => {:class => "form-horizontal"} do |f| %>
+<%= bootstrap_form_for(@rede,layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10"   ) do |f| %>
 
-    <%= render 'layouts/erros', object: @rede %>
 
-    <div class="form-group">
-        <label class="col-lg-1 control-label">Descrição</label>
-        <div class="col-lg-11">
-            <%= f.text_field  :descricao, class: 'form-control', placeholder: 'Descrição'  %>
-        </div>
-    </div>
+    <%= f.text_field  :descricao, placeholder: 'Descrição'  %>
 
-    <div class="form-group">
-        <label class="col-lg-1 control-label">Responsável</label>
-        <div class="col-lg-5">
-            <%= f.select :responsavel_id, options_for_select(@responsaveis.collect { |m|
-                [m.pessoa.nome.titleize, m.id] }, 0), {}, { class: 'form-control' } %>
-        </div>
 
-        <label class="col-lg-1 control-label">Igreja</label>
-        <div class="col-lg-5">
-            <%= f.select :igreja_id, options_for_select(@igrejas.collect { |m|
-                [m.descricao.titleize, m.id] }, 0), {}, { class: 'form-control' } %>
-        </div>
+    <%= f.select :responsavel_id, options_for_select(@responsaveis.collect { |m|
+            [m.pessoa.nome.titleize, m.id] }, 0), {} %>
 
-    </div>
+        <%= f.select :igreja_id, options_for_select(@igrejas.collect { |m|
+            [m.descricao.titleize, m.id] }, 0), {} %>
 
     <%= link_to 'Listar', redes_path, class: 'btn btn-blue' %>
 
