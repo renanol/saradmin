@@ -1,18 +1,8 @@
-<%= form_for @tipo_contribuicao do |f| %>
+<%= bootstrap_form_for(@tipo_contribuicao,layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10"   ) do |f| %>
 
-    <%= render 'layouts/erros', object: @tipo_contribuicao %>
+    <%= f.text_field :descricao %>
 
-    <div class="form-group">
-      <%= f.label :descricao, 'Descrição', class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-11">
-        <%= f.text_field :descricao, type: 'text', class: 'form-control' %>
-      </div>
-    </div>
-
-    <br>
-
-    <div class="form-group" align="center">
-      <button type="submit" class="btn btn-default">Confirmar</button>
-    </div>
-
+    <%= f.submit "Confirmar" %>
 <% end %>
+
+

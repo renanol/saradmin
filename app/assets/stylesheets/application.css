@@ -17,6 +17,7 @@
  *= require beyond/demo.min
  *= require beyond/typicons.min
  *= require beyond/animate.min
+ *= require rails_bootstrap_forms
  *= require_self
  */
 
