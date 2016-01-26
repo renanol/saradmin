@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require beyond/bootstrap.min
-//= require beyond/datetime/bootstrap-datepicker.js
+//= require bootstrap-datepicker.min
+//= require bootstrap-datepicker.pt-BR
 //= require beyond/slimscroll/jquery.slimscroll.min
 //= require beyond/skins.min
 //= require beyond/beyond.min
@@ -63,7 +64,11 @@ $(function(){
 
     $(".formatarMoeda").maskMoney({thousands:'.', decimal:',',  allowZero:true });
 
-    $( '.date-picker' ).datepicker({autoclose:true});
+    $( '.date-picker' ).datepicker({
+        autoclose:true,
+        language: 'pt-BR'
+
+    });
 
     $(".date-picker").mask("99/99/9999");
 
