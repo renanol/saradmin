@@ -5,7 +5,7 @@ class SubEquipesController < ApplicationController
 
 
   def index
-    @sub_equipes = SubEquipe.all
+    @sub_equipes = SubEquipe.where(equipe_id: current_user.equipes_ids)
   end
   def show
 
@@ -20,7 +20,7 @@ class SubEquipesController < ApplicationController
   end
 
   def create
-    @sub_equipe =   SubEquipe.new(sub_equipe_params)
+    @sub_equipe = SubEquipe.new(sub_equipe_params)
 
     respond_to do |format|
       if @sub_equipe.save
@@ -46,11 +46,11 @@ class SubEquipesController < ApplicationController
   private
 
   def set_responsaveis
-    @responsaveis = Membro.all
+    @responsaveis = Membro.where(igreja_id: current_user.igrejas_ids)
   end
 
   def set_equipes
-    @equipes = Equipe.all
+    @equipes = Equipe.where(rede_id: current_user.redes_ids)
   end
 
   def set_sub_equipe

@@ -3,7 +3,7 @@ class CelulasController < ApplicationController
   before_action :set_listas, only: [:new, :edit]
 
   def index
-    @celulas = Celula.all
+    @celulas = Celula.where(sub_equipe_id: current_user.sub_equipes_ids)
   end
 
   def show
@@ -45,8 +45,8 @@ class CelulasController < ApplicationController
   private
 
   def set_listas
-    @sub_equipes = SubEquipe.all
-    @membros = Membro.all
+    @sub_equipes = SubEquipe.where(equipe_id: current_user.equipes_ids)
+    @membros = Membro.where(igreja_id: current_user.igrejas_ids)
   end
 
   def set_celula

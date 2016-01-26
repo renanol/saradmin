@@ -4,7 +4,7 @@ class MembrosController < ApplicationController
 
   def index
     @tela = 'Listar Membros'
-    @membros = Membro.all
+    @membros = Membro.where(igreja_id: current_user.igrejas_ids)
   end
 
   def new
@@ -64,7 +64,7 @@ class MembrosController < ApplicationController
   end
 
   def report
-    @membros = Membro.where(igreja_id: 34)
+    @membros = Membro.where(igreja_id: current_user.igrejas_ids)
     respond_to do |format|
       format.pdf do
         pdf = MembroReport.new(@membros)
@@ -83,7 +83,7 @@ class MembrosController < ApplicationController
     @estados = Estado.order('nome')
     @cidades = Cidade.where('estado_id = ?', Estado.first.id).order('nome')
 
-    @igreja_ops = Igreja.all.collect.map do |i|
+    @igreja_ops = Igreja.where(id: current_user.igrejas_ids).collect.map do |i|
       [i.descricao, i.id]
     end
 

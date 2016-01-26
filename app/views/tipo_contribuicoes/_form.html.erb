@@ -1,8 +1,6 @@
-<%= bootstrap_form_for(@tipo_contribuicao,layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10"   ) do |f| %>
+<%= bootstrap_form_for(@tipo_contribuicao,layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
 
     <%= f.text_field :descricao %>
 
     <%= f.submit "Confirmar" %>
 <% end %>
-
-
