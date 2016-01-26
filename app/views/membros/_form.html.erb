@@ -1,18 +1,19 @@
-<%= form_for(@membro, html: {class: 'form-horizontal', role: 'form'}) do |g| %>
+<%= bootstrap_form_for(@membro, layout: :horizontal,  label_col: "col-sm-2", control_col: "col-sm-10") do |g| %>
+
     <div class="form-group">
-      <%= g.label :cadastro, class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-3">
-        <%= g.text_field :numero_cadastro, type: 'text', class: 'form-control' %>
+
+
+      <div class="col-md-4">
+        <%= g.text_field :numero_cadastro, label: 'Cadastro', label_col:'col-sm-3',  control_col: 'col-sm-9'%>
       </div>
 
-      <%= g.label 'Igreja', class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-3">
-        <%= g.select(:igreja_id, @igreja_ops, {}, {class: 'form-control'}) %>
+      <div class="col-md-4">
+        <%= g.select(:igreja_id, @igreja_ops, {}) %>
       </div>
 
-      <%= g.label 'Cargo', class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-3">
-        <%= g.select(:cargo_id, @cargo_ops, {}, {class: 'form-control'}) %>
+
+      <div class="col-md-4">
+        <%= g.select(:cargo_id, @cargo_ops, {}) %>
       </div>
     </div>
 
@@ -22,33 +23,27 @@
 
     <%= g.fields_for :pessoa do |p| %>
         <%= p.hidden_field :id %>
-        <div class="form-group">
-          <%= p.label :nome, class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-md-11">
-            <%= p.text_field :nome, type: 'text', class: 'form-control' %>
-          </div>
-        </div>
+
+
+            <%= p.text_field :nome,  label_col:'col-sm-1', control_col: 'col-sm-11' %>
 
         <div class="form-group">
-          <%= p.label :data_nascimento, class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-md-5">
+
+          <div class="col-md-6">
             <%= p.text_field :data_nascimento, value: (@membro.pessoa.data_nascimento.to_s(:br) unless @membro.pessoa.data_nascimento.nil?), type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
           </div>
 
-          <%= p.label :estado_civil, class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-md-5">
+          <div class="col-md-6">
             <%= p.select(:estado_civil, Pessoa.estado_civis.keys, {}, {class: 'form-control'}) %>
           </div>
         </div>
 
         <div class="form-group">
-          <%= p.label :rg, 'RG', class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-md-5">
+          <div class="col-md-6">
             <%= p.text_field :rg, type: 'text', class: 'form-control' %>
           </div>
 
-          <%= p.label :cpf, 'CPF', class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-md-5">
+          <div class="col-md-6">
             <%= p.text_field :cpf, type: 'text', class: 'form-control formatar-cpf' %>
           </div>
         </div>
@@ -58,24 +53,22 @@
         </div>
 
         <div class="form-group">
-          <%= p.label :titulo_eleitor_data_emissao, 'Data de Emissão', class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-md-2">
-            <%= p.text_field :titulo_eleitor_data_emissao, value: (@membro.pessoa.titulo_eleitor_data_emissao.to_s(:br) unless @membro.pessoa.titulo_eleitor_data_emissao.nil?), type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
+
+          <div class="col-md-3">
+            <%= p.text_field :titulo_eleitor_data_emissao,  label_col:'col-sm-4', control_col: 'col-sm-6', label:'Data de Emissão', value: (@membro.pessoa.titulo_eleitor_data_emissao.to_s(:br) unless @membro.pessoa.titulo_eleitor_data_emissao.nil?), type: 'text', class: 'form-control date-picker', data:{date_format: 'dd/mm/yyyy'} %>
           </div>
 
-          <%= p.label :titulo_eleitor_numero_inscricao, 'Nº Inscrição', class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-md-4">
-            <%= p.text_field :titulo_eleitor_numero_inscricao, type: 'text', class: 'form-control' %>
+          <div class="col-md-3">
+            <%= p.text_field :titulo_eleitor_numero_inscricao,label_col:'col-sm-5', control_col: 'col-sm-6',  label:'Nº Inscrição'  %>
           </div>
 
-          <%= p.label :titulo_eleitor_zona, 'Zona', class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-md-1">
-            <%= p.text_field :titulo_eleitor_zona, type: 'text', class: 'form-control' %>
+
+          <div class="col-md-3">
+            <%= p.text_field :titulo_eleitor_zona, label_col:'col-sm-4', control_col: 'col-sm-6', label:'Zona' %>
           </div>
 
-          <%= p.label :titulo_eleitor_secao, 'Seção', class: 'col-md-1 control-label no-padding-right' %>
-          <div class="col-md-1">
-            <%= p.text_field :titulo_eleitor_secao, type: 'text', class: 'form-control' %>
+          <div class="col-md-3">
+            <%= p.text_field :titulo_eleitor_secao, label_col:'col-sm-4', control_col: 'col-sm-6',  label:'Seção' %>
           </div>
         </div>
 
@@ -94,65 +87,25 @@
 
                     <%= edf.hidden_field :id %>
 
-                    <div class="form-group">
-                      <label class="col-lg-1 control-label">Logradouro</label>
-                      <div class="col-lg-11">
-                        <%= edf.text_field  :logradouro, class: 'form-control', placeholder: 'Logradouro'  %>
-                      </div>
-                    </div>
+                        <%= edf.text_field  :logradouro, label_col:'col-sm-1', control_col: 'col-sm-11', placeholder: 'Logradouro'  %>
 
-                    <div class="form-group">
-                      <label class="col-lg-1 control-label">Número</label>
-                      <div class="col-lg-11">
-                        <%= edf.text_field  :numero, class: 'form-control', placeholder: 'Número'  %>
-                      </div>
-                    </div>
+                        <%= edf.text_field  :numero,label_col:'col-sm-1', control_col: 'col-sm-11',  placeholder: 'Número'  %>
 
-                    <div class="form-group">
-                      <label class="col-lg-1 control-label">Estado</label>
-                      <div class="col-lg-11">
-                        <%= edf.select :estado_id, options_for_select(@estados.collect { |country|
-                          [country.nome.titleize, country.id] }, 1), {}, { class: 'uf-select', id: "uf-#{idx}", data: {city_select: "cidade-#{idx}"} } %>
-                      </div>
-                    </div>
+                        <%= edf.select :estado_id,  options_for_select(@estados.collect { |country|
+                          [country.nome.titleize, country.id] }, 1), {label_col:'col-sm-1', control_col: 'col-sm-11'}, class: 'uf-select', id: "uf-#{idx}", data: {city_select: "cidade-#{idx}"}  %>
 
-                    <div class="form-group">
-                      <label class="col-lg-1 control-label">Cidade</label>
-                      <div class="col-lg-11">
                         <%= edf.select :cidade_id, options_for_select(@cidades.collect { |city|
-                          [city.nome.titleize, city.id] }, 0), {}, { id: "cidade-#{idx}" } %>
-                      </div>
-                    </div>
+                          [city.nome.titleize, city.id] }, 0), {label_col:'col-sm-1', control_col: 'col-sm-11'}, { id: "cidade-#{idx}" } %>
 
                     <%= edf.fields_for :bairro do |bf| %>
-                        <div class="form-group">
-                          <label class="col-lg-1 control-label">Bairro</label>
-                          <div class="col-lg-11">
-                            <%= bf.text_field :nome, class: 'form-control', placeholder: 'Bairro'  %>
-                          </div>
-                        </div>
+                            <%= bf.text_field :nome, label_col:'col-sm-1', control_col: 'col-sm-11', placeholder: 'Bairro'  %>
                     <% end %>
 
-                    <div class="form-group">
-                      <label class="col-lg-1 control-label">Complemento</label>
-                      <div class="col-lg-11">
-                        <%= edf.text_field :complemento, class: 'form-control', placeholder: 'Complemento'  %>
-                      </div>
-                    </div>
+                        <%= edf.text_field :complemento, label_col:'col-sm-1', control_col: 'col-sm-11', placeholder: 'Complemento'  %>
 
-                    <div class="form-group">
-                      <label class="col-lg-1 control-label">Cep</label>
-                      <div class="col-lg-11">
-                        <%= edf.text_field  :cep, class: 'form-control', placeholder: 'Cep'  %>
-                      </div>
-                    </div>
+                        <%= edf.text_field  :cep,label_col:'col-sm-1', control_col: 'col-sm-11',  placeholder: 'Cep'  %>
 
-                    <div class="form-group">
-                      <label class="col-lg-1 control-label">Ponto de Referência</label>
-                      <div class="col-lg-11">
-                        <%= edf.text_field :ponto_referencia, class: 'form-control', placeholder: 'Ponto de Referência'  %>
-                      </div>
-                    </div>
+                        <%= edf.text_field :ponto_referencia, label_col:'col-sm-1', control_col: 'col-sm-11', placeholder: 'Ponto de Referência'  %>
 
                 <% end %>
 
@@ -170,9 +123,8 @@
               <%= p.fields_for :contatos, ct do |ctt| %>
                   <%= ctt.hidden_field :id %>
                   <%= ctt.hidden_field :tipo %>
-                  <%= ctt.label :descricao, ct.tipo.titleize, class: 'col-md-1 control-label no-padding-right' %>
-                  <div class="col-md-3">
-                    <%= ctt.text_field :descricao, class: 'form-control' %>
+                  <div class="col-md-4">
+                    <%= ctt.text_field :descricao, label_col:'col-sm-3', control_col: 'col-sm-9',  label: ct.tipo.titleize%>
                   </div>
               <% end %>
           <% end %>
