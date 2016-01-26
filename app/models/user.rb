@@ -14,8 +14,6 @@ class User < ActiveRecord::Base
 
   enum status: [:ativo, :cancelado]
 
-  scope :todos, -> {where(['grupo_id <> ?', 1])}
-
   def set_default_attr
     self.grupo ||= Grupo.find(3)
     self.status ||= :ativo
@@ -50,8 +48,40 @@ class User < ActiveRecord::Base
 
   def igrejas_ids
     ids = Array.new
-    this.user_igrejas.each do |ie|
+    self.user_igrejas.each do |ie|
       ids << ie.igreja_id
+    end
+    return ids
+  end
+
+  def redes_ids
+    ids = Array.new
+    Rede.where(igreja_id: self.igrejas_ids).each do |r|
+      ids << r.id
+    end
+    return ids
+  end
+
+  def equipes_ids
+    ids = Array.new
+    Equipe.where(rede_id: self.redes_ids).each do |e|
+      ids << e.id
+    end
+    return ids
+  end
+
+  def sub_equipes_ids
+    ids = Array.new
+    SubEquipe.where(equipe_id: self.equipes_ids).each do |se|
+      ids << se.id
+    end
+    return ids
+  end
+
+  def celulas_ids
+    ids = Array.new
+    Celula.where(sub_equipe_id: self.sub_equipes_ids).each do |c|
+      ids << c.id
     end
     return ids
   end

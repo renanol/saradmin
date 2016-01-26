@@ -4,8 +4,9 @@ class EquipesController < ApplicationController
   before_action :set_responsaveis, only: [:new, :edit, :create, :update]
 
   def index
-    @equipes = Equipe.all
+    @equipes = Equipe.where(rede_id: current_user.redes_ids)
   end
+
   def show
 
   end
@@ -19,7 +20,7 @@ class EquipesController < ApplicationController
   end
 
   def create
-    @equipe =   Equipe.new(equipe_params)
+    @equipe = Equipe.new(equipe_params)
 
     respond_to do |format|
       if @equipe.save
@@ -46,11 +47,11 @@ class EquipesController < ApplicationController
   private
 
   def set_responsaveis
-    @responsaveis = Membro.all
+    @responsaveis = Membro.where(igreja_id: current_user.igrejas_ids)
   end
 
   def set_redes
-    @redes = Rede.all
+    @redes = Rede.where(igreja_id: current_user.igrejas_ids)
   end
 
   def set_equipe

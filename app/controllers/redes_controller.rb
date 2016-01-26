@@ -8,14 +8,12 @@ class RedesController < ApplicationController
     @redes = Rede.none
 
     if current_user.tem_permissao ['usuarioPodeAcessarTodosOsNiveisDaIgreja']
-      # para adicionar no where igreja_id: current_user.igrejas_ids,
-      @redes = Rede.all
+      @redes = Rede.where(igreja_id: current_user.igrejas_ids)
     else
       membro = Membro.find_by_user_id(current_user.id)
 
       unless membro.nil?
-        # para adicionar no where igreja_id: current_user.igrejas_ids,
-        @redes = Rede.where(responsavel_id: membro.id)
+        @redes = Rede.where(responsavel_id: membro.id, igreja_id: current_user.igrejas_ids)
       else
         @redes = Rede.none
       end
@@ -37,7 +35,7 @@ class RedesController < ApplicationController
   end
 
   def create
-    @rede =   Rede.new(rede_params)
+    @rede = Rede.new(rede_params)
 
     respond_to do |format|
       if @rede.save
@@ -64,11 +62,11 @@ class RedesController < ApplicationController
   private
 
   def set_membros
-    @responsaveis= Membro.all
+    @responsaveis = Membro.where(igreja_id: current_user.igrejas_ids)
   end
 
   def set_igrejas
-    @igrejas= Igreja.all
+    @igrejas = Igreja.where(id: current_user.igrejas_ids)
   end
 
   def set_rede

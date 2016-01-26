@@ -15,9 +15,8 @@ class IgrejasController < ApplicationController
   def index
     @tela = 'Listar Igreja'
 
-    @igrejas = Igreja.all
+    @igrejas = Igreja.where(id: current_user.igrejas_ids)
     @igreja = Igreja.new
-
   end
 
   def edit

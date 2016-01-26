@@ -151,12 +151,16 @@ ActiveRecord::Schema.define(version: 20160125153856) do
   end
 
   create_table "membros", force: :cascade do |t|
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "pessoa_id"
     t.integer  "igreja_id"
     t.integer  "cargo_id"
     t.integer  "numero_cadastro"
+    t.string   "titulo_eleitor_numero_inscricao"
+    t.string   "titulo_eleitor_zona"
+    t.string   "titulo_eleitor_secao"
+    t.date     "titulo_eleitor_data_emissao"
     t.integer  "user_id"
   end
 
