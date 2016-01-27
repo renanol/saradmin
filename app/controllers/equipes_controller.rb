@@ -4,7 +4,21 @@ class EquipesController < ApplicationController
   before_action :set_responsaveis, only: [:new, :edit, :create, :update]
 
   def index
-    @equipes = Equipe.where(rede_id: current_user.redes_ids)
+    @equipes = Equipe.none
+
+    if current_user.tem_permissao ['usuarioPodeAcessarTodosOsNiveisDaIgreja']
+      @equipes = Equipe.where(rede_id: current_user.redes_ids)
+    else
+      membro = Membro.find_by_user_id(current_user.id)
+
+      unless membro.nil?
+        @equipes = Equipe.where(id: membro.equipes_ids)
+      else
+        @equipes = Equipe.none
+      end
+    end
+
+    authorize @equipes
   end
 
   def show

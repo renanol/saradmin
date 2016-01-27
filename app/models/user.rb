@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 
   enum status: [:ativo, :cancelado]
 
+  scope :todos, -> {where(['grupo_id <> ?', 1])}
+
   def set_default_attr
     self.grupo ||= Grupo.find(3)
     self.status ||= :ativo

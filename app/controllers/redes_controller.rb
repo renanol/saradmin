@@ -13,7 +13,7 @@ class RedesController < ApplicationController
       membro = Membro.find_by_user_id(current_user.id)
 
       unless membro.nil?
-        @redes = Rede.where(responsavel_id: membro.id, igreja_id: current_user.igrejas_ids)
+        @redes = Rede.where(id: membro.redes_ids)
       else
         @redes = Rede.none
       end

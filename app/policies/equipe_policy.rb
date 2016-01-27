@@ -1,4 +1,4 @@
-class RedePolicy < ApplicationPolicy
+class EquipePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope
@@ -12,12 +12,11 @@ class RedePolicy < ApplicationPolicy
       membro = Membro.find_by_user_id(@user.id)
 
       unless membro.nil?
-        redes = Rede.where(id: membro.redes_ids)
+        equipes = Equipe.where(id: membro.equipes_ids)
 
-        if redes.length > 0
+        if equipes.length > 0
           return true
         end
-
       end
 
       return false

@@ -15,8 +15,23 @@ class IgrejasController < ApplicationController
   def index
     @tela = 'Listar Igreja'
 
-    @igrejas = Igreja.where(id: current_user.igrejas_ids)
     @igreja = Igreja.new
+
+    @igrejas = Igreja.none
+
+    if current_user.tem_permissao ['usuarioPodeAcessarTodosOsNiveisDaIgreja']
+      @igrejas = Igreja.where(id: current_user.igrejas_ids)
+    else
+      membro = Membro.find_by_user_id(current_user.id)
+
+      unless membro.nil?
+        @igrejas = Igreja.where(id: membro.igrejas_ids)
+      else
+        @igrejas = Igreja.none
+      end
+    end
+
+    authorize @igrejas
   end
 
   def edit

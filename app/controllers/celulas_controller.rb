@@ -3,7 +3,21 @@ class CelulasController < ApplicationController
   before_action :set_listas, only: [:new, :edit]
 
   def index
-    @celulas = Celula.where(sub_equipe_id: current_user.sub_equipes_ids)
+    @celulas = Celula.none
+
+    if current_user.tem_permissao ['usuarioPodeAcessarTodosOsNiveisDaIgreja']
+      @celulas = Celula.where(sub_equipe_id: current_user.sub_equipes_ids)
+    else
+      membro = Membro.find_by_user_id(current_user.id)
+
+      unless membro.nil?
+        @celulas = Celula.where(id: membro.celulas_ids)
+      else
+        @celulas = Celula.none
+      end
+    end
+
+    authorize @celulas
   end
 
   def show
