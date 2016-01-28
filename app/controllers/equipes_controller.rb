@@ -65,7 +65,9 @@ class EquipesController < ApplicationController
   end
 
   def set_redes
-    @redes = Rede.where(igreja_id: current_user.igrejas_ids)
+    @redes_ops = Rede.where(igreja_id: current_user.igrejas_ids).collect.map do |i|
+      [i.descricao, i.id]
+    end
   end
 
   def set_equipe

@@ -14,8 +14,7 @@
       <label class="col-lg-1 control-label">Rede</label>
 
       <div class="col-lg-5">
-        <%= f.select :rede_id, options_for_select(@redes.collect { |se|
-              [se.descricao.titleize, se.id] }, 0), {}, { class: 'form-control' } %>
+        <%= f.select :rede_id, @redes_ops, {}, { class: 'form-control' } %>
       </div>
 
       <label class="col-lg-1 control-label">Responsável</label>
