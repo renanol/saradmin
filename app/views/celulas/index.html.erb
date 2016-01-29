@@ -1,45 +1,47 @@
-<p id="notice"><%= notice %></p>
+<%= bootstrap_form_tag url: '/filtrar' do |f| %>
 
-<%= link_to 'Cadastrar', new_celula_path, class: 'btn btn-success' %>
+    <div class="form-group">
+      <div class="col-sm-12 text-right" style="padding-bottom: 5px">
+        <%= link_to new_celula_path, title: 'Novo', class: 'btn btn-success btn-circle btn-xs' do %>
+            <%= fa_icon 'plus' %>
+        <% end %>
+      </div>
+      <div class="col-sm-12">
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Descrição </th>
+            <th>Sub Equipe</th>
+            <th>Responsável</th>
+            <th width="20"></th>
+            <th width="20"></th>
 
+          </tr>
+          </thead>
 
-<table class="table table-hover table-striped table-bordered">
-  <thead class="bordered-blueberry">
-  <tr>
-    <th>#</th>
-    <th>Descrição </th>
-    <th>Sub Equipe</th>
-    <th>Responsável</th>
-    <th width="20"></th>
-    <th width="20"></th>
-    <th width="20"></th>
-
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @celulas.each do |celula| %>
-      <tr>
-        <td><%= celula.id %></td>
-        <td><%= celula.descricao %></td>
-        <td><%= celula.sub_equipe %></td>
-        <td><%= celula.responsavel.pessoa.nome unless celula.responsavel.nil? %></td>
-        <td>
-          <%= link_to celula, title: 'Visualizar', class: 'btn btn-default btn-xs shiny icon-only success' do %>
-              <%= fa_icon 'search' %>
+          <tbody>
+          <% @celulas.each do |celula| %>
+              <tr>
+                <td><%= celula.id %></td>
+                <td><%= celula.descricao %></td>
+                <td><%= celula.sub_equipe %></td>
+                <td><%= celula.responsavel.pessoa.nome unless celula.responsavel.nil? %></td>
+                <td>
+                  <%= link_to celula, title: 'Visualizar', class: 'btn btn-default btn-xs icon-only' do %>
+                      <%= fa_icon 'search' %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to edit_celula_path(celula), title: 'Editar', class: 'btn btn-default btn-xs icon-only' do %>
+                      <%= fa_icon 'pencil' %>
+                  <% end %>
+                </td>
+              </tr>
           <% end %>
-        </td>
-        <td>
-          <%= link_to edit_celula_path(celula), title: 'Editar', class: 'btn btn-default btn-xs shiny icon-only success' do %>
-              <%= fa_icon 'pencil' %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to celula, title: 'Editar', class: 'btn btn-default btn-xs shiny icon-only success', method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <%= fa_icon 'close' %>
-          <% end %>
-        </td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+<% end %>

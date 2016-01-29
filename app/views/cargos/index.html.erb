@@ -1,43 +1,45 @@
-<p id="notice"><%= notice %></p>
+<%= bootstrap_form_tag url: '/filtrar' do |f| %>
 
-<%= link_to 'Cadastrar', new_cargo_path, class: 'btn btn-success' %>
+    <div class="form-group">
+      <div class="col-sm-12 text-right" style="padding-bottom: 5px">
+        <%= link_to new_cargo_path, title: 'Novo', class: 'btn btn-success btn-circle btn-xs' do %>
+            <%= fa_icon 'plus' %>
+        <% end %>
+      </div>
+      <div class="col-sm-12">
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Descrição </th>
+            <th>Liderança</th>
+            <th width="20"></th>
+            <th width="20"></th>
 
+          </tr>
+          </thead>
 
-<table class="table table-hover table-striped table-bordered">
-  <thead class="bordered-blueberry">
-  <tr>
-    <th>#</th>
-    <th>Descrição </th>
-    <th>Liderança</th>
-    <th width="20"></th>
-    <th width="20"></th>
-    <th width="20"></th>
-
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @cargos.each do |cargo| %>
-      <tr>
-        <td><%= cargo.id %></td>
-        <td><%= cargo.descricao %></td>
-        <td><%= cargo.lidera %></td>
-        <td>
-          <%= link_to cargo, title: 'Visualizar', class: 'btn btn-default btn-xs shiny icon-only success' do %>
-              <%= fa_icon 'search' %>
+          <tbody>
+          <% @cargos.each do |cargo| %>
+              <tr>
+                <td><%= cargo.id %></td>
+                <td><%= cargo.descricao %></td>
+                <td><%= cargo.lidera %></td>
+                <td>
+                  <%= link_to cargo, title: 'Visualizar', class: 'btn btn-default btn-xs icon-only ' do %>
+                      <%= fa_icon 'search' %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to edit_cargo_path(cargo), title: 'Editar', class: 'btn btn-default btn-xs icon-only ' do %>
+                      <%= fa_icon 'pencil' %>
+                  <% end %>
+                </td>
+              </tr>
           <% end %>
-        </td>
-        <td>
-          <%= link_to edit_cargo_path(cargo), title: 'Editar', class: 'btn btn-default btn-xs shiny icon-only success' do %>
-              <%= fa_icon 'pencil' %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to cargo, title: 'Editar', class: 'btn btn-default btn-xs shiny icon-only success', method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <%= fa_icon 'close' %>
-          <% end %>
-        </td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+<% end %>

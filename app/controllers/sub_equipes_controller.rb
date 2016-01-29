@@ -5,6 +5,8 @@ class SubEquipesController < ApplicationController
 
 
   def index
+    @tela = 'Listar Sub-equipes'
+
     @sub_equipes = SubEquipe.none
 
     if current_user.tem_permissao ['usuarioPodeAcessarTodosOsNiveisDaIgreja']
@@ -23,14 +25,15 @@ class SubEquipesController < ApplicationController
   end
 
   def show
-
+    @tela = 'Visualizar Sub-equipe'
   end
 
   def edit
-
+    @tela = 'Editar Sub-equipe'
   end
 
   def new
+    @tela = 'Cadastrar Sub-equipe'
     @sub_equipe = SubEquipe.new
   end
 

@@ -2,22 +2,25 @@ class CargosController < ApplicationController
   before_action :set_cargo, only: [:show, :edit, :update]
 
   def index
+    @tela = 'Listar Cargos'
     @cargos = Cargo.all
   end
-  def show
 
+  def show
+    @tela = 'Visualizar Cargo'
   end
 
   def edit
-
+    @tela = 'Editar Cargo'
   end
 
   def new
+    @tela = 'Cadastrar Cargo'
     @cargo = Cargo.new
   end
 
   def create
-    @cargo =   Cargo.new(cargo_params)
+    @cargo = Cargo.new(cargo_params)
 
     respond_to do |format|
       if @cargo.save

@@ -4,6 +4,8 @@ class EquipesController < ApplicationController
   before_action :set_responsaveis, only: [:new, :edit, :create, :update]
 
   def index
+    @tela = 'Listar Equipes'
+
     @equipes = Equipe.none
 
     if current_user.tem_permissao ['usuarioPodeAcessarTodosOsNiveisDaIgreja']
@@ -22,14 +24,15 @@ class EquipesController < ApplicationController
   end
 
   def show
-
+    @tela = 'Visualizar Equipe'
   end
 
   def edit
-
+    @tela = 'Editar Equipe'
   end
 
   def new
+    @tela = 'Cadastrar Equipe'
     @equipe = Equipe.new
   end
 

@@ -1,29 +1,39 @@
-<table class="table table-hover table-bordered">
-	<thead>
-		<tr>
-          <th>Nome</th>
-          <th width="20"></th>
-          <th width="20"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @grupos.each do |g| %>
-            <tr>
-              <td><%= g.descricao %></td>
-              <td>
-                <%= link_to g, title: 'Visualizar', class: 'btn btn-default btn-circle btn-xs' do %>
-                    <%= fa_icon 'search' %>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to edit_grupo_path(g), title: 'Alterar', class: 'btn btn-default btn-circle btn-xs' do %>
-                    <%= fa_icon 'pencil' %>
-                <% end %>
-              </td>
-			</tr>
-		<%end%>
-	</tbody>
-</table>
-<div align="center">
-  <%= link_to 'Cadastrar', new_grupo_path, class: 'btn btn-default' %>
-</div>
+<%= bootstrap_form_tag url: '/filtrar' do |f| %>
+
+    <div class="form-group">
+      <div class="col-sm-12 text-right" style="padding-bottom: 5px">
+        <%= link_to new_grupo_path, title: 'Novo', class: 'btn btn-success btn-circle btn-xs' do %>
+            <%= fa_icon 'plus' %>
+        <% end %>
+      </div>
+      <div class="col-sm-12">
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th>Nome</th>
+            <th width="20"></th>
+            <th width="20"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @grupos.each do |g| %>
+              <tr>
+                <td><%= g.descricao %></td>
+                <td>
+                  <%= link_to g, title: 'Visualizar', class: 'btn btn-default icon-only btn-xs' do %>
+                      <%= fa_icon 'search' %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to edit_grupo_path(g), title: 'Alterar', class: 'btn btn-default icon-only btn-xs' do %>
+                      <%= fa_icon 'pencil' %>
+                  <% end %>
+                </td>
+              </tr>
+          <%end%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+<% end %>

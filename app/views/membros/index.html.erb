@@ -1,73 +1,82 @@
-<table class="table table-hover table-bordered">
-	<thead>
-		<tr>
-      <th>Cadastro</th>
-      <th>Nome</th>
-      <th>Igreja</th>
-      <th>Cargo</th>
-      <th width="20"></th>
-      <th width="20"></th>
-      <th width="20"></th>
-      <th width="20"></th>
-      <th width="20"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @membros.each do |m| %>
-      <tr>
-        <td><%= m.numero_cadastro %></td>
-        <td>
-          <% if not m.pessoa.nil? %>
-              <%= m.pessoa.nome %>
-          <% end %>
-        </td>
-        <td>
-          <% if not m.igreja.nil? %>
-              <%= m.igreja.descricao %>
-          <% end %>
-        </td>
-        <td>
-          <% if not m.cargo.nil? %>
-              <%= m.cargo.descricao %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to m, title: 'Visualizar', class: 'btn btn-default icon-only btn-xs' do %>
-              <%= fa_icon 'search' %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to edit_membro_path(m), title: 'Alterar', class: 'btn btn-default icon-only btn-xs' do %>
-              <%= fa_icon 'pencil' %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to new_membro_contribuicao_path(m), title: 'Cadastrar Contribuição', class: 'btn btn-default icon-only btn-xs' do %>
-              <%= fa_icon 'money' %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to membro_contribuicoes_path(m), title: 'Listar Contribuições', class: 'btn btn-default icon-only btn-xs' do %>
-              <%= fa_icon 'th-list' %>
-          <% end %>
-        </td>
-        <td>
-          <% if m.cargo.lideranca? && m.user.nil? %>
+<%= bootstrap_form_tag url: '/filtrar' do |f| %>
 
-              <%= link_to new_usuario_url + "?membro_id=#{m.id}", title: 'Cadastrar Usuário para o Membro', class: 'btn btn-default icon-only btn-xs' do %>
-                  <%= fa_icon 'user' %>
-              <% end %>
+    <div class="form-group">
+      <div class="col-sm-12 text-right" style="padding-bottom: 5px">
+        <%= link_to new_membro_path, title: 'Novo', class: 'btn btn-success btn-circle btn-xs' do %>
+            <%= fa_icon 'plus' %>
+        <% end %>
+        <%= link_to report_membros_path(format: "pdf"), title: 'Imprimir', class: 'btn btn-success btn-circle btn-xs', target: '_blank' do %>
+            <%= fa_icon 'print' %>
+        <% end %>
+      </div>
+      <div class="col-sm-12">
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th>Cadastro</th>
+            <th>Nome</th>
+            <th>Igreja</th>
+            <th>Cargo</th>
+            <th width="20"></th>
+            <th width="20"></th>
+            <th width="20"></th>
+            <th width="20"></th>
+            <th width="20"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @membros.each do |m| %>
+              <tr>
+                <td><%= m.numero_cadastro %></td>
+                <td>
+                  <% if not m.pessoa.nil? %>
+                      <%= m.pessoa.nome %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if not m.igreja.nil? %>
+                      <%= m.igreja.descricao %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if not m.cargo.nil? %>
+                      <%= m.cargo.descricao %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to m, title: 'Visualizar', class: 'btn btn-default icon-only btn-xs' do %>
+                      <%= fa_icon 'search' %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to edit_membro_path(m), title: 'Alterar', class: 'btn btn-default icon-only btn-xs' do %>
+                      <%= fa_icon 'pencil' %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to new_membro_contribuicao_path(m), title: 'Cadastrar Contribuição', class: 'btn btn-default icon-only btn-xs' do %>
+                      <%= fa_icon 'money' %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to membro_contribuicoes_path(m), title: 'Listar Contribuições', class: 'btn btn-default icon-only btn-xs' do %>
+                      <%= fa_icon 'th-list' %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if m.cargo.lideranca? && m.user.nil? %>
 
-          <% end %>
-        </td>
-      </tr>
-		<%end%>
-	</tbody>
-</table>
+                      <%= link_to new_usuario_url + "?membro_id=#{m.id}", title: 'Cadastrar Usuário para o Membro', class: 'btn btn-default icon-only btn-xs' do %>
+                          <%= fa_icon 'user' %>
+                      <% end %>
 
-<br>
+                  <% end %>
+                </td>
+              </tr>
+          <%end%>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-<div align="center">
-  <%= link_to 'Report', report_membros_path(format: "pdf"), class: 'btn btn-default', target: '_blank' %>
-  <%= link_to 'Cadastrar', new_membro_path, class: 'btn btn-default' %>
-</div>
+<% end %>

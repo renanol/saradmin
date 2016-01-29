@@ -1,55 +1,60 @@
-<%= form_tag({}, id: 'listar-form', class: 'form-horizontal', role: 'form') do %>
-    <table class="table table-hover table-bordered">
-      <thead>
-      <tr>
-        <th align="left">Nome</th>
-        <th align="left" width="200">e-mail</th>
-        <th align="left" width="200">Grupo</th>
-        <th width="20"></th>
-        <th width="20"></th>
-        <th width="20"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @usuarios.each do |user| %>
-          <% if user.ativo? %>
-              <% color = 'success' %>
-          <% else %>
-              <% color = 'danger' %>
-          <% end %>
-          <tr class="<%= color %>">
-            <td><%= user.name %></td>
-            <td><%= user.email %></td>
-            <td><%= user.grupo.descricao %></td>
-            <td align="center">
-              <%= link_to edit_usuario_path(user), title: 'Editar', class: 'btn btn-' + color +' btn-xs icon-only' do %>
-                  <%= fa_icon 'pencil' %>
-              <% end %>
-            </td>
-            <td align="center">
-              <%= link_to reset_password_usuario_path(user), title: 'Resetar Senha', class: 'btn btn-' + color +' btn-xs icon-only' do %>
-                  <%= fa_icon 'refresh' %>
-              <% end %>
-            </td>
-            <td align="center">
-              <% if user.ativo? %>
-                  <%= link_to bloquear_usuario_path(user), title: 'Bloquear', class: 'btn btn-danger btn-xs icon-only' do %>
-                      <%= fa_icon 'times' %>
-                  <% end %>
-              <% else %>
-                  <%= link_to ativar_usuario_path(user), title: 'Ativar', class: 'btn btn-success btn-xs icon-only' do %>
-                      <%= fa_icon 'check' %>
-                  <% end %>
-              <% end %>
-            </td>
+<%= bootstrap_form_tag id: 'listar-form', url: '/filtrar' do |f| %>
+
+    <div class="form-group">
+      <div class="col-sm-12 text-right" style="padding-bottom: 5px">
+        <%= link_to new_usuario_path, title: 'Novo', class: 'btn btn-success btn-circle btn-xs' do %>
+            <%= fa_icon 'plus' %>
+        <% end %>
+      </div>
+      <div class="col-sm-12">
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th align="left">Nome</th>
+            <th align="left" width="200">e-mail</th>
+            <th align="left" width="200">Grupo</th>
+            <th width="20"></th>
+            <th width="20"></th>
+            <th width="20"></th>
           </tr>
-      <%end%>
-      </tbody>
-    </table>
-
-    <br>
-
-    <div align="center">
-      <%= link_to 'Cadastrar', new_usuario_path, class: 'btn btn-default' %>
+          </thead>
+          <tbody>
+          <% @usuarios.each do |user| %>
+              <% if user.ativo? %>
+                  <% color = 'success' %>
+              <% else %>
+                  <% color = 'danger' %>
+              <% end %>
+              <tr class="<%= color %>">
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.grupo.descricao %></td>
+                <td align="center">
+                  <%= link_to edit_usuario_path(user), title: 'Editar', class: 'btn btn-' + color +' btn-xs icon-only' do %>
+                      <%= fa_icon 'pencil' %>
+                  <% end %>
+                </td>
+                <td align="center">
+                  <%= link_to reset_password_usuario_path(user), title: 'Resetar Senha', class: 'btn btn-' + color +' btn-xs icon-only' do %>
+                      <%= fa_icon 'refresh' %>
+                  <% end %>
+                </td>
+                <td align="center">
+                  <% if user.ativo? %>
+                      <%= link_to bloquear_usuario_path(user), title: 'Bloquear', class: 'btn btn-danger btn-xs icon-only' do %>
+                          <%= fa_icon 'times' %>
+                      <% end %>
+                  <% else %>
+                      <%= link_to ativar_usuario_path(user), title: 'Ativar', class: 'btn btn-success btn-xs icon-only' do %>
+                          <%= fa_icon 'check' %>
+                      <% end %>
+                  <% end %>
+                </td>
+              </tr>
+          <%end%>
+          </tbody>
+        </table>
+      </div>
     </div>
+
 <% end %>

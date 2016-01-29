@@ -5,6 +5,7 @@ class RedesController < ApplicationController
   before_action :set_igrejas, only: [:new, :edit, :create, :update]
 
   def index
+    @tela = 'Listar Redes'
     @redes = Rede.none
 
     if current_user.tem_permissao ['usuarioPodeAcessarTodosOsNiveisDaIgreja']
@@ -23,14 +24,15 @@ class RedesController < ApplicationController
   end
 
   def show
-
+    @tela = 'Visualizar Rede'
   end
 
   def edit
-
+    @tela = 'Editar Rede'
   end
 
   def new
+    @tela = 'Cadastrar Rede'
     @rede = Rede.new
   end
 

@@ -3,6 +3,8 @@ class CelulasController < ApplicationController
   before_action :set_listas, only: [:new, :edit]
 
   def index
+    @tela = 'Listar Células'
+
     @celulas = Celula.none
 
     if current_user.tem_permissao ['usuarioPodeAcessarTodosOsNiveisDaIgreja']
@@ -21,14 +23,15 @@ class CelulasController < ApplicationController
   end
 
   def show
-
+    @tela = 'Visualizar Célula'
   end
 
   def edit
-
+    @tela = 'Editar Célula'
   end
 
   def new
+    @tela = 'Cadastrar Célula'
     @celula = Celula.new
   end
 
