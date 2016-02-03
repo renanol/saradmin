@@ -1,10 +1,12 @@
 class MembrosController < ApplicationController
-  before_action :preencher_listas, only: [:new, :edit]
+  before_action :preencher_listas, only: [:search, :index, :new, :edit]
   before_action :set_membro, only: [:show, :edit, :update, :destroy]
 
   def index
     @tela = 'Listar Membros'
-    @membros = Membro.where(igreja_id: current_user.igrejas_ids)
+
+    @q = Membro.ransack(params[:q])
+    @membros = @q.result(distinct: false)
   end
 
   def new
@@ -64,13 +66,19 @@ class MembrosController < ApplicationController
   end
 
   def report
-    @membros = Membro.where(igreja_id: current_user.igrejas_ids)
+    index
     respond_to do |format|
       format.pdf do
         pdf = MembroReport.new(@membros)
         send_data pdf.render, filename: "membros_report.pdf", type: "application/pdf", disposition: "inline"
       end
     end
+  end
+
+  def search
+    index
+
+    render :index
   end
 
   private

@@ -1,22 +1,54 @@
-<%= bootstrap_form_tag url: '/filtrar' do |f| %>
+<%= search_form_for @q, url: search_membros_path, html: { method: :post } do |f| %>
 
     <div class="form-group">
-      <div class="col-sm-12 text-right" style="padding-bottom: 5px">
+
+      <%= f.label :pessoa_nome_cont, 'Nome', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-sm-11">
+        <%= f.search_field :pessoa_nome_cont, class: 'form-control' %>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <%= f.label :igreja_id_eq, 'Igreja', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= f.select(:igreja_id_eq, @igreja_ops, {include_blank: 'Todas'}, {class: 'form-control'}) %>
+      </div>
+
+      <%= f.label :cargo_id_eq, 'Cargo', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= f.select(:cargo_id_eq, @cargo_ops, {include_blank: 'Todos'}, {class: 'form-control'}) %>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <div class="col-sm-12 text-right">
+        <%= link_to '#', title: 'Filtrar', class: 'btn btn-info btn-circle btn-xs btn-search', data: {action: search_membros_path} do %>
+            <%= fa_icon 'search' %>
+        <% end %>
         <%= link_to new_membro_path, title: 'Novo', class: 'btn btn-success btn-circle btn-xs' do %>
             <%= fa_icon 'plus' %>
         <% end %>
-        <%= link_to report_membros_path(format: "pdf"), title: 'Imprimir', class: 'btn btn-success btn-circle btn-xs', target: '_blank' do %>
+        <%= link_to '#', title: 'Imprimir', class: 'btn btn-success btn-circle btn-xs btn-report', data: {action: report_membros_path(format: 'pdf')} do %>
             <%= fa_icon 'print' %>
         <% end %>
       </div>
+
+    </div>
+
+    <div class="form-group">
+
       <div class="col-sm-12">
         <table class="table table-hover table-bordered">
           <thead>
           <tr>
-            <th>Cadastro</th>
-            <th>Nome</th>
-            <th>Igreja</th>
-            <th>Cargo</th>
+            <th><%= sort_link(@q, :numero_cadastro, 'Cadastro', default_order: :asc) %></th>
+            <th><%= sort_link(@q, :pessoa_nome, 'Nome', default_order: :asc) %></th>
+            <th><%= sort_link(@q, :igreja_descricao, 'Igreja', default_order: :asc) %></th>
+            <th><%= sort_link(@q, :cargo_descricao, 'Cargo', default_order: :asc) %></th>
             <th width="20"></th>
             <th width="20"></th>
             <th width="20"></th>
@@ -77,6 +109,7 @@
           </tbody>
         </table>
       </div>
+
     </div>
 
 <% end %>
