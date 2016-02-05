@@ -49,9 +49,13 @@ User.create(
     password_confirmation: 'alexS2renan',
     status: User.status[:ativo],
     grupo_id: 1
+
 )
 
-e = Estado.create(:sigla => 'AC', :nome => "Acre")
+
+p = Pais.create(:nome => 'Brasil', :sigla => 'BR')
+
+e = Estado.create(:pais_id => p.id,:sigla => 'AC', :nome => "Acre")
 e.cidades.create(:nome => "Acrelândia")
 e.cidades.create(:nome => "Assis Brasil")
 e.cidades.create(:nome => "Brasiléia")
@@ -75,7 +79,7 @@ e.cidades.create(:nome => "Senador Guiomard")
 e.cidades.create(:nome => "Tarauacá")
 e.cidades.create(:nome => "Xapuri")
 
-e = Estado.create(:sigla => 'AL', :nome => "Alagoas")
+e = Estado.create(:pais_id => p.id,:sigla => 'AL', :nome => "Alagoas")
 e.cidades.create(:nome => "Água Branca")
 e.cidades.create(:nome => "Anadia")
 e.cidades.create(:nome => "Arapiraca")
@@ -179,7 +183,7 @@ e.cidades.create(:nome => "Traipu")
 e.cidades.create(:nome => "União dos Palmares")
 e.cidades.create(:nome => "Viçosa")
 
-e = Estado.create(:sigla => 'AM', :nome => "Amazonas")
+e = Estado.create(:pais_id => p.id,:sigla => 'AM', :nome => "Amazonas")
 e.cidades.create(:nome => "Alvarães")
 e.cidades.create(:nome => "Amaturá")
 e.cidades.create(:nome => "Anamã")
@@ -243,7 +247,7 @@ e.cidades.create(:nome => "Uarini")
 e.cidades.create(:nome => "Urucará")
 e.cidades.create(:nome => "Urucurituba")
 
-e = Estado.create(:sigla => 'AP', :nome => "Amapá")
+e = Estado.create(:pais_id => p.id,:sigla => 'AP', :nome => "Amapá")
 e.cidades.create(:nome => "Amapá")
 e.cidades.create(:nome => "Calçoene")
 e.cidades.create(:nome => "Cutias")
@@ -261,7 +265,7 @@ e.cidades.create(:nome => "Serra do Navio")
 e.cidades.create(:nome => "Tartarugalzinho")
 e.cidades.create(:nome => "Vitória do Jari")
 
-e = Estado.create(:sigla => 'BA', :nome => "Bahia")
+e = Estado.create(:pais_id => p.id,:sigla => 'BA', :nome => "Bahia")
 e.cidades.create(:nome => "Abaré")
 e.cidades.create(:nome => "Abaíra")
 e.cidades.create(:nome => "Acajutiba")
@@ -681,7 +685,7 @@ e.cidades.create(:nome => "Wenceslau Guimarães")
 e.cidades.create(:nome => "Xique-Xique")
 
 
-e = Estado.create(:sigla => 'CE', :nome => "Ceará")
+e = Estado.create(:pais_id => p.id,:sigla => 'CE', :nome => "Ceará")
 e.cidades.create(:nome => "Abaiara")
 e.cidades.create(:nome => "Acarape")
 e.cidades.create(:nome => "Acaraú")
@@ -868,7 +872,7 @@ e.cidades.create(:nome => "Viçosa do Ceará")
 e.cidades.create(:nome => "Várzea Alegre")
 
 
-e = Estado.create(:sigla => 'DF', :nome => "Distrito Federal")
+e = Estado.create(:pais_id => p.id,:sigla => 'DF', :nome => "Distrito Federal")
 e.cidades.create(:nome => "Águas Claras")
 e.cidades.create(:nome => "Brasília")
 e.cidades.create(:nome => "Brazlândia")
@@ -900,7 +904,7 @@ e.cidades.create(:nome => "Taguatinga")
 e.cidades.create(:nome => "Varjão")
 
 
-e = Estado.create(:sigla => 'ES', :nome => "Espírito Santo")
+e = Estado.create(:pais_id => p.id,:sigla => 'ES', :nome => "Espírito Santo")
 e.cidades.create(:nome => "Afonso Cláudio")
 e.cidades.create(:nome => "Água Doce do Norte")
 e.cidades.create(:nome => "Águia Branca")
@@ -981,7 +985,7 @@ e.cidades.create(:nome => "Vila Velha")
 e.cidades.create(:nome => "Vitória")
 
 
-e = Estado.create(:sigla => 'GO', :nome => "Goiás")
+e = Estado.create(:pais_id => p.id,:sigla => 'GO', :nome => "Goiás")
 e.cidades.create(:nome => "Abadia de Goiás")
 e.cidades.create(:nome => "Abadiânia")
 e.cidades.create(:nome => "Acreúna")
@@ -1230,7 +1234,7 @@ e.cidades.create(:nome => "Vila Boa")
 e.cidades.create(:nome => "Vila Propício")
 
 
-e = Estado.create(:sigla => 'MA', :nome => "Maranhão")
+e = Estado.create(:pais_id => p.id,:sigla => 'MA', :nome => "Maranhão")
 e.cidades.create(:nome => "Afonso Cunha")
 e.cidades.create(:nome => "Água Doce do Maranhão")
 e.cidades.create(:nome => "Alcântara")
@@ -1450,7 +1454,7 @@ e.cidades.create(:nome => "Vitória do Mearim")
 e.cidades.create(:nome => "Zé Doca")
 
 
-e = Estado.create(:sigla => 'MG', :nome => "Minas Gerais")
+e = Estado.create(:pais_id => p.id,:sigla => 'MG', :nome => "Minas Gerais")
 e.cidades.create(:nome => "Abadia dos Dourados")
 e.cidades.create(:nome => "Abaeté")
 e.cidades.create(:nome => "Abre Campo")
@@ -2306,7 +2310,7 @@ e.cidades.create(:nome => "Várzea da Palma")
 e.cidades.create(:nome => "Wenceslau Braz")
 
 
-e = Estado.create(:sigla => 'MS', :nome => "Mato Grosso do Sul")
+e = Estado.create(:pais_id => p.id,:sigla => 'MS', :nome => "Mato Grosso do Sul")
 e.cidades.create(:nome => "Água Clara")
 e.cidades.create(:nome => "Alcinópolis")
 e.cidades.create(:nome => "Amambaí")
@@ -2387,7 +2391,7 @@ e.cidades.create(:nome => "Três Lagoas")
 e.cidades.create(:nome => "Vicentina")
 
 
-e = Estado.create(:sigla => 'MT', :nome => "Mato Grosso")
+e = Estado.create(:pais_id => p.id,:sigla => 'MT', :nome => "Mato Grosso")
 e.cidades.create(:nome => "Acorizal")
 e.cidades.create(:nome => "Água Boa")
 e.cidades.create(:nome => "Alta Floresta")
@@ -2531,7 +2535,7 @@ e.cidades.create(:nome => "Vila Rica")
 e.cidades.create(:nome => "Várzea Grande")
 
 
-e = Estado.create(:sigla => 'PA', :nome => "Pará")
+e = Estado.create(:pais_id => p.id,:sigla => 'PA', :nome => "Pará")
 e.cidades.create(:nome => "Abaetetuba")
 e.cidades.create(:nome => "Abel Figueiredo")
 e.cidades.create(:nome => "Acará")
@@ -2677,7 +2681,7 @@ e.cidades.create(:nome => "Vitória do Xingu")
 e.cidades.create(:nome => "Xinguara")
 
 
-e = Estado.create(:sigla => 'PB', :nome => "Paraíba")
+e = Estado.create(:pais_id => p.id,:sigla => 'PB', :nome => "Paraíba")
 e.cidades.create(:nome => "Água Branca")
 e.cidades.create(:nome => "Aguiar")
 e.cidades.create(:nome => "Alagoa Grande")
@@ -2903,7 +2907,7 @@ e.cidades.create(:nome => "Várzea")
 e.cidades.create(:nome => "Zabelê")
 
 
-e = Estado.create(:sigla => 'PE', :nome => "Pernambuco")
+e = Estado.create(:pais_id => p.id,:sigla => 'PE', :nome => "Pernambuco")
 e.cidades.create(:nome => "Abreu e Lima")
 e.cidades.create(:nome => "Afogados da Ingazeira")
 e.cidades.create(:nome => "Afrânio")
@@ -3091,7 +3095,7 @@ e.cidades.create(:nome => "Vitória de Santo Antão")
 e.cidades.create(:nome => "Xexéu")
 
 
-e = Estado.create(:sigla => 'PI', :nome => "Piauí")
+e = Estado.create(:pais_id => p.id,:sigla => 'PI', :nome => "Piauí")
 e.cidades.create(:nome => "Acauã")
 e.cidades.create(:nome => "Agricolândia")
 e.cidades.create(:nome => "Água Branca")
@@ -3317,7 +3321,7 @@ e.cidades.create(:nome => "Várzea Grande")
 e.cidades.create(:nome => "Wall Ferraz")
 
 
-e = Estado.create(:sigla => 'PR', :nome => "Paraná")
+e = Estado.create(:pais_id => p.id,:sigla => 'PR', :nome => "Paraná")
 e.cidades.create(:nome => "Abatiá")
 e.cidades.create(:nome => "Adrianópolis")
 e.cidades.create(:nome => "Agudos do Sul")
@@ -3719,7 +3723,7 @@ e.cidades.create(:nome => "Wenceslau Braz")
 e.cidades.create(:nome => "Xambrê")
 
 
-e = Estado.create(:sigla => 'RJ', :nome => "Rio de Janeiro")
+e = Estado.create(:pais_id => p.id,:sigla => 'RJ', :nome => "Rio de Janeiro")
 e.cidades.create(:nome => "Angra dos Reis")
 e.cidades.create(:nome => "Aperibé")
 e.cidades.create(:nome => "Araruama")
@@ -3814,7 +3818,7 @@ e.cidades.create(:nome => "Vassouras")
 e.cidades.create(:nome => "Volta Redonda")
 
 
-e = Estado.create(:sigla => 'RN', :nome => "Rio Grande do Norte")
+e = Estado.create(:pais_id => p.id,:sigla => 'RN', :nome => "Rio Grande do Norte")
 e.cidades.create(:nome => "Acari")
 e.cidades.create(:nome => "Açu")
 e.cidades.create(:nome => "Afonso Bezerra")
@@ -3984,7 +3988,7 @@ e.cidades.create(:nome => "Viçosa")
 e.cidades.create(:nome => "Várzea")
 
 
-e = Estado.create(:sigla => 'RO', :nome => "Rondônia")
+e = Estado.create(:pais_id => p.id,:sigla => 'RO', :nome => "Rondônia")
 e.cidades.create(:nome => "Alta Floresta D'Oeste")
 e.cidades.create(:nome => "Alto Alegre dos Parecis")
 e.cidades.create(:nome => "Alto Paraíso")
@@ -4039,7 +4043,7 @@ e.cidades.create(:nome => "Vale do Paraíso")
 e.cidades.create(:nome => "Vilhena")
 
 
-e = Estado.create(:sigla => 'RR', :nome => "Roraima")
+e = Estado.create(:pais_id => p.id,:sigla => 'RR', :nome => "Roraima")
 e.cidades.create(:nome => "Alto Alegre")
 e.cidades.create(:nome => "Amajari")
 e.cidades.create(:nome => "Boa Vista")
@@ -4057,7 +4061,7 @@ e.cidades.create(:nome => "São Luiz")
 e.cidades.create(:nome => "Uiramutã")
 
 
-e = Estado.create(:sigla => 'RS', :nome => "Rio Grande do Sul")
+e = Estado.create(:pais_id => p.id,:sigla => 'RS', :nome => "Rio Grande do Sul")
 e.cidades.create(:nome => "Aceguá")
 e.cidades.create(:nome => "Água Santa")
 e.cidades.create(:nome => "Agudo")
@@ -4556,7 +4560,7 @@ e.cidades.create(:nome => "Westfalia")
 e.cidades.create(:nome => "Xangri-lá")
 
 
-e = Estado.create(:sigla => 'SC', :nome => "Santa Catarina")
+e = Estado.create(:pais_id => p.id,:sigla => 'SC', :nome => "Santa Catarina")
 e.cidades.create(:nome => "Abdon Batista")
 e.cidades.create(:nome => "Abelardo Luz")
 e.cidades.create(:nome => "Agrolândia")
@@ -4852,7 +4856,7 @@ e.cidades.create(:nome => "Xaxim")
 e.cidades.create(:nome => "Zortéa")
 
 
-e = Estado.create(:sigla => 'SE', :nome => "Sergipe")
+e = Estado.create(:pais_id => p.id,:sigla => 'SE', :nome => "Sergipe")
 e.cidades.create(:nome => "Amparo de São Francisco")
 e.cidades.create(:nome => "Aquidabã")
 e.cidades.create(:nome => "Aracaju")
@@ -4930,7 +4934,7 @@ e.cidades.create(:nome => "Tomar do Geru")
 e.cidades.create(:nome => "Umbaúba")
 
 
-e = Estado.create(:sigla => 'SP', :nome => "São Paulo")
+e = Estado.create(:pais_id => p.id,:sigla => 'SP', :nome => "São Paulo")
 e.cidades.create(:nome => "Adamantina")
 e.cidades.create(:nome => "Adolfo")
 e.cidades.create(:nome => "Aguaí")
@@ -5578,7 +5582,7 @@ e.cidades.create(:nome => "Várzea Paulista")
 e.cidades.create(:nome => "Zacarias")
 
 
-e = Estado.create(:sigla => 'TO', :nome => "Tocantins")
+e = Estado.create(:pais_id => p.id,:sigla => 'TO', :nome => "Tocantins")
 e.cidades.create(:nome => "Abreulândia")
 e.cidades.create(:nome => "Aguiarnópolis")
 e.cidades.create(:nome => "Aliança do Tocantins")

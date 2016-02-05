@@ -74,4 +74,60 @@ $(function(){
 
     $(".formatar-cpf").mask("999.999.999-99");
 
+    preencherCidades(0);
+    preencherBairros(0);
+    preencherCidades(1);
+    preencherBairros(1);
+
+
 });
+
+function preencherCidades(indice){
+
+
+    $("#uf-"+indice).val($("#estado-value-select-"+indice).val());
+
+    $.ajax({
+        url: '/igrejas/buscar_cidades',
+        data: {
+            estado_id: $("#estado-value-select-"+indice).val()
+        },
+        type: 'GET',
+        beforeSend: function(){
+
+        },
+        success: function(data){
+            var options = $("#cidade-"+indice);
+            options.empty();
+            $.each(data, function() {
+                options.append($("<option />").val(this.id).text(this.nome));
+            });
+            $("#cidade-"+indice).val($("#cidade-value-select-"+indice).val());
+
+        }
+    });
+}
+
+function preencherBairros(indice){
+
+    $.ajax({
+        url: '/igrejas/buscar_bairros',
+        data: {
+            cidade_id: $("#cidade-value-select-"+indice).val()
+        },
+        type: 'GET',
+        beforeSend: function(){
+
+        },
+        success: function(data){
+            var options = $("#bairro-"+indice);
+            options.empty();
+            $.each(data, function() {
+                options.append($("<option />").val(this.id).text(this.nome));
+            });
+
+            $("#bairro-"+indice).val($("#bairro-value-select-"+indice).val());
+
+        }
+    });
+}

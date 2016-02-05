@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160125153856) do
+ActiveRecord::Schema.define(version: 20160201160710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,14 +75,10 @@ ActiveRecord::Schema.define(version: 20160125153856) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "bairro_id"
-    t.integer  "cidade_id"
-    t.integer  "estado_id"
     t.string   "ponto_referencia"
   end
 
   add_index "enderecos", ["bairro_id"], name: "index_enderecos_on_bairro_id", using: :btree
-  add_index "enderecos", ["cidade_id"], name: "index_enderecos_on_cidade_id", using: :btree
-  add_index "enderecos", ["estado_id"], name: "index_enderecos_on_estado_id", using: :btree
 
   create_table "equipes", force: :cascade do |t|
     t.string   "descricao"
@@ -99,6 +95,7 @@ ActiveRecord::Schema.define(version: 20160125153856) do
     t.string   "sigla"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "pais_id"
   end
 
   create_table "foos", force: :cascade do |t|

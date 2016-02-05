@@ -83,12 +83,12 @@
     <div class="form-group">
       <%= label_tag :pessoa_endereco_estado, 'Estado', class: 'col-md-1 control-label no-padding-right' %>
       <div class="col-md-5">
-        <%= text_field_tag :pessoa_endereco_estado, pe.endereco.estado.nome, class: 'form-control', disabled: 'disabled' %>
+        <%= text_field_tag :pessoa_endereco_estado, pe.endereco.bairro.cidade.estado.nome, class: 'form-control', disabled: 'disabled' %>
       </div>
 
       <%= label_tag :pessoa_endereco_cidade, 'Cidade', class: 'col-md-1 control-label no-padding-right' %>
       <div class="col-md-5">
-        <%= text_field_tag :pessoa_endereco_cidade, pe.endereco.cidade.nome, class: 'form-control', disabled: 'disabled' %>
+        <%= text_field_tag :pessoa_endereco_cidade, pe.endereco.bairro.cidade.nome, class: 'form-control', disabled: 'disabled' %>
       </div>
     </div>
 

@@ -10,6 +10,10 @@ class Membro < ActiveRecord::Base
   accepts_nested_attributes_for :pessoa
   accepts_nested_attributes_for :contribuicaos
 
+  validates :igreja_id, presence: true
+  validates :cargo_id, presence: true
+
+
 
   def to_s
     pessoa

@@ -65,9 +65,17 @@ class IgrejasController < ApplicationController
 
   end
 
+  #TODO MOVER PARA O APPLICATION
+  def buscar_estados
+    render json: Estado.by_pais(params[:pais_id])
+  end
+
   def buscar_cidades
-    @cidades = Cidade.where("estado_id = ?", params[:estado_id]).order("nome")
-    render json: @cidades
+    render json: Cidade.by_estado(params[:estado_id])
+  end
+
+  def buscar_bairros
+    render json: Bairro.by_cidade(params[:cidade_id])
   end
 
   def update

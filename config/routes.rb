@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+
   resources :foos
   resources :grupos
-
   resources :redes
   resources :equipes
   resources :sub_equipes
@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   resources :igrejas do
     get 'buscar_cidades', on: :collection
+    get 'buscar_estados', on: :collection
+    get 'buscar_bairros', on: :collection
     post 'add_contato', on: :collection
   end
 

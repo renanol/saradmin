@@ -61,6 +61,8 @@ class CelulasController < ApplicationController
   def set_listas
     @sub_equipes = SubEquipe.where(equipe_id: current_user.equipes_ids)
     @membros = Membro.where(igreja_id: current_user.igrejas_ids)
+
+
   end
 
   def set_celula

@@ -14,7 +14,7 @@ class Igreja < ActiveRecord::Base
   accepts_nested_attributes_for :contatos
 
   validates :descricao, presence: true
-  validates :responsavel_id, presence: true
+
 
   def to_s
     descricao

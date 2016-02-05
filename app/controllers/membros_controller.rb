@@ -1,5 +1,5 @@
 class MembrosController < ApplicationController
-  before_action :preencher_listas, only: [:new, :edit]
+  before_action :preencher_listas, only: [:new, :edit, :create, :update]
   before_action :set_membro, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -12,8 +12,8 @@ class MembrosController < ApplicationController
     @membro = Membro.new
     @membro.build_pessoa(estado_civil: Pessoa.estado_civis[:solteiro])
 
-    @membro.pessoa.pessoa_enderecos.build(descricao: 'Principal').build_endereco.build_bairro
-    @membro.pessoa.pessoa_enderecos.build(descricao: 'Comercial').build_endereco.build_bairro
+    @membro.pessoa.pessoa_enderecos.build(descricao: 'Principal').build_endereco(pais_id: @paises.first.id, estado_id: @estados.first.id,  cidade_id: @cidades.first.id, bairro_id: @bairros.first.id)
+    @membro.pessoa.pessoa_enderecos.build(descricao: 'Comercial').build_endereco(pais_id: @paises.first.id, estado_id: @estados.first.id,  cidade_id: @cidades.first.id, bairro_id: @bairros.first.id)
 
     @membro.pessoa.contatos.build(tipo: Contato.tipos[:email])
     @membro.pessoa.contatos.build(tipo: Contato.tipos[:telefone])
@@ -21,6 +21,7 @@ class MembrosController < ApplicationController
   end
 
   def create
+
     @membro = Membro.new(membro_params)
 
     respond_to do |format|
@@ -37,14 +38,7 @@ class MembrosController < ApplicationController
   def edit
     @tela = 'Alterar Membro'
 
-    if not(@membro.pessoa.enderecos.nil?) && @membro.pessoa.enderecos.length > 0
-      if not(@membro.pessoa.enderecos[0].cidade.nil?)
-        @cidades = Cidade.where("estado_id = ?", @membro.pessoa.enderecos[0].cidade.estado.id).order("nome")
-      end
-    else
-      @membro.pessoa.pessoa_enderecos.build(descricao: 'Principal').build_endereco.build_bairro
-      @membro.pessoa.pessoa_enderecos.build(descricao: 'Comercial').build_endereco.build_bairro
-    end
+
   end
 
   def update
@@ -80,20 +74,34 @@ class MembrosController < ApplicationController
   end
 
   def preencher_listas
-    @estados = Estado.order('nome')
-    @cidades = Cidade.where('estado_id = ?', Estado.first.id).order('nome')
 
-    @igreja_ops = Igreja.where(id: current_user.igrejas_ids).collect.map do |i|
-      [i.descricao, i.id]
-    end
+    @paises = Pais.order('nome')
 
-    @cargo_ops = Cargo.all.collect.map do |i|
-      [i.descricao, i.id]
-    end
+    @estados = Estado.where('pais_id =? ', @paises.first.id).order('nome')
 
-    @estados_civis_ops = Pessoa.estado_civis.collect.map do |e|
-      e
-    end
+    @estados << Estado.new({id: -1, nome: 'Novo'})
+
+    @cidades = Cidade.where('estado_id = ?', @estados.first.id).order('nome')
+
+    @bairros = Bairro.where('cidade_id = ?', @cidades.first.id).order('nome')
+
+    # preenchendo options
+
+    @igreja_ops = Igreja.where(id: current_user.igrejas_ids).collect.map { |i| [i.descricao, i.id]  }
+
+    @cargo_ops = Cargo.all.collect.map { |i|   [i.descricao, i.id] }
+
+    @estados_civis_ops = Pessoa.estado_civis.collect.map { |e|  e }
+
+    @paises_ops = @paises.collect.map { |pais|  [pais.nome.titleize, pais.id] }
+
+    @estados_ops = @estados.collect.map { |estado|  [estado.nome.titleize, estado.id] }
+
+    @cidades_ops = @cidades.collect.map { |cidade|  [cidade.nome.titleize, cidade.id] }
+
+    @bairros_ops = @bairros.collect.map { |bairro|  [bairro.nome.titleize, bairro.id] }
+
+
   end
 
   def membro_params
@@ -119,17 +127,15 @@ class MembrosController < ApplicationController
                 :descricao,
                 endereco_attributes: [
                     :id,
-                    :estado_id,
-                    :cidade_id,
                     :logradouro,
                     :numero,
                     :cep,
                     :complemento,
                     :ponto_referencia,
-                    bairro_attributes: [
-                        :id,
-                        :nome
-                    ]
+                    :bairro_id,
+                    :pais_id,
+                    :estado_id,
+                    :cidade_id
                 ]
             ],
             contatos_attributes: [

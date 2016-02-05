@@ -1,13 +1,14 @@
 class Endereco < ActiveRecord::Base
 
-  belongs_to :cidade
-  belongs_to :estado
   belongs_to :bairro
 
-  accepts_nested_attributes_for :bairro
+  validates :bairro_id, presence: true
+  validates :logradouro, presence: true
 
-  def to_s
-    "#{cidade}"
-  end
+  attr_accessor :estado_novo
+  attr_accessor :pais_id
+  attr_accessor :estado_id
+  attr_accessor :cidade_id
+
 
 end
