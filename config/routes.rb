@@ -36,7 +36,10 @@ Rails.application.routes.draw do
   resources :membros do
     resources :contribuicoes
 
-    get :report, on: :collection
+    collection do
+      match 'search' => 'membros#search', via: [:get, :post], as: :search
+      match 'report' => 'membros#report', via: [:get, :post], as: :report
+    end
   end
 
   resources :tipo_contribuicoes
