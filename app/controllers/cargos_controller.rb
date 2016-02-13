@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: cargos
+#
+#  id         :integer          not null, primary key
+#  descricao  :string
+#  lideranca  :boolean
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class CargosController < ApplicationController
   before_action :set_cargo, only: [:show, :edit, :update]
 

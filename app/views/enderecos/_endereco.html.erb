@@ -1,0 +1,39 @@
+<% if object.object.bairro.nil? || object.object.bairro.id == 0 %>
+
+    <input type="hidden" id="pais-value-select-<%= idx %>"  value = "<%= object.object.pais_id %>" />
+    <input type="hidden" id="cidade-value-select-<%= idx %>"  value = "<%= object.object.cidade_id %>" />
+    <input type="hidden" id="estado-value-select-<%= idx %>"  value = "<%= object.object.estado_id %>" />
+    <input type="hidden" id="bairro-value-select-<%= idx %>"  value = "<%= object.object.bairro_id %>" />
+
+<% else %>
+
+    <input type="hidden" id="pais-value-select-<%= idx %>"  value = "<%= object.object.bairro.cidade.estado.pais.id %>" />
+    <input type="hidden" id="cidade-value-select-<%= idx %>"  value = "<%= object.object.bairro.cidade.id %>" />
+    <input type="hidden" id="estado-value-select-<%= idx %>"  value = "<%= object.object.bairro.cidade.estado.id %>" />
+    <input type="hidden" id="bairro-value-select-<%= idx %>"  value = "<%= object.object.bairro.id %>" />
+
+<% end %>
+
+<%= object.hidden_field :id %>
+
+<%= object.text_field  :logradouro, label_col:'col-sm-1', control_col: 'col-sm-11' %>
+
+<%= object.text_field  :numero,label_col:'col-sm-1', control_col: 'col-sm-11'  %>
+
+<%= object.select :pais_id,  @paises_ops , {label_col:'col-sm-1', control_col: 'col-sm-11'}, class: 'pais-select', id: "pais-#{idx}", data: {estado_select: "estado-#{idx}", indice: idx}  %>
+
+<%= object.select :estado_id,  @estados_ops , {label_col:'col-sm-1', control_col: 'col-sm-11'}, class: 'uf-select', id: "uf-#{idx}", data: {city_select: "cidade-#{idx}", indice: idx}  %>
+
+<div id="show-estado-<%= idx %>"  class="hide" >
+  <%= object.text_field  :estado_novo  ,label_col:'col-sm-1', control_col: 'col-sm-11',  placeholder: 'Estado Novo', id: "estado-novo-#{idx}"  %>
+</div>
+
+<%= object.select :cidade_id, @cidades_ops ,  {label_col:'col-sm-1', control_col: 'col-sm-11'}, class: 'cidade-select',  id: "cidade-#{idx}", data: {bairro_select: "bairro-#{idx}", indice: idx}  %>
+
+<%= object.select :bairro_id, @bairros_ops , {label_col:'col-sm-1', control_col: 'col-sm-11'}, { id: "bairro-#{idx}" } %>
+
+<%= object.text_field :complemento, label_col:'col-sm-1', control_col: 'col-sm-11'  %>
+
+<%= object.text_field  :cep,label_col:'col-sm-1', control_col: 'col-sm-11'  %>
+
+<%= object.text_field :ponto_referencia, label_col:'col-sm-1', control_col: 'col-sm-11'  %>

@@ -7,9 +7,9 @@ Rails.application.initialize!
 # Formatações de Numeros
 
 module Currency
-  BRL = {:delimiter => ".", :separator => ",", :unit => "R$", :precision => 2, :position => "before"}
+  BRL = {:delimiter => ".", :separator => ",", :precision => 2}
   USD = {:delimiter => ',', :separator => ".", :unit => "US$", :precision => 2, :position => "before"}
-  DEFAULT = USD.merge(:unit => "$")
+  DEFAULT = USD.merge(:unit => "")
 
   module String
     def to_number(options={})

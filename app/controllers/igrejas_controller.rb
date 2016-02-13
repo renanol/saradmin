@@ -1,10 +1,20 @@
+# == Schema Information
+#
+# Table name: igrejas
+#
+#  id             :integer          not null, primary key
+#  descricao      :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  membro_id      :integer
+#  responsavel_id :integer
+#
+
 class IgrejasController < ApplicationController
 
   before_action :set_igreja, only: [:show, :edit, :update, :destroys]
   before_action :preencher_listas, only: [:new, :edit, :create, :update]
 
-
-  ## TODO REFATORAR METODOS CARREGA ESTADO E CIDADES
 
   def show
 
@@ -38,14 +48,6 @@ class IgrejasController < ApplicationController
 
     @tela = 'Alterar Igreja'
 
-    if not(@igreja.enderecos.nil?) && @igreja.enderecos.length > 0
-      if not(@igreja.enderecos[0].cidade.nil?)
-        @cidades = Cidade.where("estado_id = ?", @igreja.enderecos[0].cidade.estado.id).order("nome")
-      end
-    else
-      @igreja.igreja_enderecos.build(descricao: 'Principal').build_endereco.build_bairro
-    end
-
     if @igreja.contatos.nil? || @igreja.contatos.length == 0
       @igreja.contatos.build(tipo: Contato.tipos[:telefone])
       @igreja.contatos.build(tipo: Contato.tipos[:email])
@@ -58,7 +60,7 @@ class IgrejasController < ApplicationController
 
     @igreja = Igreja.new
 
-    @igreja.igreja_enderecos.build(descricao: 'Principal').build_endereco.build_bairro
+    @igreja.igreja_enderecos.build(descricao: 'Principal').build_endereco(pais_id: @paises.first.id, estado_id: @estados.first.id,  cidade_id: @cidades.first.id, bairro_id: @bairros.first.id)
 
     @igreja.contatos.build({tipo: Contato.tipos[:telefone]})
     @igreja.contatos.build({tipo: Contato.tipos[:email]})
@@ -109,9 +111,32 @@ class IgrejasController < ApplicationController
   private
 
   def preencher_listas
+
     @resonsaveis = Membro.all
-    @estados = Estado.order('nome')
-    @cidades = Cidade.where("estado_id = ?", Estado.first.id).order("nome")
+
+    @paises = Pais.order('nome')
+
+    @estados = Estado.by_pais( @paises.first.id )
+
+    @estados << Estado.new({id: -1, nome: 'Novo'})
+
+    @cidades = Cidade.where('estado_id = ?', @estados.first.id).order('nome')
+
+    @bairros = Bairro.where('cidade_id = ?', @cidades.first.id).order('nome')
+
+    # preenchendo options
+
+    #@igreja_ops = Igreja.where(id: current_user.igrejas_ids).collect.map { |i| [i.descricao, i.id]  }
+
+
+    @paises_ops = @paises.collect.map { |pais|  [pais.nome.titleize, pais.id] }
+
+    @estados_ops = @estados.collect.map { |estado|  [estado.nome.titleize, estado.id] }
+
+    @cidades_ops = @cidades.collect.map { |cidade|  [cidade.nome.titleize, cidade.id] }
+
+    @bairros_ops = @bairros.collect.map { |bairro|  [bairro.nome.titleize, bairro.id] }
+
   end
 
   def set_igreja

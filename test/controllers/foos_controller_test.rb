@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: foos
+#
+#  id          :integer          not null, primary key
+#  description :string
+#  number      :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 require 'test_helper'
 
 class FoosControllerTest < ActionController::TestCase

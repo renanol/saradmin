@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: grupos
+#
+#  id         :integer          not null, primary key
+#  descricao  :string
+#  status     :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class GruposController < ApplicationController
   before_action :set_grupo, only: [:show, :edit, :update, :destroy]
 

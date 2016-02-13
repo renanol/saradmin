@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: contribuicoes
+#
+#  id                   :integer          not null, primary key
+#  valor                :decimal(10, 2)
+#  tipo_contribuicao_id :integer
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  membro_id            :integer
+#  data                 :date
+#
+
 class ContribuicoesController < ApplicationController
 
   before_action :set_contribuicao, only: [:show, :edit, :update]
@@ -15,6 +28,7 @@ class ContribuicoesController < ApplicationController
 
   def edit
     @tela = "Alterar Contribuição de #{@membro.pessoa.nome}"
+    @contribuicao.valor = @contribuicao.valorFormatado
   end
 
   def new
@@ -39,7 +53,8 @@ class ContribuicoesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @contribuicao.update(contribuicao_params)
+      @contribuicao.create(contribuicao_params)
+      if @contribuicao.update
         format.html { redirect_to membro_contribuicoes_path(@contribuicao.membro), notice: 'Contribuição alterada com sucesso.' }
         format.json { render :show, status: :ok, location: @contribuicao }
       else

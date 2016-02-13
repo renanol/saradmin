@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: tipo_contribuicoes
+#
+#  id         :integer          not null, primary key
+#  descricao  :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class TipoContribuicoesController < ApplicationController
     before_action :set_tipo_contribuicao, only: [:show, :edit, :update]
 

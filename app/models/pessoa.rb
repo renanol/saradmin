@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: pessoas
+#
+#  id                              :integer          not null, primary key
+#  nome                            :string
+#  data_nascimento                 :date
+#  cpf                             :string
+#  rg                              :string
+#  estado_civil                    :integer
+#  created_at                      :datetime         not null
+#  updated_at                      :datetime         not null
+#  titulo_eleitor_numero_inscricao :string
+#  titulo_eleitor_zona             :string
+#  titulo_eleitor_secao            :string
+#  titulo_eleitor_data_emissao     :date
+#
+
 class Pessoa < ActiveRecord::Base
 
   has_one :membro

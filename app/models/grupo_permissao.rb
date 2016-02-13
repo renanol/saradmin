@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: grupo_permissoes
+#
+#  id           :integer          not null, primary key
+#  valor        :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  grupo_id     :integer
+#  permissao_id :integer
+#
+
 class GrupoPermissao < ActiveRecord::Base
 
   belongs_to :grupo

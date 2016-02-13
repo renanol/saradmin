@@ -1,4 +1,4 @@
-<%= form_for @igreja, :html => {:class => "form-horizontal"}, name: :form1  do |f|  %>
+<%= bootstrap_form_for(@igreja, layout: :horizontal,  label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
 
     <%= render 'layouts/erros', object: @igreja %>
 
@@ -6,19 +6,9 @@
       Informações
     </div>
 
-    <div class="form-group <%= 'has-error' if @igreja.errors[:descricao].any?   %> ">
-        <%= f.label :descricao, "Descrição", class: "col-lg-1 control-label" %>
-         <div class="col-lg-11">
-          <%= f.text_field  :descricao, class: 'form-control', placeholder: 'Descrição'  %>
-         </div>
-    </div>
+    <%= f.text_field :descricao, label: 'Descrição', label_col:'col-sm-1', control_col: 'col-sm-11'  %>
 
-    <div class="form-group <%= 'has-error' if @igreja.errors[:responsavel_id].any?   %>">
-      <label class="col-lg-1 control-label">Responsável</label>
-      <div class="col-lg-11">
-        <%= f.select(:responsavel_id, @resonsaveis, {}, {class: 'form-control'}) %>
-      </div>
-    </div>
+    <%= f.select :responsavel_id,  @resonsaveis , {label_col:'col-sm-1', control_col: 'col-sm-11'}  %>
 
     <% idx = 0 %>
     <% @igreja.igreja_enderecos.each do |ie| %>
@@ -33,67 +23,7 @@
 
             <%= ief.fields_for :endereco do |edf| %>
 
-                <%= edf.hidden_field :id %>
-
-                <div class="form-group">
-                  <label class="col-lg-1 control-label">Logradouro</label>
-                  <div class="col-lg-11">
-                    <%= edf.text_field  :logradouro, class: 'form-control', placeholder: 'Logradouro'  %>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-lg-1 control-label">Número</label>
-                  <div class="col-lg-11">
-                    <%= edf.text_field  :numero, class: 'form-control', placeholder: 'Número'  %>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-lg-1 control-label">Estado</label>
-                  <div class="col-lg-11">
-                    <%= edf.select :estado_id, options_for_select(@estados.collect { |country|
-                      [country.nome.titleize, country.id] }, 1), {}, { class: 'uf-select', id: "uf-#{idx}", data: {city_select: "cidade-#{idx}"} } %>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-lg-1 control-label">Cidade</label>
-                  <div class="col-lg-11">
-                    <%= edf.select :cidade_id, options_for_select(@cidades.collect { |city|
-                      [city.nome.titleize, city.id] }, 0), {}, { id: "cidade-#{idx}" } %>
-                  </div>
-                </div>
-
-                <%= edf.fields_for :bairro do |bf| %>
-                    <div class="form-group">
-                      <label class="col-lg-1 control-label">Bairro</label>
-                      <div class="col-lg-11">
-                        <%= bf.text_field :nome, class: 'form-control', placeholder: 'Bairro'  %>
-                      </div>
-                    </div>
-                <% end %>
-
-                <div class="form-group">
-                  <label class="col-lg-1 control-label">Complemento</label>
-                  <div class="col-lg-11">
-                    <%= edf.text_field :complemento, class: 'form-control', placeholder: 'Complemento'  %>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-lg-1 control-label">Cep</label>
-                  <div class="col-lg-11">
-                    <%= edf.text_field  :cep, class: 'form-control', placeholder: 'Cep'  %>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-lg-1 control-label">Ponto de Referência</label>
-                  <div class="col-lg-11">
-                    <%= edf.text_field :ponto_referencia, class: 'form-control', placeholder: 'Ponto de Referência'  %>
-                  </div>
-                </div>
+                <%= render 'enderecos/endereco', object: edf, idx: idx %>
 
             <% end %>
 
