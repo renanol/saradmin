@@ -169,10 +169,8 @@ class IgrejasController < ApplicationController
                 :cep,
                 :complemento,
                 :ponto_referencia,
-                bairro_attributes: [
-                    :id,
-                    :nome
-                ]
+                :bairro_id,
+                :pais_id
             ]
         ]
     )
