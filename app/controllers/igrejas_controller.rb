@@ -98,6 +98,11 @@ class IgrejasController < ApplicationController
 
     respond_to do |format|
       if @igreja.save
+
+        User.where(grupo_id: [1, 2]) do |u|
+          UserIgreja.create(user_id: u.id, igreja_id: @igreja.id)
+        end
+
         format.html { redirect_to @igreja, notice: 'Salvo com sucesso!' }
         format.json { render :show, status: :created, location: @igreja }
       else
