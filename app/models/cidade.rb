@@ -13,6 +13,8 @@ class Cidade < ActiveRecord::Base
 
   scope :by_estado, -> (estado_id) {where("estado_id = ?", estado_id).order("nome")}
   belongs_to :estado
+  has_many :bairros
+
   def to_s
     nome
     "#{nome}/#{estado}"

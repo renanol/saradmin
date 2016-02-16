@@ -49,9 +49,7 @@ User.create(
     password_confirmation: 'alexS2renan',
     status: User.status[:ativo],
     grupo_id: 1
-
 )
-
 
 p = Pais.create(:nome => 'Brasil', :sigla => 'BR')
 
@@ -5722,3 +5720,7 @@ e.cidades.create(:nome => "Tupirama")
 e.cidades.create(:nome => "Tupiratins")
 e.cidades.create(:nome => "Wanderlândia")
 e.cidades.create(:nome => "Xambioá")
+
+Cidade.all.each do |c|
+  c.bairros.create(nome: 'Centro')
+end

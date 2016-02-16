@@ -41,9 +41,8 @@
           <%= f.fields_for :contatos, ct do |ctt| %>
               <%= ctt.hidden_field :id %>
               <%= ctt.hidden_field :tipo %>
-              <%= ctt.label :descricao, ct.tipo.titleize, class: 'col-md-1 control-label no-padding-right' %>
-              <div class="col-md-5">
-                <%= ctt.text_field :descricao, class: 'form-control' %>
+              <div class="col-md-6">
+                <%= ctt.text_field :descricao, label: ct.tipo.titleize, class: 'form-control' %>
               </div>
           <% end %>
       <% end %>
