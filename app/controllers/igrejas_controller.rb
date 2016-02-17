@@ -99,7 +99,7 @@ class IgrejasController < ApplicationController
     respond_to do |format|
       if @igreja.save
 
-        User.where(grupo_id: [1, 2]) do |u|
+        User.where(grupo_id: [1, 2]).each do |u|
           UserIgreja.create(user_id: u.id, igreja_id: @igreja.id)
         end
 
@@ -117,7 +117,7 @@ class IgrejasController < ApplicationController
 
   def preencher_listas
 
-    @resonsaveis = Membro.all
+    @resonsaveis = Membro.where(igreja_id: current_user.igrejas_ids).collect.map {|m| [m.pessoa.nome, m.id] }
 
     @paises = Pais.order('nome')
 
