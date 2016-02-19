@@ -108,7 +108,7 @@ class MembrosController < ApplicationController
 
     @estados << Estado.new({id: -1, nome: 'Novo'})
 
-    @cidades = Cidade.where('estado_id = ?', @estados.first.id).order('nome')
+    @cidades = Cidade.by_estado(@estados.first.id).order('nome')
 
     @bairros = Bairro.where('cidade_id = ?', @cidades.first.id).order('nome')
 

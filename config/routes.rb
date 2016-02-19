@@ -8,6 +8,22 @@ Rails.application.routes.draw do
   resources :celulas
   resources :cargos
 
+
+  resources :enderecos do
+    post 'bairros', on: :collection
+    post 'cidades', on: :collection
+    post 'estados', on: :collection
+    post 'paises', on: :collection
+
+    get 'buscar_cidades', on: :collection
+    get 'buscar_estados', on: :collection
+    get 'buscar_bairros', on: :collection
+    get 'buscar_paises', on: :collection
+
+    get 'bairro', on: :collection
+
+  end
+
   resources :usuarios do
     get 'reset_password', on: :member
     post 'change_grupo', on: :member
