@@ -27,7 +27,7 @@ class CargosController < ApplicationController
 
   def new
     @tela = 'Cadastrar Cargo'
-    @cargo = Cargo.new
+    @cargo = Cargo.new(lideranca: false)
   end
 
   def create
