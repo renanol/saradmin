@@ -45,7 +45,7 @@ $(function(){
 
                 if(tipo === "bairro") {
 
-                    validaNovoEndereco("bairro-"+indice, "um bairro");
+                    validaNovoEndereco("cidade-"+indice, "uma cidade");
 
                     $.ajax({
                         url: "/enderecos/bairros",
@@ -66,7 +66,7 @@ $(function(){
                         }
                     });
                 }else if(tipo == "cidade"){
-                    validaNovoEndereco("cidade-"+indice, "uma cidade");
+                    validaNovoEndereco("estado-"+indice, "um estado");
                     $.ajax({
                         url: "/enderecos/cidades",
                         type: "POST",
@@ -85,7 +85,7 @@ $(function(){
                         }
                     });
                 }else if(tipo == "estado"){
-                    validaNovoEndereco("uf-"+indice, "um estado");
+                    validaNovoEndereco("pais-"+indice, "um pais");
                     $.ajax({
                         url: "/enderecos/estados",
                         type: "POST",
