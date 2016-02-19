@@ -15,6 +15,8 @@ class Cidade < ActiveRecord::Base
   belongs_to :estado
   has_many :bairros
 
+  validates :nome, uniqueness: {scope: :estado_id}
+
   def to_s
     nome
     "#{nome}/#{estado}"
