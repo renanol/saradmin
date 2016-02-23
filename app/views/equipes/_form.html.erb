@@ -1,26 +1,28 @@
-<%= form_for @equipe, :html => {:class => "form-horizontal"} do |f| %>
+<%= bootstrap_form_for(@equipe, layout: :horizontal, label_col: 'col-sm-1', control_col: 'col-sm-11') do |f| %>
 
     <%= render 'layouts/erros', object: @equipe %>
 
     <div class="form-group">
-        <label class="col-lg-1 control-label">Descrição</label>
-        <div class="col-lg-11">
-            <%= f.text_field  :descricao, class: 'form-control', placeholder: 'Descrição'  %>
-        </div>
+
+      <%= label_tag :igreja_id, nil, class: 'col-sm-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= select_tag :igreja_id, nil, {class: 'form-control'} %>
+      </div>
+
+      <div class="col-lg-6">
+        <%= f.select :rede_id, [], {label_col:'col-sm-2', control_col: 'col-sm-10', label_class: 'no-padding-right'} %>
+      </div>
+
     </div>
 
     <div class="form-group">
 
-      <label class="col-lg-1 control-label">Rede</label>
-
-      <div class="col-lg-5">
-        <%= f.select :rede_id, @redes_ops, {}, { class: 'form-control' } %>
+      <div class="col-lg-6">
+        <%= f.text_field :descricao, label: 'Descrição', placeholder: 'Descrição', label_col:'col-sm-2', control_col: 'col-sm-10', label_class: 'no-padding-right' %>
       </div>
 
-      <label class="col-lg-1 control-label">Responsável</label>
-      <div class="col-lg-5">
-        <%= f.select :responsavel_id, options_for_select(@responsaveis.collect { |m|
-           [m.pessoa.nome.titleize, m.id] }, 0), {}, { class: 'form-control' } %>
+      <div class="col-lg-6">
+        <%= f.select :responsavel_id, [], {label_col:'col-sm-2', control_col: 'col-sm-10', label_class: 'no-padding-right'} %>
       </div>
 
     </div>

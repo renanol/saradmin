@@ -6,9 +6,11 @@
       Informações
     </div>
 
-    <%= f.text_field :descricao, label: 'Descrição', label_col:'col-sm-1', control_col: 'col-sm-11'  %>
+    <%= f.text_field :descricao, label: 'Descrição', label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right' %>
 
-    <%= f.select :responsavel_id,  @resonsaveis , {label_col:'col-sm-1', control_col: 'col-sm-11'}  %>
+    <% if @igreja.id? %>
+        <%= f.select :responsavel_id,  @resonsaveis , {label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'}  %>
+    <% end %>
 
     <% idx = 0 %>
     <% @igreja.igreja_enderecos.each do |ie| %>
@@ -42,7 +44,7 @@
               <%= ctt.hidden_field :id %>
               <%= ctt.hidden_field :tipo %>
               <div class="col-md-6">
-                <%= ctt.text_field :descricao, label: ct.tipo.titleize, class: 'form-control' %>
+                <%= ctt.text_field :descricao, label: ct.tipo.titleize, label_class: 'no-padding-right' %>
               </div>
           <% end %>
       <% end %>

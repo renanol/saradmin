@@ -12,8 +12,6 @@
 
 class EquipesController < ApplicationController
   before_action :set_equipe, only: [:show, :edit, :update]
-  before_action :set_redes, only: [:new, :edit, :create, :update]
-  before_action :set_responsaveis, only: [:new, :edit, :create, :update]
 
   def index
     @tela = 'Listar Equipes'
@@ -74,16 +72,6 @@ class EquipesController < ApplicationController
   end
 
   private
-
-  def set_responsaveis
-    @responsaveis = Membro.where(igreja_id: current_user.igrejas_ids)
-  end
-
-  def set_redes
-    @redes_ops = Rede.where(igreja_id: current_user.igrejas_ids).collect.map do |i|
-      [i.descricao, i.id]
-    end
-  end
 
   def set_equipe
     @equipe = Equipe.find(params[:id])

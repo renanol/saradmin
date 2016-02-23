@@ -1,14 +1,14 @@
-<%= bootstrap_form_for(@rede,layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10"   ) do |f| %>
+<%= bootstrap_form_for(@rede,layout: :horizontal, label_col: 'col-sm-1', control_col: 'col-sm-11') do |f| %>
 
+    <%= hidden_field_tag :arquivo, 'new-edit-form' %>
 
-    <%= f.text_field  :descricao, placeholder: 'Descrição'  %>
+    <%= hidden_field_tag :id, @rede.id %>
 
+    <%= f.select :igreja_id, [], {label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'} %>
 
-    <%= f.select :responsavel_id, options_for_select(@responsaveis.collect { |m|
-            [m.pessoa.nome.titleize, m.id] }, 0), {} %>
+    <%= f.select :responsavel_id, [], {label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'} %>
 
-        <%= f.select :igreja_id, options_for_select(@igrejas.collect { |m|
-            [m.descricao.titleize, m.id] }, 0), {} %>
+    <%= f.text_field :descricao, label: 'Descrição', placeholder: 'Descrição', label_class: 'no-padding-right'  %>
 
     <%= link_to 'Listar', redes_path, class: 'btn btn-blue' %>
 
