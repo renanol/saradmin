@@ -51,7 +51,23 @@ module ApplicationHelper
     }[flash_type.to_sym] || flash_type.to_s
   end
 
+  def title_page
 
+    action = params[:action]
+
+    if action == "index"
+      action = "Listar"
+    elsif action == "show"
+      action = "Visualizar"
+    elsif action == "edit" || action == "update"
+      action = "Editar"
+    elsif action == "new" || action == "create"
+      action = "Cadastrar"
+    end
+
+    "#{action} #{params[:controller].capitalize}"
+
+  end
 
 
 end

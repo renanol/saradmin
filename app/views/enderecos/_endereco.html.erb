@@ -20,17 +20,41 @@
 
 <%= object.text_field :numero,label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'  %>
 
-<%= object.select :pais_id,  @paises_ops , {label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'}, class: 'pais-select', id: "pais-#{idx}", data: {estado_select: "estado-#{idx}", indice: idx}  %>
-
-<%= object.select :estado_id,  @estados_ops , {label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'}, class: 'uf-select', id: "uf-#{idx}", data: {city_select: "cidade-#{idx}", indice: idx}  %>
-
-<div id="show-estado-<%= idx %>"  class="hide" >
-  <%= object.text_field  :estado_novo  ,label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right',  placeholder: 'Estado Novo', id: "estado-novo-#{idx}"  %>
+<div class="form-group">
+  <div class="col-sm-11">
+    <%= object.select :pais_id, [], {label_col:'col-sm-1', control_col: 'col-sm-11'}, class: 'pais-select', id: "pais-#{idx}", data: {estado_select: "uf-#{idx}", indice: idx}  %>
+  </div>
+  <div class="col-sm-1">
+    <a href="#" class="btn btn-circle btn-sky btn-xs modal-endereco"  data-indice="<%= idx %>" data-title="Pais" data-tipo="pais"><i class="fa fa-plus"></i></a>
+  </div>
 </div>
 
-<%= object.select :cidade_id, @cidades_ops ,  {label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'}, class: 'cidade-select',  id: "cidade-#{idx}", data: {bairro_select: "bairro-#{idx}", indice: idx}  %>
+<div class="form-group">
+  <div class="col-sm-11">
+    <%= object.select :estado_id,  [], {label_col:'col-sm-1', control_col: 'col-sm-11'}, class: 'uf-select', id: "uf-#{idx}", data: {city_select: "cidade-#{idx}", indice: idx}  %>
+  </div>
+  <div class="col-sm-1">
+    <a href="#" class="btn btn-circle btn-sky btn-xs modal-endereco"  data-indice="<%= idx %>" data-title="Estado" data-tipo="estado"><i class="fa fa-plus"></i></a>
+  </div>
+</div>
 
-<%= object.select :bairro_id, @bairros_ops , {label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'}, { id: "bairro-#{idx}" } %>
+<div class="form-group">
+    <div class="col-sm-11">
+        <%= object.select :cidade_id, [],  {label_col:'col-sm-1', control_col: 'col-sm-11'}, class: 'cidade-select',  id: "cidade-#{idx}", data: {bairro_select: "bairro-#{idx}", indice: idx}  %>
+    </div>
+    <div class="col-sm-1">
+        <a href="#" class="btn btn-circle btn-sky btn-xs modal-endereco"  data-indice="<%= idx %>" data-title="Cidade" data-tipo="cidade"><i class="fa fa-plus"></i></a>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-11">
+        <%= object.select :bairro_id, [], {label_col:'col-sm-1', control_col: 'col-sm-11'}, { id: "bairro-#{idx}" } %>
+    </div>
+    <div class="col-sm-1">
+        <a href="#" class="btn btn-circle btn-sky btn-xs modal-endereco"  data-indice="<%= idx %>" data-title="Bairro" data-tipo="bairro"><i class="fa fa-plus"></i></a>
+    </div>
+</div>
 
 <%= object.text_field :complemento, label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'  %>
 

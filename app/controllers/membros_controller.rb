@@ -33,8 +33,8 @@ class MembrosController < ApplicationController
     @membro = Membro.new
     @membro.build_pessoa(estado_civil: Pessoa.estado_civis[:solteiro])
 
-    @membro.pessoa.pessoa_enderecos.build(descricao: 'Principal').build_endereco(pais_id: @paises.first.id, estado_id: @estados.first.id,  cidade_id: @cidades.first.id, bairro_id: @bairros.first.id)
-    @membro.pessoa.pessoa_enderecos.build(descricao: 'Comercial').build_endereco(pais_id: @paises.first.id, estado_id: @estados.first.id,  cidade_id: @cidades.first.id, bairro_id: @bairros.first.id)
+    @membro.pessoa.pessoa_enderecos.build(descricao: 'Principal').build_endereco
+    @membro.pessoa.pessoa_enderecos.build(descricao: 'Comercial').build_endereco
 
     @membro.pessoa.contatos.build(tipo: Contato.tipos[:email])
     @membro.pessoa.contatos.build(tipo: Contato.tipos[:telefone])
@@ -102,16 +102,6 @@ class MembrosController < ApplicationController
 
   def preencher_listas
 
-    @paises = Pais.order('nome')
-
-    @estados = Estado.where('pais_id =? ', @paises.first.id).order('nome')
-
-    @estados << Estado.new({id: -1, nome: 'Novo'})
-
-    @cidades = Cidade.where('estado_id = ?', @estados.first.id).order('nome')
-
-    @bairros = Bairro.where('cidade_id = ?', @cidades.first.id).order('nome')
-
     # preenchendo options
 
     @igreja_ops = Igreja.where(id: current_user.igrejas_ids).collect.map { |i| [i.descricao, i.id]  }
@@ -119,15 +109,6 @@ class MembrosController < ApplicationController
     @cargo_ops = Cargo.all.collect.map { |i|   [i.descricao, i.id] }
 
     @estados_civis_ops = Pessoa.estado_civis.collect.map { |e|  e }
-
-    @paises_ops = @paises.collect.map { |pais|  [pais.nome.titleize, pais.id] }
-
-    @estados_ops = @estados.collect.map { |estado|  [estado.nome.titleize, estado.id] }
-
-    @cidades_ops = @cidades.collect.map { |cidade|  [cidade.nome.titleize, cidade.id] }
-
-    @bairros_ops = @bairros.collect.map { |bairro|  [bairro.nome.titleize, bairro.id] }
-
 
   end
 

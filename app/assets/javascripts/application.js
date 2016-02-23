@@ -21,9 +21,107 @@
 //= require nested_form_fields
 //= require jquery.maskMoney.min
 //= require jquery.maskedinput.min
+//= require beyond/bootbox/bootbox.min
 //= require_tree .
 
 $(function(){
+
+    $(".modal-endereco").on('click', function (e) {
+
+        e.preventDefault();
+
+        var indice = $(this).data("indice"),
+            cidade_id = $("#cidade-"+indice).val(),
+            estado_id = $("#uf-"+indice).val(),
+            pais_id = $("#pais-"+indice).val(),
+            title = $(this).data("title"),
+            tipo = $(this).data("tipo");
+
+        bootbox.prompt("Cadastrar "+title, function (result) {
+
+            if (result === "") {
+                bootbox.alert("Campo não pode ser vazio");
+            } else if (result !== null){
+
+                if(tipo === "bairro") {
+
+                    validaNovoEndereco("bairro-"+indice, "um bairro");
+
+                    $.ajax({
+                        url: "/enderecos/bairros",
+                        type: "POST",
+                        dataType: 'json',
+                        data: {
+                            nome: result,
+                            cidade_id: cidade_id
+                        },
+                        success: function (data) {
+
+                            $("#bairro-value-select-"+indice).val(data.id)
+                            preencherBairros(indice, $("#cidade-"+indice).val());
+
+
+                        }, error: function (data) {
+                            bootbox.alert("<h1>" + data.responseJSON.nome[0] + "</h1>")
+                        }
+                    });
+                }else if(tipo == "cidade"){
+                    validaNovoEndereco("cidade-"+indice, "uma cidade");
+                    $.ajax({
+                        url: "/enderecos/cidades",
+                        type: "POST",
+                        dataType: 'json',
+                        data: {
+                            nome: result,
+                            estado_id: estado_id
+                        },
+                        success: function (data) {
+
+                            $("#cidade-value-select-"+indice).val(data.id)
+                            preencherCidades(indice, estado_id,  data.id);
+
+                        }, error: function (data) {
+                            bootbox.alert("<h1>" + data.responseJSON.nome[0] + "</h1>")
+                        }
+                    });
+                }else if(tipo == "estado"){
+                    validaNovoEndereco("uf-"+indice, "um estado");
+                    $.ajax({
+                        url: "/enderecos/estados",
+                        type: "POST",
+                        dataType: 'json',
+                        data: {
+                            nome: result,
+                            pais_id: pais_id
+                        },
+                        success: function (data) {
+                            $("#estado-value-select-"+indice).val(data.id);
+                            preencherEstados(indice,  pais_id, data.id, 0);
+                        }, error: function (data) {
+                            bootbox.alert("<h1>" + data.responseJSON.nome[0] + "</h1>")
+                        }
+                    });
+                }else if(tipo == "pais"){
+
+                    $.ajax({
+                        url: "/enderecos/paises",
+                        type: "POST",
+                        dataType: 'json',
+                        data: {
+                            nome: result
+                        },
+                        success: function (data) {
+                            $("#pais-value-select-"+indice).val(data.id)
+                            preencherPaises(indice, data.id, 0, 0);
+                        }, error: function (data) {
+                            bootbox.alert("<h1>" + data.responseJSON.nome[0] + "</h1>")
+                        }
+                    });
+                }
+
+            }
+        });
+    });
 
     $(".btn-search").on("click", function(){
         $('form').get(0).setAttribute('action', $(this).data('action'));
@@ -50,12 +148,12 @@ $(function(){
         var dados = $("form").serialize(),
             url = $("form").attr("action"),
             method = $("form").attr("method");
-        console.log(url)
+
         $.ajax({
             type: method,
             url: url,
             data: dados,
-            dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+            dataType: "JSON"
         }).success(function(json){
             console.log("success", json);
         });
@@ -86,23 +184,94 @@ $(function(){
 
     $(".formatar-cpf").mask("999.999.999-99");
 
-    preencherCidades(0);
-    preencherBairros(0);
-    preencherCidades(1);
-    preencherBairros(1);
 
+    preencherPaises(0, $("#pais-value-select-0").val(), $("#estado-value-select-0").val(), $("#cidade-value-select-0").val());
+    preencherPaises(1, $("#pais-value-select-1").val(), $("#estado-value-select-1").val(), $("#cidade-value-select-1").val());
 
 });
 
-function preencherCidades(indice){
+function validaNovoEndereco(id, descricao){
+    if($("#"+id).val() == null || $("#"+id).val() == 0){
+        bootbox.alert("Selecione "+ descricao);
+        return;
+    }
+}
 
+function buscarBairro(bairro_id){
+    $.ajax({
+        url: '/enderecos/bairro',
+        data: {
+            bairro_id: bairro_id
+        },
+        type: 'GET',
+        success: function(data){
 
-    $("#uf-"+indice).val($("#estado-value-select-"+indice).val());
+            console.log(data)
+
+        }
+    });
+}
+
+function preencherPaises(indice, valor, estado_id, cidade_id){
 
     $.ajax({
-        url: '/igrejas/buscar_cidades',
+        url: '/enderecos/buscar_paises',
+        type: 'GET',
+        beforeSend: function(){
+
+        },
+        success: function(data){
+            var options = $("#pais-"+indice);
+            options.empty();
+
+            options.append($("<option />").val(0).text("Selecione"));
+            $.each(data, function() {
+                options.append($("<option />").val(this.id).text(this.nome));
+            });
+            $("#pais-"+indice).val(valor);
+
+            preencherEstados(indice, valor, estado_id, cidade_id);
+
+        }
+    });
+}
+
+function preencherEstados(indice, valor, estado_id, cidade_id){
+
+    $.ajax({
+        url: '/enderecos/buscar_estados',
         data: {
-            estado_id: $("#estado-value-select-"+indice).val()
+            pais_id: valor
+        },
+        type: 'GET',
+        beforeSend: function(){
+
+        },
+        success: function(data){
+            var options = $("#uf-"+indice);
+            options.empty();
+
+            options.append($("<option />").val(0).text("Selecione"));
+
+            $.each(data, function() {
+                options.append($("<option />").val(this.id).text(this.nome));
+            });
+
+            $("#uf-"+indice).val(estado_id);
+            preencherCidades(indice, estado_id, cidade_id);
+
+
+        }
+    });
+}
+
+
+
+function preencherCidades(indice, valor, cidade_id){
+    $.ajax({
+        url: '/enderecos/buscar_cidades',
+        data: {
+            estado_id: valor
         },
         type: 'GET',
         beforeSend: function(){
@@ -111,21 +280,28 @@ function preencherCidades(indice){
         success: function(data){
             var options = $("#cidade-"+indice);
             options.empty();
+
+            options.append($("<option />").val(0).text("Selecione"));
             $.each(data, function() {
                 options.append($("<option />").val(this.id).text(this.nome));
             });
-            $("#cidade-"+indice).val($("#cidade-value-select-"+indice).val());
+
+
+
+            $("#cidade-"+indice).val(cidade_id);
+
+            preencherBairros(indice, cidade_id);
 
         }
     });
 }
 
-function preencherBairros(indice){
+function preencherBairros(indice, valor){
 
     $.ajax({
-        url: '/igrejas/buscar_bairros',
+        url: '/enderecos/buscar_bairros',
         data: {
-            cidade_id: $("#cidade-value-select-"+indice).val()
+            cidade_id: valor
         },
         type: 'GET',
         beforeSend: function(){
@@ -134,12 +310,14 @@ function preencherBairros(indice){
         success: function(data){
             var options = $("#bairro-"+indice);
             options.empty();
+
+            options.append($("<option />").val(0).text("Selecione"));
             $.each(data, function() {
                 options.append($("<option />").val(this.id).text(this.nome));
             });
 
             $("#bairro-"+indice).val($("#bairro-value-select-"+indice).val());
-
         }
     });
 }
+

@@ -3,64 +3,24 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $('.uf-select').change ->
-  city_id = $(this).data("city-select")
   uf_id = $(this).val()
   id = $(this).data('indice')
+  preencherCidades(id, uf_id);
+  $("#estado-value-select-"+id).val(uf_id)
 
-  if uf_id == "-1"
-    $('#show-estado-'+id).removeClass('hide')
-  else
-    $('#show-estado-'+id).addClass('hide')
-
-  $.ajax '/igrejas/buscar_cidades',
-    type: 'GET'
-    contentType: "application/json"
-    dataType: "json"
-    data: {
-      estado_id: uf_id
-    }
-    error: (jqXHR, textStatus, errorThrown) ->
-      console.log("AJAX Error: #{textStatus}")
-    success: (data, textStatus, jqXHR) ->
-      $("#" + city_id).empty()
-      for cidade in data
-        $("#" + city_id).append($("<option />").val(cidade.id).text(cidade.nome));
 
 $('.pais-select').change ->
-  estado_id = $(this).data("estado-select")
   pais_id = $(this).val()
   id = $(this).data('indice')
-
-  $.ajax '/igrejas/buscar_estados',
-    type: 'GET'
-    contentType: "application/json"
-    dataType: "json"
-    data: {
-      pais_id: pais_id
-    }
-    error: (jqXHR, textStatus, errorThrown) ->
-      console.log("AJAX Error: #{textStatus}")
-    success: (data, textStatus, jqXHR) ->
-      $("#" + estado_id).empty()
-      for cidade in data
-        $("#" + estado_id).append($("<option />").val(cidade.id).text(cidade.nome));
-
+  preencherEstados(id,  pais_id, 0, 0);
+  $("#pais-value-select-"+id).val(pais_id)
 
 $('.cidade-select').change ->
-  bairro_id = $(this).data("bairro-select")
   cidade_id = $(this).val()
+  id = $(this).data('indice')
+  preencherBairros(id,  cidade_id, 0);
+  $("#cidade-value-select-"+id).val(cidade_id)
 
-  $.ajax '/igrejas/buscar_bairros',
-    type: 'GET'
-    contentType: "application/json"
-    dataType: "json"
-    data: {
-      cidade_id: cidade_id
-    }
-    error: (jqXHR, textStatus, errorThrown) ->
-      console.log("AJAX Error: #{textStatus}")
-    success: (data, textStatus, jqXHR) ->
-      $("#" + bairro_id).empty()
-      for cidade in data
-        $("#" + bairro_id).append($("<option />").val(cidade.id).text(cidade.nome));
+
+
 

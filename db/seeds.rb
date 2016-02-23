@@ -5721,6 +5721,8 @@ e.cidades.create(:nome => "Tupiratins")
 e.cidades.create(:nome => "Wanderlândia")
 e.cidades.create(:nome => "Xambioá")
 
-Cidade.all.each do |c|
+
+#find each is very efficient
+Cidade.find_each do |c|
   c.bairros.create(nome: 'Centro')
 end
