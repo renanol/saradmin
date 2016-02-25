@@ -2,11 +2,17 @@
 
     <%= hidden_field_tag :arquivo, 'new-edit-form' %>
 
-    <%= hidden_field_tag :id, @rede.id %>
+    <%= hidden_field_tag :id_responsavel, unless @rede.responsavel.nil? then @rede.responsavel.id else 0 end %>
+    <%= hidden_field_tag :id_igreja, unless @rede.igreja.nil? then @rede.igreja.id else 0 end %>
 
-    <%= f.select :igreja_id, [], {label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'} %>
-
-    <%= f.select :responsavel_id, [], {label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'} %>
+    <div class="form-group">
+      <div class="col-sm-6">
+        <%= f.select :igreja_id, [], {label_col:'col-sm-2', control_col: 'col-sm-10', label_class: 'no-padding-right'} %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.select :responsavel_id, [], {label_col:'col-sm-2', control_col: 'col-sm-10', label_class: 'no-padding-right'} %>
+      </div>
+    </div>
 
     <%= f.text_field :descricao, label: 'Descrição', placeholder: 'Descrição', label_class: 'no-padding-right'  %>
 
