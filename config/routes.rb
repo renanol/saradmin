@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :hierarquia do
     get 'preencher_igrejas', on: :collection
     get 'preencher_responsaveis', on: :collection
+    get 'preencher_redes', on: :collection
   end
 
 

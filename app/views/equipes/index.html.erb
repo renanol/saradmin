@@ -13,6 +13,8 @@
             <th>#</th>
             <th>Descrição </th>
             <th>Rede</th>
+            <th>Igreja</th>
+            <th>Resposável</th>
             <th width="20"></th>
             <th width="20"></th>
           </tr>
@@ -24,6 +26,8 @@
                 <td><%= equipe.id %></td>
                 <td><%= equipe.descricao %></td>
                 <td><%= equipe.rede %></td>
+                <td><%= equipe.rede.igreja.descricao %></td>
+                <td><%= equipe.responsavel.pessoa.nome %></td>
                 <td>
                   <%= link_to equipe, title: 'Visualizar', class: 'btn btn-default btn-xs icon-only' do %>
                       <%= fa_icon 'search' %>
