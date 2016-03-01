@@ -12,6 +12,7 @@
           <tr>
             <th>#</th>
             <th>Descrição </th>
+            <th>Igreja </th>
             <th>Responsável </th>
             <th width="20"></th>
             <th width="20"></th>
@@ -24,6 +25,7 @@
               <tr>
                 <td><%= rede.id %></td>
                 <td><%= rede.descricao %></td>
+                <td><%= rede.igreja.descricao %></td>
                 <td><%= rede.responsavel.pessoa.nome unless rede.responsavel.nil? %></td>
                 <td>
                   <%= link_to rede, title: 'Visualizar', class: 'btn btn-default btn-xs icon-only' do %>

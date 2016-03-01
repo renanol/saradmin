@@ -117,7 +117,11 @@ class IgrejasController < ApplicationController
 
   def preencher_listas
 
-    @resonsaveis = Membro.where(igreja_id: current_user.igrejas_ids).collect.map {|m| [m.pessoa.nome, m.id] }
+    @resonsaveis = Membro.none.collect.map {|m| [m.pessoa.nome, m.id] }
+
+    unless @igreja.nil?
+      @resonsaveis = Membro.where(igreja_id: @igreja.id).collect.map {|m| [m.pessoa.nome, m.id] }
+    end
 
   end
 

@@ -22,7 +22,6 @@
 //= require jquery.maskMoney.min
 //= require jquery.maskedinput.min
 //= require beyond/bootbox/bootbox.min
-//= require_tree .
 
 $(function(){
 

@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   resources :celulas
   resources :cargos
 
+  resources :hierarquia do
+    get 'preencher_igrejas', on: :collection
+    get 'preencher_responsaveis', on: :collection
+    get 'preencher_redes', on: :collection
+  end
+
 
   resources :enderecos do
     post 'bairros', on: :collection

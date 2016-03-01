@@ -16,10 +16,9 @@
 
 <%= object.hidden_field :id %>
 
-<%= object.text_field  :logradouro, label_col:'col-sm-1', control_col: 'col-sm-11' %>
+<%= object.text_field :logradouro, label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right' %>
 
-<%= object.text_field  :numero,label_col:'col-sm-1', control_col: 'col-sm-11'  %>
-
+<%= object.text_field :numero,label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'  %>
 
 <div class="form-group">
   <div class="col-sm-11">
@@ -57,10 +56,8 @@
     </div>
 </div>
 
+<%= object.text_field :complemento, label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'  %>
 
-<%= object.text_field :complemento, label_col:'col-sm-1', control_col: 'col-sm-11'  %>
+<%= object.text_field  :cep,label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'  %>
 
-
-<%= object.text_field  :cep,label_col:'col-sm-1', control_col: 'col-sm-11'  %>
-
-<%= object.text_field :ponto_referencia, label_col:'col-sm-1', control_col: 'col-sm-11'  %>
+<%= object.text_field :ponto_referencia, label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right' %>

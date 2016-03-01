@@ -13,8 +13,6 @@
 class RedesController < ApplicationController
 
   before_action :set_rede, only: [:show, :edit, :update]
-  before_action :set_membros, only: [:new, :edit, :create, :update]
-  before_action :set_igrejas, only: [:new, :edit, :create, :update]
 
   def index
     @tela = 'Listar Redes'
@@ -75,14 +73,6 @@ class RedesController < ApplicationController
 
   private
 
-  def set_membros
-    @responsaveis = Membro.where(igreja_id: current_user.igrejas_ids)
-  end
-
-  def set_igrejas
-    @igrejas = Igreja.where(id: current_user.igrejas_ids)
-  end
-
   def set_rede
     @rede = Rede.find(params[:id])
   end
@@ -90,4 +80,5 @@ class RedesController < ApplicationController
   def rede_params
     params.require(:rede).permit(:descricao, :responsavel_id, :igreja_id)
   end
+
 end
