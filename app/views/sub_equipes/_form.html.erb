@@ -1,26 +1,51 @@
-<%= form_for @sub_equipe, :html => {:class => "form-horizontal"} do |f| %>
+<%= bootstrap_form_for(@sub_equipe,layout: :horizontal, label_col: 'col-sm-1', control_col: 'col-sm-11') do |f| %>
 
-    <%= render 'layouts/erros', object: @sub_equipe %>
+    <%= hidden_field_tag :arquivo, 'new-edit-form' %>
+
+    <%= hidden_field_tag :id_responsavel, unless @sub_equipe.responsavel.nil? then @sub_equipe.responsavel.id else 0 end %>
+
+    <% unless @sub_equipe.equipe.nil? then %>
+        <%= hidden_field_tag :id_equipe, @sub_equipe.equipe.id %>
+        <%= hidden_field_tag :id_rede, @sub_equipe.equipe.rede.id %>
+        <%= hidden_field_tag :id_igreja, @sub_equipe.equipe.rede.igreja.id %>
+    <% else %>
+        <%= hidden_field_tag :id_equipe, 0 %>
+        <%= hidden_field_tag :id_rede, 0 %>
+        <%= hidden_field_tag :id_igreja, 0 %>
+    <% end %>
 
     <div class="form-group">
-        <label class="col-lg-1 control-label">Descrição</label>
-        <div class="col-lg-11">
-            <%= f.text_field  :descricao, class: 'form-control', placeholder: 'Descrição'  %>
-        </div>
+
+      <%= label_tag :igreja_id, nil, class: 'col-sm-1 control-label no-padding-right' %>
+      <div class="col-sm-5">
+        <%= select_tag :igreja_id, nil, {class: 'form-control'} %>
+      </div>
+
+      <div class="col-sm-6">
+        <%= f.select :responsavel_id, [], {label_col:'col-sm-2', control_col: 'col-sm-10', label_class: 'no-padding-right'} %>
+      </div>
+
     </div>
 
     <div class="form-group">
-      <label class="col-lg-1 control-label">Rede</label>
-      <div class="col-lg-5">
-        <%= f.select :equipe_id, options_for_select(@equipes.collect { |se|
-          [se.descricao.titleize, se.id] }, 0), {}, { class: 'form-control' } %>
+
+      <%= label_tag :rede_id, nil, class: 'col-sm-1 control-label no-padding-right' %>
+      <div class="col-sm-5">
+        <%= select_tag :rede_id, nil, {class: 'form-control'} %>
       </div>
 
-      <label class="col-lg-1 control-label">Responsável</label>
-      <div class="col-lg-5">
-        <%= f.select :responsavel_id, options_for_select(@responsaveis.collect { |m|
-               [m.pessoa.nome.titleize, m.id] }, 0), {}, { class: 'form-control' } %>
+      <div class="col-sm-6">
+        <%= f.select :equipe_id, [], {label_col:'col-sm-2', control_col: 'col-sm-10', label_class: 'no-padding-right'} %>
       </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <div class="col-lg-12">
+        <%= f.text_field :descricao, label: 'Descrição', placeholder: 'Descrição', label_class: 'no-padding-right' %>
+      </div>
+
     </div>
 
     <%= link_to 'Listar', sub_equipes_path, class: 'btn btn-blue' %>

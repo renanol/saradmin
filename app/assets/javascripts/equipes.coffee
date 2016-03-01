@@ -55,12 +55,11 @@ preencherRedes = (rede_id = 0) ->
           redes.append($("<option />").val(this.id).text(this.descricao))
           return
 
-        redes.val(rede_id)
+        redes.val(rede_idsponsavel_id)
         return
 
   return
 
 $('#igreja_id').change ->
   preencherResponsaveis()
-  preencherRedes()
   return
