@@ -81,38 +81,15 @@
     </div>
 
     <div class="form-group">
-      <%= label_tag :pessoa_endereco_estado, 'Estado', class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-5">
-        <%= text_field_tag :pessoa_endereco_estado, pe.endereco.bairro.cidade.estado.nome, class: 'form-control', disabled: 'disabled' %>
-      </div>
-
-      <%= label_tag :pessoa_endereco_cidade, 'Cidade', class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-5">
-        <%= text_field_tag :pessoa_endereco_cidade, pe.endereco.bairro.cidade.nome, class: 'form-control', disabled: 'disabled' %>
-      </div>
-    </div>
-
-    <div class="form-group">
       <%= label_tag :pessoa_endereco_logradouro, 'Logradouro', class: 'col-md-1 control-label no-padding-right' %>
       <div class="col-md-8">
         <%= text_field_tag :pessoa_endereco_logradouro, pe.endereco.logradouro, class: 'form-control', disabled: 'disabled' %>
       </div>
 
+
       <%= label_tag :pessoa_endereco_numero, 'Número', class: 'col-md-1 control-label no-padding-right' %>
       <div class="col-md-2">
         <%= text_field_tag :pessoa_endereco_numero, pe.endereco.numero, class: 'form-control', disabled: 'disabled' %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= label_tag :pessoa_endereco_cep, 'Cep', class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-5">
-        <%= text_field_tag :pessoa_endereco_cep, pe.endereco.cep, class: 'form-control', disabled: 'disabled' %>
-      </div>
-
-      <%= label_tag :pessoa_endereco_bairro, 'Bairro', class: 'col-md-1 control-label no-padding-right' %>
-      <div class="col-md-5">
-        <%= text_field_tag :pessoa_endereco_bairro, pe.endereco.bairro.nome, class: 'form-control', disabled: 'disabled' %>
       </div>
     </div>
 
@@ -122,6 +99,43 @@
         <%= text_field_tag :pessoa_endereco_complemento, pe.endereco.complemento, class: 'form-control', disabled: 'disabled' %>
       </div>
     </div>
+
+    <div class="form-group">
+
+      <%= label_tag :pessoa_endereco_estado, 'Pais', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= text_field_tag :pessoa_endereco_estado, pe.endereco.bairro.cidade.estado.pais.nome, class: 'form-control', disabled: 'disabled' %>
+      </div>
+
+
+      <%= label_tag :pessoa_endereco_estado, 'Estado', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= text_field_tag :pessoa_endereco_estado, pe.endereco.bairro.cidade.estado.nome, class: 'form-control', disabled: 'disabled' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+
+      <%= label_tag :pessoa_endereco_cidade, 'Cidade', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= text_field_tag :pessoa_endereco_cidade, pe.endereco.bairro.cidade.nome, class: 'form-control', disabled: 'disabled' %>
+      </div>
+
+      <%= label_tag :pessoa_endereco_cidade, 'Bairro', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-5">
+        <%= text_field_tag :pessoa_endereco_cidade, pe.endereco.bairro.nome, class: 'form-control', disabled: 'disabled' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+
+      <%= label_tag :pessoa_endereco_cep, 'Cep', class: 'col-md-1 control-label no-padding-right' %>
+      <div class="col-md-11">
+        <%= text_field_tag :pessoa_endereco_cep, pe.endereco.cep, class: 'form-control', disabled: 'disabled' %>
+      </div>
+
+    </div>
+
 
     <div class="form-group">
       <%= label_tag :pessoa_endereco_ponto_referencia, 'Ponto de Referência', class: 'col-md-1 control-label no-padding-right' %>

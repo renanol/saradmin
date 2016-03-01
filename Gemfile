@@ -31,27 +31,12 @@ gem 'jquery-ui-rails'
 # Font Awesome
 gem 'font-awesome-rails', '~> 4.4.0.0'
 
-# Breadcrumbs
-gem 'breadcrumbs_on_rails'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 # autenticacao e autorizacao
 gem 'devise'
 gem 'pundit'
 
 # rename project
 gem 'rename'
-
-#nested forms
-gem 'cocoon'
 
 gem 'nested_form_fields'
 
@@ -64,13 +49,7 @@ gem 'bootstrap_form'
 
 gem 'ransack'
 
-#group :development, :test do
-#  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-#  gem 'byebug'
-#end
-
 gem 'rails_12factor', group: :production
-
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views

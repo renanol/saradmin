@@ -15,14 +15,9 @@ class Contribuicao < ActiveRecord::Base
 
   belongs_to :tipo_contribuicao
   belongs_to :membro
-  after_initialize :format_value
 
-  def format_value
-
-      if(self.valor.instance_of? String)
-        self.valor.to_number
-      end
-      self.valor
+  def valor=(val)
+    write_attribute :valor, val.to_number
   end
 
   def valorFormatado

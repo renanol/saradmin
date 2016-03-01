@@ -28,7 +28,7 @@ class ContribuicoesController < ApplicationController
 
   def edit
     @tela = "Alterar Contribuição de #{@membro.pessoa.nome}"
-    @contribuicao.valor = @contribuicao.valorFormatado
+
   end
 
   def new
@@ -53,8 +53,8 @@ class ContribuicoesController < ApplicationController
 
   def update
     respond_to do |format|
-      @contribuicao.create(contribuicao_params)
-      if @contribuicao.update
+
+      if @contribuicao.update(contribuicao_params)
         format.html { redirect_to membro_contribuicoes_path(@contribuicao.membro), notice: 'Contribuição alterada com sucesso.' }
         format.json { render :show, status: :ok, location: @contribuicao }
       else

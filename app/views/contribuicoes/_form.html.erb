@@ -19,7 +19,7 @@
       <%= f.label :valor, class: 'col-md-1 control-label no-padding-right' %>
 
       <div class="col-md-3">
-        <%= f.text_field :valor, type: 'text', class: 'form-control formatarMoeda' %>
+        <%= f.text_field :valor, type: 'text', class: 'form-control formatarMoeda', :value => number_to_currency(f.object.valor)%>
       </div>
     </div>
 
