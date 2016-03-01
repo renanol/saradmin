@@ -1,10 +1,12 @@
 # Load the Rails application.
 require File.expand_path('../application', __FILE__)
 
+
 # Initialize the Rails application.
 Rails.application.initialize!
 
-# Formatações de Numeros
+# Formatações de Data
+Date::DATE_FORMATS[:br] = "%d/%m/%Y"
 
 module Currency
   BRL = {:delimiter => ".", :separator => ",", :precision => 2}
@@ -16,7 +18,7 @@ module Currency
       if self.numeric?
         nil
       end
-      return self.gsub(/,/, '.').to_f
+      return self.gsub('.','').gsub(/,/, '.').to_d
     end
 
     def numeric?
@@ -66,7 +68,4 @@ class Fixnum; include Currency::Number; end
 class Bignum; include Currency::Number; end
 class Float; include Currency::Number; end
 class String; include Currency::String; end
-
-# Formatações de Data
-Date::DATE_FORMATS[:br] = "%d/%m/%Y"
 

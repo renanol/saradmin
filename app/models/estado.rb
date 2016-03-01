@@ -17,6 +17,8 @@ class Estado < ActiveRecord::Base
   belongs_to :pais
   has_many :cidades
 
+  validates :nome, uniqueness: {scope: :pais_id}
+
   def to_s
     sigla
   end

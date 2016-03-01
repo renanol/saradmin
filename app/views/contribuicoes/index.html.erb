@@ -24,7 +24,7 @@
               <tr>
                 <td><%= c.data.to_s(:br) unless c.data.nil? %></td>
                 <td><%= c.tipo_contribuicao.descricao %></td>
-                <td><%= c.valorFormatado %></td>
+                <td><%= number_to_currency(c.valor) %></td>
                 <td>
                   <%= link_to edit_membro_contribuicao_path(c.membro, c), title: 'Alterar', class: 'btn btn-default btn-xs icon-only' do %>
                       <%= fa_icon 'pencil' %>
