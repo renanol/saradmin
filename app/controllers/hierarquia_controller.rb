@@ -34,4 +34,14 @@ class HierarquiaController < ApplicationController
     render json: retorno
   end
 
+  def preencher_sub_equipes
+    retorno = []
+
+    SubEquipe.where(equipe_id: params[:equipe_id]).each do |se|
+      retorno << {id: se.id, descricao: se.descricao}
+    end
+
+    render json: retorno
+  end
+
 end

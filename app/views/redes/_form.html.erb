@@ -6,15 +6,20 @@
     <%= hidden_field_tag :id_igreja, unless @rede.igreja.nil? then @rede.igreja.id else 0 end %>
 
     <div class="form-group">
+
       <div class="col-sm-6">
         <%= f.select :igreja_id, [], {label_col:'col-sm-2', control_col: 'col-sm-10', label_class: 'no-padding-right'} %>
       </div>
+
       <div class="col-sm-6">
         <%= f.select :responsavel_id, [], {label_col:'col-sm-2', control_col: 'col-sm-10', label_class: 'no-padding-right'} %>
       </div>
-    </div>
 
-    <%= f.text_field :descricao, label: 'Descrição', placeholder: 'Descrição', label_class: 'no-padding-right'  %>
+      <div class="col-sm-12">
+        <%= f.text_field :descricao, label: 'Descrição', placeholder: 'Descrição', label_class: 'no-padding-right'  %>
+      </div>
+
+    </div>
 
     <%= link_to 'Listar', redes_path, class: 'btn btn-blue' %>
 

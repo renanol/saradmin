@@ -13,6 +13,9 @@
             <th>#</th>
             <th>Descrição </th>
             <th>Sub Equipe</th>
+            <th>Equipe</th>
+            <th>Rede</th>
+            <th>Igreja</th>
             <th>Responsável</th>
             <th width="20"></th>
             <th width="20"></th>
@@ -26,6 +29,9 @@
                 <td><%= celula.id %></td>
                 <td><%= celula.descricao %></td>
                 <td><%= celula.sub_equipe %></td>
+                <td><%= celula.sub_equipe.equipe %></td>
+                <td><%= celula.sub_equipe.equipe.rede %></td>
+                <td><%= celula.sub_equipe.equipe.rede.igreja %></td>
                 <td><%= celula.responsavel.pessoa.nome unless celula.responsavel.nil? %></td>
                 <td>
                   <%= link_to celula, title: 'Visualizar', class: 'btn btn-default btn-xs icon-only' do %>

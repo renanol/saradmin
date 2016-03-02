@@ -62,4 +62,5 @@ preencherRedes = (rede_id = 0) ->
 
 $('#igreja_id').change ->
   preencherResponsaveis()
+  preencherRedes()
   return

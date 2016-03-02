@@ -59,6 +59,9 @@ preencherRedes = (rede_id = 0, equipe_id = 0) ->
 
         preencherEquipes(equipe_id)
         return
+  else
+    preencherEquipes(equipe_id)
+    return
 
   return
 

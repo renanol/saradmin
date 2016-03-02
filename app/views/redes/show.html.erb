@@ -1,24 +1,21 @@
 <form action="" class="form-horizontal">
 
-  <div class="form-title">
-    Informações
-  </div>
-
   <div class="form-group">
-    <label class="col-sm-1 control-label">Igreja</label>
-    <div class="col-sm-11">
-      <input type="text" class='form-control' disabled value="<%= @rede.igreja.descricao %>">
+    <%= label_tag :igreja, nil, class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-5">
+      <%= text_field_tag :igreja, @rede.igreja.descricao, class: 'form-control', disabled: 'disabled' %>
+    </div>
+
+    <%= label_tag :responsavel, 'Responsável', class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-5">
+      <%= text_field_tag :responsavel, @rede.responsavel.pessoa.nome, class: 'form-control', disabled: 'disabled' %>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-sm-1 control-label">Descrição</label>
-    <div class="col-sm-5">
-      <input type="text" class='form-control' disabled value="<%=	 @rede.descricao  %>">
-    </div>
-    <label class="col-sm-1 control-label">Responsável</label>
-    <div class="col-sm-5">
-      <input type="text" class='form-control' disabled value="<%= @rede.responsavel.pessoa.nome %>">
+    <%= label_tag :descricao, 'Descrição', class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-11">
+      <%= text_field_tag :descricao, @rede.descricao, class: 'form-control', disabled: 'disabled' %>
     </div>
   </div>
 

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'preencher_responsaveis', on: :collection
     get 'preencher_redes', on: :collection
     get 'preencher_equipes', on: :collection
+    get 'preencher_sub_equipes', on: :collection
   end
 
 
