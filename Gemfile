@@ -49,6 +49,8 @@ gem 'bootstrap_form'
 
 gem 'ransack'
 
+gem 'active_model_serializers', github: "rails-api/active_model_serializers"
+
 gem 'rails_12factor', group: :production
 
 group :development do

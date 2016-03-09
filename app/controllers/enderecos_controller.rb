@@ -1,6 +1,6 @@
 class EnderecosController < ApplicationController
 
-  skip_before_action :verify_authenticity_token, only: [:bairros, :cidades, :estados, :paises]
+    skip_before_action :verify_authenticity_token, only: [:bairros, :cidades, :estados, :paises]
 
   def bairro
 

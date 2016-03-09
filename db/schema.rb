@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224233838) do
+ActiveRecord::Schema.define(version: 20160301162450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20160224233838) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "celula_membros", force: :cascade do |t|
+    t.integer  "celula_id"
+    t.integer  "membro_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "celula_membros", ["celula_id"], name: "index_celula_membros_on_celula_id", using: :btree
+  add_index "celula_membros", ["membro_id"], name: "index_celula_membros_on_membro_id", using: :btree
 
   create_table "celulas", force: :cascade do |t|
     t.string   "descricao"
@@ -157,6 +167,8 @@ ActiveRecord::Schema.define(version: 20160224233838) do
     t.integer  "user_id"
   end
 
+  add_index "membros", ["pessoa_id"], name: "teste", using: :btree
+
   create_table "pais", force: :cascade do |t|
     t.string   "nome"
     t.string   "sigla"
@@ -263,6 +275,8 @@ ActiveRecord::Schema.define(version: 20160224233838) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "bairros", "cidades"
+  add_foreign_key "celula_membros", "celulas"
+  add_foreign_key "celula_membros", "membros"
   add_foreign_key "celulas", "sub_equipes"
   add_foreign_key "cidades", "estados"
   add_foreign_key "equipes", "redes"

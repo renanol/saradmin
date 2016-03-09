@@ -16,6 +16,7 @@
             <th>Responsável</th>
             <th width="20"></th>
             <th width="20"></th>
+            <th width="20"></th>
 
           </tr>
           </thead>
@@ -30,6 +31,11 @@
                 <td>
                   <%= link_to celula, title: 'Visualizar', class: 'btn btn-default btn-xs icon-only' do %>
                       <%= fa_icon 'search' %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to "/celulas/#{celula.id}/membros/new", title: 'Adicionar membros', class: 'btn btn-default btn-xs icon-only' do %>
+                      <%= fa_icon 'users' %>
                   <% end %>
                 </td>
                 <td>

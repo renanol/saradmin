@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   resources :redes
   resources :equipes
   resources :sub_equipes
-  resources :celulas
+
   resources :cargos
+
+  resources :celulas do
+    resource :celulas_membros, path: 'membros'
+  end
 
   resources :hierarquia do
     get 'preencher_igrejas', on: :collection
@@ -57,11 +61,11 @@ Rails.application.routes.draw do
 
   resources :membros do
     resources :contribuicoes
-
     collection do
       match 'search' => 'membros#search', via: [:get, :post], as: :search
       match 'report' => 'membros#report', via: [:get, :post], as: :report
     end
+    get 'search_membro', on: :collection
   end
 
   resources :tipo_contribuicoes

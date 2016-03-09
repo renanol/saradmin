@@ -27,11 +27,8 @@ class Igreja < ActiveRecord::Base
 
   validates :descricao, presence: true
 
-
   def to_s
     descricao
   end
-
-
 
 end
