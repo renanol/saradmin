@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :cargos
 
   resources :celulas do
-    resource :celulas_membros, path: 'membros'
+    resource :celulas_membros, path: 'membros' do
+      get 'search', on: :collection
+    end
   end
 
   resources :hierarquia do
@@ -67,7 +69,6 @@ Rails.application.routes.draw do
       match 'search' => 'membros#search', via: [:get, :post], as: :search
       match 'report' => 'membros#report', via: [:get, :post], as: :report
     end
-    get 'search_membro', on: :collection
   end
 
   resources :tipo_contribuicoes

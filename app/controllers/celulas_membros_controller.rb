@@ -29,6 +29,10 @@ class CelulasMembrosController < ApplicationController
 
   end
 
+  def search_membro
+    render json: Membro.by_nome_pessoa(params[:nome], params[:igreja_id]), status: :created
+  end
+
   private
 
   def set_celula
