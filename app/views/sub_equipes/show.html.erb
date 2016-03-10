@@ -1,30 +1,35 @@
 <form action="" class="form-horizontal">
 
-  <div class="form-title">
-    Informações
-  </div>
-
   <div class="form-group">
-    <label class="col-lg-1 control-label">Descrição</label>
-    <div class="col-lg-11">
-      <input type="text" class='form-control' disabled value="<%=	 @sub_equipe.descricao  %>">
+    <%= label_tag :igreja, nil, class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-5">
+      <%= text_field_tag :igreja, @sub_equipe.equipe.rede.igreja, class: 'form-control', disabled: 'disabled' %>
+    </div>
+
+    <%= label_tag :resposavel, 'Responsável', class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-5">
+      <%= text_field_tag :resposavel, @sub_equipe.responsavel.pessoa.nome, class: 'form-control', disabled: 'disabled' %>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-lg-1 control-label">Equipe</label>
-    <div class="col-lg-11">
-      <input type="text" class='form-control' disabled value="<%=	 @sub_equipe.equipe  %>">
+    <%= label_tag :rede, nil, class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-5">
+      <%= text_field_tag :rede, @sub_equipe.equipe.rede, class: 'form-control', disabled: 'disabled' %>
+    </div>
+
+    <%= label_tag :equipe, nil, class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-5">
+      <%= text_field_tag :equipe, @sub_equipe.equipe, class: 'form-control', disabled: 'disabled' %>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-lg-1 control-label">Responsável</label>
-    <div class="col-lg-11">
-      <input type="text" class='form-control' disabled value="<%= @sub_equipe.responsavel.pessoa.nome %>">
+    <%= label_tag :descricao, 'Descrição', class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-11">
+      <%= text_field_tag :descricao, @sub_equipe.descricao, class: 'form-control', disabled: 'disabled' %>
     </div>
   </div>
-
 
   <%= link_to 'Listar', sub_equipes_path, class: 'btn btn-blue' %>
   <%= link_to 'Editar', edit_sub_equipe_path(@sub_equipe), class: 'btn btn-blue' %>

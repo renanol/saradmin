@@ -1,32 +1,28 @@
 <form action="" class="form-horizontal">
 
-  <div class="form-title">
-    Informações
-  </div>
-
   <div class="form-group">
-    <label class="col-lg-1 control-label">Descrição</label>
-    <div class="col-lg-11">
-      <input type="text" class='form-control' disabled value="<%=	 @equipe.descricao  %>">
+    <%= label_tag :igreja, nil, class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-3">
+      <%= text_field_tag :igreja, @equipe.rede.igreja, class: 'form-control', disabled: 'disabled' %>
+    </div>
+
+    <%= label_tag :rede, nil, class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-3">
+      <%= text_field_tag :rede, @equipe.rede, class: 'form-control', disabled: 'disabled' %>
+    </div>
+
+    <%= label_tag :resposavel, 'Responsável', class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-3">
+      <%= text_field_tag :resposavel, @equipe.responsavel.pessoa.nome, class: 'form-control', disabled: 'disabled' %>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-lg-1 control-label">Rede</label>
-    <div class="col-lg-11">
-      <input type="text" class='form-control' disabled value="<%=	 @equipe.rede  %>">
+    <%= label_tag :descricao, 'Descrição', class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-11">
+      <%= text_field_tag :descricao, @equipe.descricao, class: 'form-control', disabled: 'disabled' %>
     </div>
   </div>
-
-  <div class="form-group">
-    <label class="col-lg-1 control-label">Responsável</label>
-    <div class="col-lg-11">
-      <input type="text" class='form-control' disabled value="<%= @equipe.responsavel.pessoa.nome %>">
-    </div>
-  </div>
-
-
-
 
   <%= link_to 'Listar', equipes_path, class: 'btn btn-blue' %>
   <%= link_to 'Editar', edit_equipe_path(@equipe), class: 'btn btn-blue' %>

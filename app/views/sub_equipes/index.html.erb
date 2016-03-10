@@ -11,8 +11,11 @@
           <thead>
           <tr>
             <th>#</th>
-            <th>Descrição </th>
+            <th>Descrição</th>
             <th>Equipe</th>
+            <th>Rede</th>
+            <th>Igreja</th>
+            <th>Responsável</th>
             <th width="20"></th>
             <th width="20"></th>
 
@@ -25,6 +28,9 @@
                 <td><%= sub_equipe.id %></td>
                 <td><%= sub_equipe.descricao %></td>
                 <td><%= sub_equipe.equipe %></td>
+                <td><%= sub_equipe.equipe.rede %></td>
+                <td><%= sub_equipe.equipe.rede.igreja %></td>
+                <td><%= sub_equipe.responsavel.pessoa.nome %></td>
                 <td>
                   <%= link_to sub_equipe, title: 'Visualizar', class: 'btn btn-default btn-xs icon-only' do %>
                       <%= fa_icon 'search' %>

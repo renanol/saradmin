@@ -1,32 +1,41 @@
 <form action="" class="form-horizontal">
 
-  <div class="form-title">
-    Informações
-  </div>
-
   <div class="form-group">
-    <label class="col-lg-1 control-label">Descrição</label>
-    <div class="col-lg-11">
-      <input type="text" class='form-control' disabled value="<%=	 @celula.descricao  %>">
+    <%= label_tag :igreja, nil, class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-5">
+      <%= text_field_tag :igreja, @celula.sub_equipe.equipe.rede.igreja, class: 'form-control', disabled: 'disabled' %>
+    </div>
+
+    <%= label_tag :resposavel, 'Responsável', class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-5">
+      <%= text_field_tag :resposavel, @celula.responsavel.pessoa.nome, class: 'form-control', disabled: 'disabled' %>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-lg-1 control-label">Sub Equipe</label>
-    <div class="col-lg-11">
-      <input type="text" class='form-control' disabled value="<%=	 @celula.sub_equipe  %>">
+    <%= label_tag :rede, nil, class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-3">
+      <%= text_field_tag :rede, @celula.sub_equipe.equipe.rede, class: 'form-control', disabled: 'disabled' %>
+    </div>
+
+    <%= label_tag :equipe, nil, class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-3">
+      <%= text_field_tag :equipe, @celula.sub_equipe.equipe, class: 'form-control', disabled: 'disabled' %>
+    </div>
+
+    <%= label_tag :sub_equipe, 'Sub equipe', class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-3">
+      <%= text_field_tag :sub_equipe, @celula.sub_equipe, class: 'form-control', disabled: 'disabled' %>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-lg-1 control-label">Responsável</label>
-    <div class="col-lg-11">
-      <input type="text" class='form-control' disabled value="<%=	 @celula.responsavel.pessoa.nome  unless @celula.responsavel.nil? %>">
+    <%= label_tag :descricao, 'Descrição', class: 'col-md-1 control-label no-padding-right' %>
+    <div class="col-md-11">
+      <%= text_field_tag :descricao, @celula.descricao, class: 'form-control', disabled: 'disabled' %>
     </div>
   </div>
-
-
-
+  
   <%= link_to 'Listar', celulas_path, class: 'btn btn-blue' %>
   <%= link_to 'Editar', edit_celula_path(@celula), class: 'btn btn-blue' %>
 
