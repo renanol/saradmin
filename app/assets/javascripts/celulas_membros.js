@@ -52,14 +52,17 @@ $(function(){
 
         var nome = $("#nome").val(),
             igreja_id =  $("#igreja-id").val(),
+            celula_id = $("#celula-id").val(),
+
             $el = $(this);
 
         $.ajax({
-            url: "/membros/search_membro",
+            url: "/celulas/"+celula_id+"/membros/search",
             method: 'get',
             data:{
                 nome: nome,
-                igreja_id: igreja_id
+                igreja_id: igreja_id,
+
             }
         }).success(function(data){
             $("#tbl-membro > tbody").empty();

@@ -1,6 +1,6 @@
 class CelulasMembrosController < ApplicationController
 
-  before_action :set_celula, only:[ :new ]
+  before_action :set_celula, only:[ :new, :search ]
   before_action :preencher_listas, only: [ :new ]
   skip_before_action :verify_authenticity_token, only: [:create, :destroy]
 
@@ -29,8 +29,8 @@ class CelulasMembrosController < ApplicationController
 
   end
 
-  def search_membro
-    render json: Membro.by_nome_pessoa(params[:nome], params[:igreja_id]), status: :created
+  def search
+    render json: Membro.by_nome_pessoa(params[:nome], params[:igreja_id], @celula.membros_ids), status: :created
   end
 
   private

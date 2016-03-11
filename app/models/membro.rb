@@ -18,7 +18,10 @@
 
 class Membro < ActiveRecord::Base
 
-  scope :by_nome_pessoa, -> (nome, igreja_id) { joins(:pessoa).where("upper(pessoas.nome) like upper(?) and igreja_id = ? ", "%#{nome}%", igreja_id).order('pessoas.nome')  }
+  scope :by_nome_pessoa, -> (nome, igreja_id, membros_id) {
+                              joins(:pessoa).where("upper(pessoas.nome) like upper(?) and igreja_id = ? and membros.id not in(?) ", "%#{nome}%", igreja_id, membros_id)
+                                  .order('pessoas.nome')
+                            }
 
   belongs_to :user
   belongs_to :pessoa

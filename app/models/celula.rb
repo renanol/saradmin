@@ -21,4 +21,20 @@ class Celula < ActiveRecord::Base
     self.sub_equipe.equipe.rede.igreja.id
   end
 
+  def membros_ids
+    ids = []
+
+    celulas = CelulaMembro.where(celula_id: self.id)
+
+    if celulas.length > 0
+      celulas.each do |c|
+        ids << c.membro.id
+      end
+    else
+      ids << -1
+    end
+
+    return ids
+  end
+
 end
