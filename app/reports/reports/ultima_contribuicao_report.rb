@@ -1,12 +1,13 @@
-class MembroReport < PdfReport
-    TABLE_WIDTHS = [50, 290, 100, 100]
-    TABLE_HEADERS = [["ID", "Nome", "Cargo", "Igreja"]]
+module Reports
+  class UltimaContribuicaoReport < PdfReport
+    TABLE_WIDTHS = [  50,         200,    130,      80,                    80]
+    TABLE_HEADERS = [["Cadastro", "Nome", "Cargo", "Última Contribuição", "Valor"]]
 
     def initialize(membros=[])
       super()
       @membros = membros
 
-      header 'Event Summary Report'
+      header 'Ultima Contribuição'
       display_membro_table
       footer
     end
@@ -15,7 +16,7 @@ class MembroReport < PdfReport
 
     def display_membro_table
       if table_data.empty?
-        text "Nenhum membro encontrado"
+        text "Sem resultados"
       else
         table TABLE_HEADERS + table_data,
               header: true,
@@ -25,6 +26,7 @@ class MembroReport < PdfReport
     end
 
     def table_data
-      @table_data ||= @membros.map { |m| [m.id, m.pessoa.nome, m.cargo.descricao, m.igreja.descricao] }
+      @table_data ||= @membros
     end
+  end
 end

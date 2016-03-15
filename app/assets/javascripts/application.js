@@ -123,18 +123,6 @@ $(function(){
         });
     });
 
-    $(".btn-search").on("click", function(){
-        $('form').get(0).setAttribute('action', $(this).data('action'));
-        $('form').get(0).removeAttribute('target');
-        $(this).closest("form").submit();
-    });
-
-    $(".btn-report").on("click", function(){
-        $('form').get(0).setAttribute('action', $(this).data('action'));
-        $('form').get(0).setAttribute('target', '_blank');
-        $(this).closest("form").submit();
-    });
-
     $("#cadastrar_igreja").on("click", function(){
         $(".modal-alterar-grupo").modal()
     });

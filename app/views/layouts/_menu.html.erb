@@ -4,18 +4,19 @@
     <!--Dashboard-->
     <li>
       <%= link_to root_path do %>
-        <%= fa_icon 'tachometer', class: 'menu-icon' %>
-        <span class="menu-text"> Dashboard </span>
+          <%= fa_icon 'tachometer', class: 'menu-icon' %>
+          <span class="menu-text"> Dashboard </span>
       <% end %>
     </li>
 
+    <!--Igreja-->
     <li>
       <%= link_to '#', class: 'menu-dropdown' do %>
           <%= fa_icon 'home', class: 'menu-icon' %>
           <span class="menu-text"> Igreja </span>
           <i class="menu-expand"></i>
 
-    <% end %>
+      <% end %>
 
       <ul class="submenu">
 
@@ -70,7 +71,7 @@
             </li>
 
           </ul>
-          
+
         </li>
 
 
@@ -106,6 +107,34 @@
 
       </ul>
 
+
+    </li>
+
+
+    <!--Relatorios-->
+    <li>
+
+    <li>
+
+      <%= link_to '#', class: 'menu-dropdown' do %>
+          <%= fa_icon 'file-pdf-o', class: 'menu-icon' %>
+          <span class="menu-text"> Relatórios </span>
+          <i class="menu-expand"></i>
+    <% end %>
+
+      <ul class="submenu">
+
+        <li>
+
+          <%= link_to ultima_contribuicao_index_path, class: 'open-menu' do %>
+              <span class="menu-text"> Última Contribuição </span>
+          <% end %>
+
+        </li>
+
+      </ul>
+
+    </li>
 
     </li>
 

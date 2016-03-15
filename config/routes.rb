@@ -73,6 +73,14 @@ Rails.application.routes.draw do
 
   resources :tipo_contribuicoes
 
+  scope module: :reports do
+    resources :ultima_contribuicao, only: :index do
+      collection do
+        match 'report' => 'ultima_contribuicao#report', via: [:get, :post], as: :report
+      end
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
