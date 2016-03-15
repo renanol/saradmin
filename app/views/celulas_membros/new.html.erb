@@ -1,0 +1,58 @@
+<div class="form-title">
+  Adicionar Membros
+</div>
+
+
+<input type="hidden" id="igreja-id" value="<%= @celula.igreja_id %>" />
+<input type="hidden" id="celula-id" value="<%= @celula.id %>" />
+
+
+<div class="form-group">
+
+  <label for="nome" class = "col-md-1 control-label no-padding-right">Membro</label>
+  <div class="col-sm-9">
+    <input id="nome" type="text" class = "form-control" />
+  </div>
+  <div class="col-sm-2">
+    <%= link_to '#',  {title: 'Filtrar', class: 'btn btn-info btn-circle btn-xs', id: "search" } do %>
+        <%= fa_icon 'search' %>
+    <% end %>
+  </div>
+
+</div>
+
+
+<table class="table table-hover table-bordered "  id="tbl-membro">
+  <thead>
+    <th align="left">Membro</th>
+    <th width="20"></th>
+  </thead>
+
+  <tbody>
+
+  </tbody>
+
+</table>
+
+<div class="form-title">
+  Membros da Celula
+</div>
+
+<table class="table table-hover table-bordered" id="tbl-celula-membro">
+  <thead>
+  <th align="left">Membro</th>
+  <th width="20"></th>
+  </thead>
+
+  <tbody>
+
+  <% @celula_membros.each do |cm| %>
+      <tr>
+        <td><%= cm.membro %></td>
+        <td> <a href="#" class="remove_celula_membro" data-celula-membro-id="<%= cm.id %>" data-celula-id="<%= cm.celula.id %>"><i class="fa fa-remove"></i></a> </td>
+      </tr>
+  <% end %>
+
+  </tbody>
+
+</table>

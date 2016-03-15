@@ -18,12 +18,18 @@
 
 class Membro < ActiveRecord::Base
 
+  scope :by_nome_pessoa, -> (nome, igreja_id, membros_id) {
+                              joins(:pessoa).where("upper(pessoas.nome) like upper(?) and igreja_id = ? and membros.id not in(?) ", "%#{nome}%", igreja_id, membros_id)
+                                  .order('pessoas.nome')
+                            }
+
   belongs_to :user
   belongs_to :pessoa
   belongs_to :igreja
   belongs_to :cargo
 
   has_many :contribuicaos
+  has_many :celula_membros
 
   accepts_nested_attributes_for :pessoa
   accepts_nested_attributes_for :contribuicaos
@@ -31,10 +37,12 @@ class Membro < ActiveRecord::Base
   validates :igreja_id, presence: true
   validates :cargo_id, presence: true
 
-
-
   def to_s
     pessoa
+  end
+
+  def nome
+    pessoa.nome
   end
 
   def nome_igreja

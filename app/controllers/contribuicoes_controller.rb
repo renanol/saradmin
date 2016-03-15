@@ -18,16 +18,16 @@ class ContribuicoesController < ApplicationController
 
   def index
     @membro = Membro.find(params[:membro_id])
-    @tela = "Listar Contribuições de #{@membro.pessoa.nome}"
+
     @contribuicoes = Contribuicao.where(membro_id: params[:membro_id]).reverse_order
   end
 
   def show
-    @tela = 'Visualizar Contribuição'
+
   end
 
   def edit
-    @tela = "Alterar Contribuição de #{@membro.pessoa.nome}"
+
 
   end
 
@@ -35,7 +35,6 @@ class ContribuicoesController < ApplicationController
     @membro = Membro.find(params[:membro_id])
     @contribuicao = @membro.contribuicaos.build
     @contribuicao.data = Time.new.to_date
-    @tela = "Cadastrar Contribuição de #{@membro.pessoa.nome}"
   end
 
   def create

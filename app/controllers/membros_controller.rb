@@ -20,6 +20,8 @@ class MembrosController < ApplicationController
 
   before_action :preencher_listas, only: [:search, :index, :new, :edit, :create, :show]
   before_action :set_membro, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:search_membro]
+
 
   def index
     @tela = 'Listar Membros'
