@@ -49,7 +49,7 @@
   <% @celula_membros.each do |cm| %>
       <tr>
         <td><%= cm.membro %></td>
-        <td> <a href="#" class="remove_celula_membro" data-celula-membro-id="<%= cm.id %>" data-celula-id="<%= cm.celula.id %>"><i class="fa fa-remove"></i></a> </td>
+        <td> <a href="#" class="remove_celula_membro btn btn-default btn-xs icon-only danger" data-celula-membro-id="<%= cm.id %>" data-celula-id="<%= cm.celula.id %>"><i class="fa fa-remove "></i></a> </td>
       </tr>
   <% end %>
 
