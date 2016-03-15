@@ -1,0 +1,15 @@
+<%= bootstrap_form_tag url: '/report', layout: :horizontal,  label_col: "col-sm-2", control_col: "col-sm-10" do |f| %>
+
+    <%= f.text_field :data_ult_contrib, label: 'Sem contribuição desde', value: @data_ult_contrib, label_col:'col-sm-2',  control_col: 'col-sm-4' %>
+
+    <div class="form-group">
+
+      <div class="col-sm-12 text-right">
+        <%= link_to '#', title: 'Gerar Relatório', class: 'btn btn-success btn-circle btn-xs btn-report', data: {action: report_ultima_contribuicao_index_path(format: 'pdf')} do %>
+            <%= fa_icon 'print' %>
+        <% end %>
+      </div>
+
+    </div>
+
+<% end %>
