@@ -16,6 +16,7 @@ class Celula < ActiveRecord::Base
   belongs_to :responsavel, class_name: "Membro", foreign_key: "responsavel_id"
 
   has_many :celula_membros
+  has_many :membros, through: :celula_membros
 
   def igreja_id
     self.sub_equipe.equipe.rede.igreja.id
