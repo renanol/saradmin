@@ -16,7 +16,15 @@
 
 <%= object.hidden_field :id %>
 
-<%= object.text_field :logradouro, label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right' %>
+<% if idx == 0 %>
+
+    <%= object.text_field :logradouro, label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right', required: true,  data: {bv_notempty_message:"Campo obrigatório"} %>
+
+<% else %>
+
+    <%= object.text_field :logradouro, label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right' %>
+
+<% end %>
 
 <%= object.text_field :numero,label_col:'col-sm-1', control_col: 'col-sm-11', label_class: 'no-padding-right'  %>
 

@@ -76,6 +76,9 @@
 </div>
 
 <% @membro.pessoa.pessoa_enderecos.each do |pe| %>
+
+    <% if !pe.endereco.bairro.nil? %>
+
     <div class="form-title">
       Endereço <%= pe.descricao %>
     </div>
@@ -143,6 +146,9 @@
         <%= text_field_tag :pessoa_endereco_ponto_referencia, pe.endereco.ponto_referencia, class: 'form-control', disabled: 'disabled' %>
       </div>
     </div>
+
+    <% end %>
+
 <% end %>
 
 <div class="form-title">

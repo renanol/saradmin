@@ -1,4 +1,4 @@
-<%= bootstrap_form_for(@membro, layout: :horizontal,  label_col: "col-sm-2", control_col: "col-sm-10") do |g| %>
+<%= bootstrap_form_for(@membro, layout: :horizontal,  label_col: "col-sm-2", control_col: "col-sm-10", id: 'form-membro') do |g| %>
 
     <div class="form-group">
       <div class="col-md-4">
@@ -112,9 +112,9 @@
 
     <div class="text-center">
         <%= link_to 'Listar', membros_path, class: 'btn btn-blue' %>
-        <div class="form-group" align="center">
-          <button type="submit" class="btn btn-default">Confirmar</button>
-        </div>
+
+      <button type="submit" class="btn btn-default">Confirmar</button>
+
     </div>
 
 <% end %>
