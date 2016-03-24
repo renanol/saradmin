@@ -15,4 +15,4 @@ $(".btn-report").on("click", ->
   return
 )
 
-$("form").bootstrapValidator();
+#$("form").bootstrapValidator();
