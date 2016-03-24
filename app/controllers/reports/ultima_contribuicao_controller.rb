@@ -38,7 +38,7 @@ class Reports::UltimaContribuicaoController < ApplicationController
 
     respond_to do |format|
       format.pdf do
-        pdf = UltimaContribuicaoReport.new(@records_array)
+        pdf = Reports::UltimaContribuicaoReport.new(@records_array)
         send_data pdf.render, filename: "membros_report.pdf", type: "application/pdf", disposition: "inline"
       end
     end
