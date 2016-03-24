@@ -27,9 +27,6 @@
 
 $(function(){
 
-    $("form").bootstrapValidator();
-
-
     $(".modal-endereco").on('click', function (e) {
 
         e.preventDefault();
