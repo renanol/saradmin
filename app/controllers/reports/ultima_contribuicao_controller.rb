@@ -8,14 +8,14 @@ class Reports::UltimaContribuicaoController < ApplicationController
     @data_ult_contrib = params[:data_ult_contrib]
 
     sql =
-        "SELECT
+        "SELECT DISTINCT
         m.numero_cadastro,
         p.nome,
         c.descricao,
         (SELECT to_char(cot.data, 'dd/mm/yyyy')
          FROM contribuicoes cot
          WHERE cot.membro_id = m.id
-         ORDER BY cot.data DESC
+         ORDER BY cot.data DESC, cot.id DESC
          LIMIT 1) AS ULTIMA_CONTRIBUICAO,
         (SELECT cot.valor
          FROM contribuicoes cot
