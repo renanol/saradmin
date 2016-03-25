@@ -14,3 +14,5 @@ $(".btn-report").on("click", ->
   $(this).closest("form").submit()
   return
 )
+
+#$("form").bootstrapValidator();

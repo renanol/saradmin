@@ -22,6 +22,7 @@
 //= require jquery.maskMoney.min
 //= require jquery.maskedinput.min
 //= require beyond/bootbox/bootbox.min
+//= require beyond/validation/bootstrapValidator.min
 //= require dashboard
 
 $(function(){
