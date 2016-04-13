@@ -167,6 +167,8 @@ ActiveRecord::Schema.define(version: 20160301162450) do
     t.integer  "user_id"
   end
 
+  add_index "membros", ["pessoa_id"], name: "teste", using: :btree
+
   create_table "pais", force: :cascade do |t|
     t.string   "nome"
     t.string   "sigla"
