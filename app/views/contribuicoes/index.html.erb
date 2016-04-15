@@ -8,6 +8,11 @@
         <%= link_to new_membro_contribuicao_path(@membro), title: 'Novo', class: 'btn btn-success btn-circle btn-xs' do %>
             <%= fa_icon 'plus' %>
         <% end %>
+
+        <%= link_to '#', title: 'Imprimir', class: 'btn btn-success btn-circle btn-xs btn-report', data: {action: report_membro_contribuicoes_path(format: 'pdf')} do %>
+            <%= fa_icon 'print' %>
+        <% end %>
+
       </div>
       <div class="col-sm-12">
         <table class="table table-hover table-bordered">

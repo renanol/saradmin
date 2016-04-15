@@ -66,8 +66,11 @@ Rails.application.routes.draw do
   end
 
   resources :membros do
-    resources :contribuicoes
+    resources :contribuicoes do
+      match 'report' => 'contribuicoes#report', via: [:get, :post], as: :report, on: :collection
+    end
     collection do
+
       match 'search' => 'membros#search', via: [:get, :post], as: :search
       match 'report' => 'membros#report', via: [:get, :post], as: :report
     end

@@ -63,6 +63,16 @@ class ContribuicoesController < ApplicationController
     end
   end
 
+  def report
+    index
+    respond_to do |format|
+      format.pdf do
+        pdf = ContribuicaoMembroReport.new(@contribuicoes)
+        send_data pdf.render, filename: "membros_contribuicoes_report.pdf", type: "application/pdf", disposition: "inline"
+      end
+    end
+  end
+
   private
 
   def preencher_listas

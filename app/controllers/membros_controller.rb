@@ -19,7 +19,7 @@
 class MembrosController < ApplicationController
 
   before_action :preencher_listas, only: [:search, :index, :new, :edit, :create, :show]
-  before_action :set_membro, only: [:show, :edit, :update, :destroy]
+  before_action :set_membro, only: [:show, :edit, :update, :destroy, :report_contribuicao]
   skip_before_action :verify_authenticity_token, only: [:search_membro]
 
 
