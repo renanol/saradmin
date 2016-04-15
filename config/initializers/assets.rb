@@ -6,6 +6,7 @@ Rails.application.config.assets.version = '1.0'
 %w(
   enderecos  grupos  membros tipo_contribuicoes  cargos  contribuicoes  equipes  hierarquia  redes
   users  celulas dashboard  foos  igrejas  sub_equipes  usuarios celulas_membros reports/ultima_contribuicao
+  reports/contribuicao_anual
   ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js.coffee", "#{controller}.css"]
 end

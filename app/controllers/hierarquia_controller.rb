@@ -4,6 +4,10 @@ class HierarquiaController < ApplicationController
     render json: Igreja.where(id: current_user.igrejas_ids)
   end
 
+  def preencher_cargos
+    render json: Cargo.where("TRUE")
+  end
+
   def preencher_responsaveis
     retorno = []
 
@@ -39,6 +43,16 @@ class HierarquiaController < ApplicationController
 
     SubEquipe.where(equipe_id: params[:equipe_id]).each do |se|
       retorno << {id: se.id, descricao: se.descricao}
+    end
+
+    render json: retorno
+  end
+
+  def preencher_celulas
+    retorno = []
+
+    Celula.where(sub_equipe_id: params[:sub_equipe_id]).each do |c|
+      retorno << {id: c.id, descricao: c.descricao}
     end
 
     render json: retorno

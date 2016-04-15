@@ -16,10 +16,12 @@ Rails.application.routes.draw do
 
   resources :hierarquia do
     get 'preencher_igrejas', on: :collection
+    get 'preencher_cargos', on: :collection
     get 'preencher_responsaveis', on: :collection
     get 'preencher_redes', on: :collection
     get 'preencher_equipes', on: :collection
     get 'preencher_sub_equipes', on: :collection
+    get 'preencher_celulas', on: :collection
   end
 
 
@@ -77,6 +79,12 @@ Rails.application.routes.draw do
     resources :ultima_contribuicao, only: :index do
       collection do
         match 'report' => 'ultima_contribuicao#report', via: [:get, :post], as: :report
+      end
+    end
+
+    resources :contribuicao_anual, only: :index do
+      collection do
+        match 'report' => 'contribuicao_anual#report', via: [:get, :post], as: :report
       end
     end
   end
