@@ -73,7 +73,7 @@ module Reports
     end
 
     def table_data_contribuicoes(membro_id)
-      Contribuicao.by_membro_order(membro_id).map { |c| [ c.data.to_s(:br), c.tipo_contribuicao.descricao, c.valorFormatado ] }
+      Contribuicao.by_membro_order(membro_id).map { |c| [ c.data.to_s(:br), c.tipo_contribuicao.descricao, c.valor ] }
     end
 
   end

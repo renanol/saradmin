@@ -33,7 +33,7 @@ class Reports::UltimaContribuicaoController < ApplicationController
     @records_array = []
 
     ActiveRecord::Base.connection.execute(sql).each do |r|
-      @records_array << [r['numero_cadastro'], r['nome'], r['descricao'], r['ultima_contribuicao'], BigDecimal.new(r['valor']).to_currency(Currency::BRL)]
+      @records_array << [r['numero_cadastro'], r['nome'], r['descricao'], r['ultima_contribuicao'], r['valor']]
     end
 
     respond_to do |format|

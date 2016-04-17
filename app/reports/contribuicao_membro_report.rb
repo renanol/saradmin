@@ -29,7 +29,7 @@ class ContribuicaoMembroReport < PdfReport
   end
 
   def table_data
-    @table_data ||= @contribuicoes.map { |c| [ c.data.to_s(:br), c.tipo_contribuicao.descricao, c.valorFormatado ] }
+    @table_data ||= @contribuicoes.map { |c| [ c.data.to_s(:br), c.tipo_contribuicao.descricao, "#{c.valorFormatado}" ] }
   end
 
 end

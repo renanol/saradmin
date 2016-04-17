@@ -177,19 +177,19 @@ class Reports::ContribuicaoAnualController < ApplicationController
           celula: r['celula'],
           valores: [
               [
-                  BigDecimal.new(r['jan']).to_currency(Currency::BRL),
-                  BigDecimal.new(r['fev']).to_currency(Currency::BRL),
-                  BigDecimal.new(r['mar']).to_currency(Currency::BRL),
-                  BigDecimal.new(r['abr']).to_currency(Currency::BRL),
-                  BigDecimal.new(r['mai']).to_currency(Currency::BRL),
-                  BigDecimal.new(r['jun']).to_currency(Currency::BRL),
-                  BigDecimal.new(r['jul']).to_currency(Currency::BRL),
-                  BigDecimal.new(r['ago']).to_currency(Currency::BRL),
-                  BigDecimal.new(r['set']).to_currency(Currency::BRL),
-                  BigDecimal.new(r['out']).to_currency(Currency::BRL),
-                  BigDecimal.new(r['nov']).to_currency(Currency::BRL),
-                  BigDecimal.new(r['dez']).to_currency(Currency::BRL),
-                  BigDecimal.new(r['tot']).to_currency(Currency::BRL)
+                  BigDecimal.new(r['jan']),
+                  BigDecimal.new(r['fev']),
+                  BigDecimal.new(r['mar']),
+                  BigDecimal.new(r['abr']),
+                  BigDecimal.new(r['mai']),
+                  BigDecimal.new(r['jun']),
+                  BigDecimal.new(r['jul']),
+                  BigDecimal.new(r['ago']),
+                  BigDecimal.new(r['set']),
+                  BigDecimal.new(r['out']),
+                  BigDecimal.new(r['nov']),
+                  BigDecimal.new(r['dez']),
+                  BigDecimal.new(r['tot'])
               ]
           ]
       }

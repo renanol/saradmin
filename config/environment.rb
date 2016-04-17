@@ -27,6 +27,11 @@ module Currency
   end
 
   module Number
+
+    def convert_string_to_decimal
+
+    end
+
     def to_currency(options = {})
       number = self
       default   = Currency::DEFAULT.stringify_keys
