@@ -11,8 +11,8 @@ class PdfReport < Prawn::Document
   end
 
   def header(title=nil)
-    image "#{Rails.root}/public/sara/sara_logo.png", height: 70, position: :center
-    move_down(15)
+    image "#{Rails.root}/public/sara/sara_logo.png", height: 50, position: :center
+    move_down(10)
     text "", size: 15, style: :bold, align: :center
     if title
       text title, size: 11, style: :bold_italic, align: :center

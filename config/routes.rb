@@ -90,6 +90,13 @@ Rails.application.routes.draw do
         match 'report' => 'contribuicao_anual#report', via: [:get, :post], as: :report
       end
     end
+
+    resources :membros_contribuicoes, only: :index do
+      collection do
+        match 'report' => 'membros_contribuicoes#report', via: [:get, :post], as: :report
+      end
+    end
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

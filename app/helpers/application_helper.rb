@@ -55,7 +55,6 @@ module ApplicationHelper
 
     action = params[:action]
 
-
     if action == "index"
       action = "Listar"
     elsif action == "show"
@@ -66,7 +65,7 @@ module ApplicationHelper
       action = "Cadastrar"
     end
 
-    "#{action} #{params[:controller].gsub("_", " ").capitalize}"
+    "#{action} #{params[:controller].gsub("_", " ").gsub("/", " ").gsub("Reports", "Relatório").capitalize}"
 
   end
 

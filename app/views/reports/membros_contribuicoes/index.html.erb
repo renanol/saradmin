@@ -1,0 +1,17 @@
+<%= bootstrap_form_tag url: '/report', layout: :horizontal,  label_col: "col-sm-1", control_col: "col-sm-11" do |f| %>
+
+    <%= hidden_field_tag :arquivo, 'idx-form' %>
+
+     <%= render "reports/filtros_relatorio_contribuicao" %>
+
+    <div class="form-group">
+
+      <div class="col-sm-12 text-right">
+        <%= link_to '#', title: 'Gerar Relatório', class: 'btn btn-success btn-circle btn-xs btn-report', data: {action: "/membros_contribuicoes/report.pdf"} do %>
+            <%= fa_icon 'print' %>
+        <% end %>
+      </div>
+
+    </div>
+
+<% end %>

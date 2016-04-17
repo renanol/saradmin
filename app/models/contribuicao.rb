@@ -13,6 +13,10 @@
 
 class Contribuicao < ActiveRecord::Base
 
+  scope :by_membro_order, -> (membro_id) {
+    where("membro_id =  ? ", membro_id).order(data: :desc)
+  }
+
   belongs_to :tipo_contribuicao
   belongs_to :membro
 
