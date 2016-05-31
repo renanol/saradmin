@@ -2,11 +2,11 @@ module Reports
 
   class MembrosContribuicoesReport < PdfReport
 
-    TABLE_WIDTHS = [100, 420, 200]
+    TABLE_WIDTHS = [100, 220, 200]
     TABLE_HEADERS = [["Data", "Tipo", "Valor"]]
 
     def initialize(membros)
-      super(page_layout: :landscape)
+      super()
 
       @membros = membros
 
@@ -31,17 +31,17 @@ module Reports
           @membro_info = [[{:content => "<b>Cadastro:</b>", :align => :right}, data[:numero_cadastro], {:content => "<b>Nome:</b>", :align => :right}, data[:nome]]]
           table @membro_info,
                 cell_style: {:borders => [], :padding => 1, :inline_format => true},
-                column_widths: [60, 180, 60, 420]
+                column_widths: [60, 180, 60, 220]
 
           @membro_info = [[{:content => "<b>Cargo:</b>", :align => :right}, data[:cargo], {:content => "<b>Igreja:</b>", :align => :right}, data[:igreja], {:content => "<b>Rede:</b>", :align => :right}, data[:rede]]]
           table @membro_info,
                 cell_style: {:borders => [], :padding => 1, :inline_format => true},
-                column_widths: [60, 180, 60, 180, 60, 180]
+                column_widths: [60, 80, 60, 180, 60, 80]
 
           @membro_info = [[{:content => "<b>Equipe:</b>", :align => :right}, data[:equipe], {:content => "<b>Sub-equipe:</b>", :align => :right}, data[:sub_equipe], {:content => "<b>Célula:</b>", :align => :right}, data[:celula]]]
           table @membro_info,
                 cell_style: {:borders => [], :padding => 1, :inline_format => true},
-                column_widths: [60, 180, 60, 180, 60, 180, 60]
+                column_widths: [60, 80, 60, 180, 60, 80, 60]
 
           move_down(5)
 
