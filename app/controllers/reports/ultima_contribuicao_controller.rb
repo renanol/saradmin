@@ -1,4 +1,5 @@
 class Reports::UltimaContribuicaoController < ApplicationController
+  include ActionView::Helpers::NumberHelper
 
   def index
     @data_ult_contrib = Date.current.to_s(:br)
@@ -33,7 +34,7 @@ class Reports::UltimaContribuicaoController < ApplicationController
     @records_array = []
 
     ActiveRecord::Base.connection.execute(sql).each do |r|
-      @records_array << [r['numero_cadastro'], r['nome'], r['descricao'], r['ultima_contribuicao'], r['valor']]
+      @records_array << [r['numero_cadastro'], r['nome'], r['descricao'], r['ultima_contribuicao'], number_to_currency(r['valor'])]
     end
 
     respond_to do |format|

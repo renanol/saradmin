@@ -73,4 +73,3 @@ class Fixnum; include Currency::Number; end
 class Bignum; include Currency::Number; end
 class Float; include Currency::Number; end
 class String; include Currency::String; end
-

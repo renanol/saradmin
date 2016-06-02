@@ -1,6 +1,7 @@
 module Reports
 
   class MembrosContribuicoesReport < PdfReport
+    include ActionView::Helpers::NumberHelper
 
     TABLE_WIDTHS = [100, 220, 200]
     TABLE_HEADERS = [["Data", "Tipo", "Valor"]]
@@ -73,7 +74,7 @@ module Reports
     end
 
     def table_data_contribuicoes(membro_id)
-      Contribuicao.by_membro_order(membro_id).map { |c| [ c.data.to_s(:br), c.tipo_contribuicao.descricao, c.valor ] }
+      Contribuicao.by_membro_order(membro_id).map { |c| [ c.data.to_s(:br), c.tipo_contribuicao.descricao, number_to_currency(c.valor)] }
     end
 
   end

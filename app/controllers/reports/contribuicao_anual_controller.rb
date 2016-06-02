@@ -1,5 +1,5 @@
 class Reports::ContribuicaoAnualController < ApplicationController
-
+  include ActionView::Helpers::NumberHelper
   def index
     @ano = Time.now.year
   end
@@ -170,19 +170,19 @@ class Reports::ContribuicaoAnualController < ApplicationController
           celula: r['celula'],
           valores: [
               [
-                  BigDecimal.new(r['jan']),
-                  BigDecimal.new(r['fev']),
-                  BigDecimal.new(r['mar']),
-                  BigDecimal.new(r['abr']),
-                  BigDecimal.new(r['mai']),
-                  BigDecimal.new(r['jun']),
-                  BigDecimal.new(r['jul']),
-                  BigDecimal.new(r['ago']),
-                  BigDecimal.new(r['set']),
-                  BigDecimal.new(r['out']),
-                  BigDecimal.new(r['nov']),
-                  BigDecimal.new(r['dez']),
-                  BigDecimal.new(r['tot'])
+                number_to_currency(BigDecimal.new(r['fev'])),
+                number_to_currency(BigDecimal.new(r['jan'])),
+                number_to_currency(BigDecimal.new(r['mar'])),
+                number_to_currency(BigDecimal.new(r['abr'])),
+                number_to_currency(BigDecimal.new(r['mai'])),
+                number_to_currency(BigDecimal.new(r['jun'])),
+                number_to_currency(BigDecimal.new(r['jul'])),
+                number_to_currency(BigDecimal.new(r['ago'])),
+                number_to_currency(BigDecimal.new(r['set'])),
+                number_to_currency(BigDecimal.new(r['out'])),
+                number_to_currency(BigDecimal.new(r['nov'])),
+                number_to_currency(BigDecimal.new(r['dez'])),
+                number_to_currency(BigDecimal.new(r['tot']))
               ]
           ]
       }

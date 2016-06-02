@@ -1,4 +1,5 @@
 class ContribuicaoMembroReport < PdfReport
+  include ActionView::Helpers::NumberHelper
 
   TABLE_WIDTHS = [50, 390, 100]
   TABLE_HEADERS = [["Data", "Descrição", "Valor"]]
@@ -29,7 +30,7 @@ class ContribuicaoMembroReport < PdfReport
   end
 
   def table_data
-    @table_data ||= @contribuicoes.map { |c| [ c.data.to_s(:br), c.tipo_contribuicao.descricao, "#{c.valorFormatado}" ] }
+    @table_data ||= @contribuicoes.map { |c| [ c.data.to_s(:br), c.tipo_contribuicao.descricao,  number_to_currency(c.valor) ] }
   end
 
 end
