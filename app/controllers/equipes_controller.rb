@@ -19,12 +19,12 @@ class EquipesController < ApplicationController
     @equipes = Equipe.none
 
     if current_user.tem_permissao ['usuarioPodeAcessarTodosOsNiveisDaIgreja']
-      @equipes = Equipe.where(rede_id: current_user.redes_ids)
+      @equipes = Equipe.where(rede_id: current_user.redes_ids).order(:descricao)
     else
       membro = Membro.find_by_user_id(current_user.id)
 
       unless membro.nil?
-        @equipes = Equipe.where(id: membro.equipes_ids)
+        @equipes = Equipe.where(id: membro.equipes_ids).order(:descricao)
       else
         @equipes = Equipe.none
       end

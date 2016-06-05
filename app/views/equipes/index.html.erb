@@ -10,7 +10,6 @@
         <table class="table table-hover table-bordered">
           <thead>
           <tr>
-            <th>#</th>
             <th>Descrição </th>
             <th>Rede</th>
             <th>Igreja</th>
@@ -22,8 +21,7 @@
 
           <tbody>
           <% @equipes.each do |equipe| %>
-              <tr>
-                <td><%= equipe.id %></td>
+              <tr>                
                 <td><%= equipe.descricao %></td>
                 <td><%= equipe.rede %></td>
                 <td><%= equipe.rede.igreja.descricao %></td>
@@ -46,6 +44,3 @@
     </div>
 
 <% end %>
-
-
-
