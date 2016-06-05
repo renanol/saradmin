@@ -20,12 +20,12 @@ class CelulasController < ApplicationController
     @celulas = Celula.none
 
     if current_user.tem_permissao ['usuarioPodeAcessarTodosOsNiveisDaIgreja']
-      @celulas = Celula.where(sub_equipe_id: current_user.sub_equipes_ids)
+      @celulas = Celula.where(sub_equipe_id: current_user.sub_equipes_ids).order(:descricao)
     else
       membro = Membro.find_by_user_id(current_user.id)
 
       unless membro.nil?
-        @celulas = Celula.where(id: membro.celulas_ids)
+        @celulas = Celula.where(id: membro.celulas_ids).order(:descricao)
       else
         @celulas = Celula.none
       end

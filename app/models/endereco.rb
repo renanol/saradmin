@@ -23,7 +23,7 @@ class Endereco < ActiveRecord::Base
   attr_accessor :cidade_id
 
   def to_s
-    "#{self.logradouro}, #{self.numero}, #{self.bairro.nome}"
+    "#{self.logradouro}, #{self.numero} " + "," + self.bairro.nome unless self.bairro.nil?
   end
 
 

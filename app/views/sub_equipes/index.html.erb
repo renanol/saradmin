@@ -10,7 +10,6 @@
         <table class="table table-hover table-bordered">
           <thead>
           <tr>
-            <th>#</th>
             <th>Descrição</th>
             <th>Equipe</th>
             <th>Rede</th>
@@ -18,14 +17,12 @@
             <th>Responsável</th>
             <th width="20"></th>
             <th width="20"></th>
-
           </tr>
           </thead>
 
           <tbody>
           <% @sub_equipes.each do |sub_equipe| %>
-              <tr>
-                <td><%= sub_equipe.id %></td>
+              <tr>                
                 <td><%= sub_equipe.descricao %></td>
                 <td><%= sub_equipe.equipe %></td>
                 <td><%= sub_equipe.equipe.rede %></td>

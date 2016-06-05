@@ -10,7 +10,6 @@
         <table class="table table-hover table-bordered">
           <thead>
           <tr>
-            <th>#</th>
             <th>Descrição </th>
             <th>Sub Equipe</th>
             <th>Equipe</th>
@@ -20,14 +19,12 @@
             <th width="20"></th>
             <th width="20"></th>
             <th width="20"></th>
-
           </tr>
           </thead>
 
           <tbody>
           <% @celulas.each do |celula| %>
-              <tr>
-                <td><%= celula.id %></td>
+              <tr>                
                 <td><%= celula.descricao %></td>
                 <td><%= celula.sub_equipe %></td>
                 <td><%= celula.sub_equipe.equipe %></td>
