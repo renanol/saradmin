@@ -6,7 +6,7 @@ class MembroReport < PdfReport
       super()
       @membros = membros
 
-      header 'Event Summary Report'
+      header 'Listagem de membros'
       display_membro_table
       footer
     end

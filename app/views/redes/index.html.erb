@@ -10,7 +10,7 @@
         <table class="table table-hover table-bordered">
           <thead>
           <tr>
-            <th>#</th>
+
             <th>Descrição </th>
             <th>Igreja </th>
             <th>Responsável </th>
@@ -23,7 +23,7 @@
           <tbody>
           <% @redes.each do |rede| %>
               <tr>
-                <td><%= rede.id %></td>
+                
                 <td><%= rede.descricao %></td>
                 <td><%= rede.igreja.descricao %></td>
                 <td><%= rede.responsavel.pessoa.nome unless rede.responsavel.nil? %></td>

@@ -19,12 +19,12 @@ class RedesController < ApplicationController
     @redes = Rede.none
 
     if current_user.tem_permissao ['usuarioPodeAcessarTodosOsNiveisDaIgreja']
-      @redes = Rede.where(igreja_id: current_user.igrejas_ids)
+      @redes = Rede.where(igreja_id: current_user.igrejas_ids).order(:descricao)
     else
       membro = Membro.find_by_user_id(current_user.id)
 
       unless membro.nil?
-        @redes = Rede.where(id: membro.redes_ids)
+        @redes = Rede.where(id: membro.redes_ids).order(:descricao)
       else
         @redes = Rede.none
       end
